@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BrainsMingle Design System</title>
+<style>
+/* ================================================================
+   CSS CUSTOM PROPERTIES
+   ================================================================ */
+:root {
+  /* Neutral foundations */
+  --n50:#f2f4f6;--n100:#dde0e3;--n200:#c1c4c9;--n250:#b2b6bb;--n300:#a4a8ad;
+  --n350:#94989e;--n400:#85898f;--n500:#676c73;--n600:#4c5158;--n700:#374151;
+  --n800:#1f2937;--n825:#1d2431;--n850:#1a202b;--n875:#181b25;--n900:#15171f;
+  --n925:#0f1117;--n950:#0a0b0f;
+  /* Brand */
+  --b50:#edeeff;--b100:#ddddff;--b200:#c0bfff;--b300:#9b94ff;--b400:#6a41f6;
+  --b500:#6723ff;--b600:#4200b5;--b700:#32008e;--b800:#220066;--b900:#150243;--b950:#0b032a;
+  /* Accent (secondary brand) */
+  --a50:#e6fef7;--a100:#b5fce6;--a200:#76f0ce;--a300:#40e4b4;--a400:#1aeebb;
+  --a500:#00ffc6;--a600:#00c79a;--a700:#009373;--a800:#006550;--a900:#003a2e;--a950:#00201a;
+  /* Status */
+  --err50:#ffeae7;--err100:#fed4ce;--err200:#fcada3;--err300:#f3776b;--err400:#d93c35;
+  --err500:#dc2626;--err600:#960007;--err700:#720308;--err800:#510707;--err900:#330806;--err950:#1e0604;
+  --suc50:#e6f7e8;--suc100:#ccedd1;--suc200:#9ddda8;--suc300:#5ec476;--suc400:#2caa53;
+  --suc500:#16a34a;--suc600:#00712f;--suc700:#025622;--suc800:#023b16;--suc900:#04260d;--suc950:#041507;
+  --war50:#fff3e4;--war100:#ffe4c6;--war200:#ffcc8e;--war300:#ffb657;--war400:#ffac33;
+  --war500:#f59e0b;--war600:#ba7400;--war700:#8c5500;--war800:#623b00;--war900:#3e2503;--war950:#231504;
+  --inf50:#e9f2ff;--inf100:#d2e4ff;--inf200:#a8c9ff;--inf300:#73a5ff;--inf400:#407bf6;
+  --inf500:#2563eb;--inf600:#1242aa;--inf700:#0e3282;--inf800:#0a245b;--inf900:#07173a;--inf950:#050d22;
+
+  --sidebar-w: 260px;
+  --header-h: 52px;
+  --font-sans: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  --font-mono: 'SF Mono',Monaco,Consolas,'Liberation Mono',monospace;
+  --ease: cubic-bezier(.4,0,.2,1);
+}
+
+/* ================================================================
+   THEME: DARK (default)
+   ================================================================ */
+[data-theme="dark"] {
+  --bg-body: var(--n950); --bg-sidebar: var(--n925); --bg-card: var(--n900);
+  --bg-raised: var(--n875); --bg-overlay: var(--n850); --bg-input: var(--n900);
+  --fg-1: var(--n100); --fg-2: var(--n250); --fg-3: var(--n350); --fg-4: var(--n500);
+  --border-subtle: var(--n875); --border-default: var(--n800); --border-strong: var(--n700);
+  --accent: var(--b500); --accent-hover: var(--b400); --accent-fg: #fff;
+  --code-bg: var(--n900); --code-fg: var(--n200);
+  --shadow: 0 1px 3px rgba(0,0,0,.5);
+  --scrollbar-track: var(--n925); --scrollbar-thumb: var(--n700);
+}
+/* ================================================================
+   THEME: LIGHT
+   ================================================================ */
+[data-theme="light"] {
+  --bg-body: #f8f9fb; --bg-sidebar: #fff; --bg-card: #fff;
+  --bg-raised: #f0f1f3; --bg-overlay: #e8eaed; --bg-input: #fff;
+  --fg-1: var(--n950); --fg-2: var(--n700); --fg-3: var(--n500); --fg-4: var(--n400);
+  --border-subtle: #e5e7eb; --border-default: #d1d5db; --border-strong: #9ca3af;
+  --accent: var(--b500); --accent-hover: var(--b400); --accent-fg: #fff;
+  --code-bg: #f0f1f3; --code-fg: var(--n800);
+  --shadow: 0 1px 3px rgba(0,0,0,.08);
+  --scrollbar-track: #f0f1f3; --scrollbar-thumb: #c1c4c9;
+}
+
+/* ================================================================
+   RESET & BASE
+   ================================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:15px;-webkit-font-smoothing:antialiased;scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 24px)}
+body{font-family:var(--font-sans);background:var(--bg-body);color:var(--fg-1);line-height:1.65;overflow-x:hidden;transition:background .2s var(--ease),color .2s var(--ease)}
+code,.mono{font-family:var(--font-mono);font-size:.85em}
+a{color:var(--accent-hover);text-decoration:none}
+a:hover{text-decoration:underline}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:var(--scrollbar-track)}
+::-webkit-scrollbar-thumb{background:var(--scrollbar-thumb);border-radius:3px}
+::selection{background:var(--accent);color:var(--accent-fg)}
+
+/* ================================================================
+   LAYOUT
+   ================================================================ */
+.top-header{position:fixed;top:0;left:0;right:0;height:var(--header-h);background:var(--bg-sidebar);border-bottom:1px solid var(--border-subtle);display:flex;align-items:center;padding:0 20px;z-index:100;gap:12px;transition:background .2s var(--ease),border-color .2s var(--ease);backdrop-filter:blur(12px)}
+.top-header .logo{font-weight:700;font-size:1rem;letter-spacing:-.02em;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.top-header .logo em{font-style:normal;color:var(--accent)}
+.top-header .spacer{flex:1}
+.search-box{display:flex;align-items:center;background:var(--bg-input);border:1px solid var(--border-default);border-radius:8px;padding:0 10px;height:32px;width:280px;max-width:40vw;transition:border-color .15s var(--ease)}
+.search-box:focus-within{border-color:var(--accent)}
+.search-box input{border:none;background:transparent;color:var(--fg-1);font-size:.8rem;font-family:var(--font-sans);width:100%;outline:none}
+.search-box input::placeholder{color:var(--fg-4)}
+.search-box svg{flex-shrink:0;margin-right:6px;color:var(--fg-4)}
+.theme-btn{background:none;border:1px solid var(--border-default);color:var(--fg-2);width:32px;height:32px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s var(--ease)}
+.theme-btn:hover{border-color:var(--accent);color:var(--accent)}
+.menu-btn{display:none;background:none;border:1px solid var(--border-default);color:var(--fg-2);width:32px;height:32px;border-radius:8px;cursor:pointer;align-items:center;justify-content:center}
+
+/* Sidebar */
+.sidebar{position:fixed;top:var(--header-h);left:0;bottom:0;width:var(--sidebar-w);background:var(--bg-sidebar);border-right:1px solid var(--border-subtle);overflow-y:auto;padding:16px 0;z-index:90;transition:transform .25s var(--ease),background .2s var(--ease),border-color .2s var(--ease)}
+.sidebar nav{padding:0 12px}
+.sidebar .nav-group{margin-bottom:4px}
+.sidebar .nav-group-title{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--fg-4);padding:12px 12px 4px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;border-radius:6px;transition:color .12s}
+.sidebar .nav-group-title:hover{color:var(--fg-2)}
+.sidebar .nav-group-title svg{transition:transform .2s var(--ease);flex-shrink:0}
+.sidebar .nav-group.collapsed .nav-group-title svg{transform:rotate(-90deg)}
+.sidebar .nav-group.collapsed .nav-items{display:none}
+.sidebar .nav-items{padding:0 0 4px}
+.sidebar .nav-item{display:block;font-size:.8rem;color:var(--fg-3);padding:5px 12px 5px 20px;border-radius:6px;transition:all .12s var(--ease);cursor:pointer;text-decoration:none;line-height:1.4}
+.sidebar .nav-item:hover{color:var(--fg-1);background:var(--bg-card);text-decoration:none}
+.sidebar .nav-item.active{color:var(--accent);background:color-mix(in srgb, var(--accent) 8%, transparent);font-weight:600}
+.sidebar .nav-item .coming{font-size:.55rem;background:var(--border-default);color:var(--fg-4);padding:1px 5px;border-radius:4px;margin-left:4px;font-weight:700;vertical-align:middle}
+.sidebar .nav-item .new-tag{font-size:.55rem;background:var(--a500);color:var(--n950);padding:1px 5px;border-radius:4px;margin-left:4px;font-weight:700;vertical-align:middle}
+
+/* Main */
+.main{margin-left:var(--sidebar-w);padding:calc(var(--header-h) + 28px) 40px 60px;max-width:960px;transition:margin .25s var(--ease)}
+
+/* ================================================================
+   SECTIONS
+   ================================================================ */
+.section{margin-bottom:56px;scroll-margin-top:calc(var(--header-h) + 24px)}
+.section > .s-head{margin-bottom:20px}
+.section > .s-head h2{font-size:1.5rem;font-weight:700;letter-spacing:-.025em;color:var(--fg-1);margin-bottom:4px}
+.section > .s-head p{color:var(--fg-3);font-size:.88rem;max-width:640px}
+.section > .s-head .s-path{font-size:.7rem;font-family:var(--font-mono);color:var(--fg-4);margin-top:6px;padding:3px 8px;background:var(--code-bg);border-radius:5px;display:inline-block}
+.sub-section{margin-top:32px}
+.sub-section h3{font-size:1.05rem;font-weight:600;color:var(--fg-1);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.sub-section h3 .badge{font-size:.55rem;background:var(--accent);color:#fff;padding:2px 7px;border-radius:5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.sub-section h3 .badge-cyan{font-size:.55rem;background:var(--a500);color:var(--n950);padding:2px 7px;border-radius:5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.guideline{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:10px;padding:14px 18px;margin:12px 0;font-size:.82rem;color:var(--fg-2);line-height:1.6;transition:background .2s var(--ease),border-color .2s var(--ease)}
+.guideline strong{color:var(--fg-1)}
+
+/* ================================================================
+   TOKEN TABLE
+   ================================================================ */
+.token-table-wrap{position:relative;margin:12px 0}
+.copy-group-btn{position:absolute;top:-2px;right:0;background:var(--bg-card);border:1px solid var(--border-default);color:var(--fg-3);font-size:.65rem;font-family:var(--font-mono);padding:3px 10px;border-radius:6px;cursor:pointer;transition:all .12s var(--ease);z-index:2}
+.copy-group-btn:hover{border-color:var(--accent);color:var(--accent)}
+.copy-group-btn.copied{color:var(--suc500);border-color:var(--suc500)}
+.token-table{width:100%;border-collapse:collapse;font-size:.78rem}
+.token-table th{text-align:left;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--fg-4);padding:8px 10px;border-bottom:1px solid var(--border-default)}
+.token-table td{padding:6px 10px;border-bottom:1px solid var(--border-subtle);vertical-align:middle;transition:background .1s}
+.token-table tr:hover td{background:var(--bg-card)}
+.token-table tr.search-hidden{display:none}
+.tok-sw{width:24px;height:24px;border-radius:6px;border:1px solid var(--border-subtle);flex-shrink:0;display:inline-block;vertical-align:middle}
+.tok-name{font-family:var(--font-mono);font-size:.72rem;color:var(--fg-1)}
+.tok-ref{font-family:var(--font-mono);font-size:.65rem;color:var(--fg-4)}
+.tok-desc{font-size:.72rem;color:var(--fg-3)}
+.tok-hex{font-family:var(--font-mono);font-size:.65rem;color:var(--fg-3)}
+
+/* ================================================================
+   SCALE STRIP
+   ================================================================ */
+.scale-strip{display:flex;border-radius:10px;overflow:hidden;height:48px;margin:12px 0;border:1px solid var(--border-subtle)}
+.scale-strip .ss-step{flex:1;display:flex;align-items:flex-end;justify-content:center;padding-bottom:4px;font-size:.5rem;font-family:var(--font-mono);font-weight:700;transition:flex .15s var(--ease)}
+.scale-strip .ss-step:hover{flex:1.8}
+.scale-strip .ss-step span{opacity:.7}
+
+/* ================================================================
+   PREVIEW BLOCKS
+   ================================================================ */
+.preview-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:12px 0}
+.preview-box{border-radius:10px;padding:16px;border:1px solid var(--border-subtle);transition:border-color .12s var(--ease)}
+.preview-box:hover{border-color:var(--border-default)}
+.preview-box .pb-label{font-size:.6rem;text-transform:uppercase;letter-spacing:.04em;font-weight:700;margin-bottom:8px;opacity:.5}
+.preview-box .pb-line{margin-bottom:4px;font-size:.88rem}
+.preview-box .pb-meta{font-size:.55rem;font-family:var(--font-mono);opacity:.35;margin-top:2px}
+
+/* Button previews */
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-start;margin:12px 0}
+.ds-btn{border:none;border-radius:8px;padding:8px 20px;font-size:.82rem;font-weight:600;cursor:pointer;font-family:var(--font-sans);transition:all .12s var(--ease);line-height:1.4}
+.ds-btn:active{transform:scale(.97)}
+
+/* Badge previews */
+.badge-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0}
+.ds-badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:.7rem;font-weight:700;font-family:var(--font-sans);letter-spacing:.02em}
+
+/* Status cards */
+.status-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin:12px 0}
+.status-card{border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px}
+.status-card .sc-head{font-size:.82rem;font-weight:600;display:flex;align-items:center;gap:6px}
+.status-card .sc-head .sc-dot{width:8px;height:8px;border-radius:50%}
+.status-card .sc-body{font-size:.78rem;line-height:1.5}
+.status-card .sc-meta{font-size:.55rem;font-family:var(--font-mono);opacity:.4}
+
+/* Overlay preview */
+.overlay-demo{position:relative;border-radius:10px;overflow:hidden;height:140px;border:1px solid var(--border-subtle);margin:12px 0}
+
+/* Icon previews */
+.icon-row{display:flex;gap:18px;flex-wrap:wrap;margin:12px 0}
+.icon-item{text-align:center}
+.icon-item svg{display:block;margin:0 auto 4px}
+.icon-item .ii-label{font-size:.55rem;font-family:var(--font-mono);color:var(--fg-4)}
+
+/* Accessibility */
+.contrast-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px;margin:12px 0}
+.cg-card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:8px;padding:10px 14px;font-size:.75rem;display:flex;align-items:center;gap:10px}
+.cg-swatch{width:40px;height:28px;border-radius:5px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700}
+.cg-info{flex:1}
+.cg-info .cg-pair{font-family:var(--font-mono);font-size:.65rem;color:var(--fg-3)}
+.cg-badge{font-size:.55rem;font-weight:700;padding:2px 6px;border-radius:4px;letter-spacing:.03em}
+.cg-badge.pass{background:#16a34a22;color:#5ec476}
+.cg-badge.warn{background:#f59e0b22;color:#ffb657}
+.cg-badge.fail{background:#dc262622;color:#f3776b}
+
+/* Highlight preview */
+.hl-demo{border-radius:10px;padding:20px;margin:12px 0;border:1px solid var(--border-subtle)}
+.hl-demo .hl-text{font-size:.95rem;line-height:1.7}
+.hl-demo mark{border-radius:3px;padding:1px 4px}
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media(max-width:900px){
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0);box-shadow:4px 0 24px rgba(0,0,0,.4)}
+  .main{margin-left:0;padding-left:20px;padding-right:20px}
+  .menu-btn{display:flex}
+  .search-box{width:180px}
+}
+@media(max-width:500px){
+  .search-box{width:120px}
+  .preview-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     TOP HEADER
+     ============================================================ -->
+<header class="top-header">
+  <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="2" y1="4" x2="14" y2="4"/><line x1="2" y1="8" x2="14" y2="8"/><line x1="2" y1="12" x2="14" y2="12"/></svg>
+  </button>
+  <div class="logo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="var(--accent)" stroke-width="2.2"/><circle cx="12" cy="12" r="4" fill="var(--accent)"/></svg> BrainsMingle <em>Design System</em></div>
+  <div class="spacer"></div>
+  <div class="search-box">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6.5" cy="6.5" r="5"/><line x1="10" y1="10" x2="14.5" y2="14.5"/></svg>
+    <input id="searchInput" type="text" placeholder="Search tokens...  &#8984;K" autocomplete="off">
+  </div>
+  <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
+    <svg id="themeIcon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="3.5"/><line x1="8" y1="1" x2="8" y2="3"/><line x1="8" y1="13" x2="8" y2="15"/><line x1="1" y1="8" x2="3" y2="8"/><line x1="13" y1="8" x2="15" y2="8"/><line x1="3.05" y1="3.05" x2="4.46" y2="4.46"/><line x1="11.54" y1="11.54" x2="12.95" y2="12.95"/><line x1="3.05" y1="12.95" x2="4.46" y2="11.54"/><line x1="11.54" y1="4.46" x2="12.95" y2="3.05"/></svg>
+  </button>
+</header>
+
+<!-- ============================================================
+     SIDEBAR
+     ============================================================ -->
+<aside class="sidebar" id="sidebar">
+<nav>
+  <div class="nav-group">
+    <div class="nav-group-title" data-group="intro">Overview<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,2 7,5 3,8"/></svg></div>
+    <div class="nav-items">
+      <a class="nav-item active" href="#introduction">Introduction</a>
+    </div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-title" data-group="foundations">Foundations<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,2 7,5 3,8"/></svg></div>
+    <div class="nav-items">
+      <a class="nav-item" href="#neutral">Neutral</a>
+      <a class="nav-item" href="#brand">Brand (Primary)</a>
+      <a class="nav-item" href="#accent">Accent (Secondary) <span class="new-tag">New</span></a>
+      <a class="nav-item" href="#status-foundations">Status</a>
+    </div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-title" data-group="semantic">Semantic<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,2 7,5 3,8"/></svg></div>
+    <div class="nav-items">
+      <a class="nav-item" href="#surface">Surface</a>
+      <a class="nav-item" href="#text">Text</a>
+      <a class="nav-item" href="#border">Border</a>
+      <a class="nav-item" href="#icon">Icon</a>
+      <a class="nav-item" href="#interactive">Interactive</a>
+      <a class="nav-item" href="#highlight">Highlight <span class="new-tag">New</span></a>
+      <a class="nav-item" href="#status-semantic">Status</a>
+      <a class="nav-item" href="#overlay">Overlay</a>
+    </div>
+  </div>
+  <div class="nav-group">
+    <div class="nav-group-title" data-group="more">More<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,2 7,5 3,8"/></svg></div>
+    <div class="nav-items">
+      <a class="nav-item" href="#accessibility">Accessibility</a>
+      <a class="nav-item" href="#guidelines">Guidelines</a>
+      <a class="nav-item" href="#components">Components <span class="coming">Soon</span></a>
+    </div>
+  </div>
+</nav>
+</aside>
+
+<!-- ============================================================
+     MAIN CONTENT
+     ============================================================ -->
+<main class="main" id="mainContent"></main>
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+/* ── Foundation data ────────────────────────────────────────────── */
+const F={
+neutral:{"50":"#f2f4f6","100":"#dde0e3","200":"#c1c4c9","250":"#b2b6bb","300":"#a4a8ad","350":"#94989e","400":"#85898f","500":"#676c73","600":"#4c5158","700":"#374151","800":"#1f2937","825":"#1d2431","850":"#1a202b","875":"#181b25","900":"#15171f","925":"#0f1117","950":"#0a0b0f"},
+brand:{"50":"#edeeff","100":"#ddddff","200":"#c0bfff","300":"#9b94ff","400":"#6a41f6","500":"#6723ff","600":"#4200b5","700":"#32008e","800":"#220066","900":"#150243","950":"#0b032a"},
+accent:{"50":"#e6fef7","100":"#b5fce6","200":"#76f0ce","300":"#40e4b4","400":"#1aeebb","500":"#00ffc6","600":"#00c79a","700":"#009373","800":"#006550","900":"#003a2e","950":"#00201a"},
+error:{"50":"#ffeae7","100":"#fed4ce","200":"#fcada3","300":"#f3776b","400":"#d93c35","500":"#dc2626","600":"#960007","700":"#720308","800":"#510707","900":"#330806","950":"#1e0604"},
+success:{"50":"#e6f7e8","100":"#ccedd1","200":"#9ddda8","300":"#5ec476","400":"#2caa53","500":"#16a34a","600":"#00712f","700":"#025622","800":"#023b16","900":"#04260d","950":"#041507"},
+warning:{"50":"#fff3e4","100":"#ffe4c6","200":"#ffcc8e","300":"#ffb657","400":"#ffac33","500":"#f59e0b","600":"#ba7400","700":"#8c5500","800":"#623b00","900":"#3e2503","950":"#231504"},
+info:{"50":"#e9f2ff","100":"#d2e4ff","200":"#a8c9ff","300":"#73a5ff","400":"#407bf6","500":"#2563eb","600":"#1242aa","700":"#0e3282","800":"#0a245b","900":"#07173a","950":"#050d22"},
+};
+const mainSteps=["50","100","200","300","400","500","600","700","800","900","950"];
+const allNeutralSteps=Object.keys(F.neutral);
+
+function res(ref){const m=ref.match(/\{color\.(\w+)\.(\w+)\}/);return m&&F[m[1]]?F[m[1]][m[2]]||"#f0f":"#f0f"}
+function lum(hex){hex=hex.replace("#","");const r=parseInt(hex.substring(0,2),16)/255,g=parseInt(hex.substring(2,4),16)/255,b=parseInt(hex.substring(4,6),16)/255;const f=c=>c<=.04045?c/12.92:Math.pow((c+.055)/1.055,2.4);return .2126*f(r)+.7152*f(g)+.0722*f(b)}
+function cr(a,b){const la=lum(a)+.05,lb=lum(b)+.05;return la>lb?la/lb:lb/la}
+function isDark(hex){return lum(hex)<.18}
+function contrastLabel(ratio){return ratio>=7?"AAA":ratio>=4.5?"AA":ratio>=3?"AA-lg":"Fail"}
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+
+/* ── Semantic data ──────────────────────────────────────────────── */
+const S={
+surface:{base:"{color.neutral.950}",card:"{color.neutral.900}",raised:"{color.neutral.875}",overlay:"{color.neutral.850}",sunken:"{color.neutral.925}",inverse:"{color.neutral.50}"},
+text:{primary:"{color.neutral.100}",secondary:"{color.neutral.250}",muted:"{color.neutral.350}",disabled:"{color.neutral.500}",inverse:"{color.neutral.950}","on-brand":"{color.neutral.50}","on-status":"{color.neutral.50}"},
+border:{subtle:"{color.neutral.875}","default":"{color.neutral.800}",strong:"{color.neutral.700}",divider:"{color.neutral.825}",focus:"{color.brand.400}"},
+icon:{primary:"{color.neutral.100}",secondary:"{color.neutral.250}",muted:"{color.neutral.350}",disabled:"{color.neutral.500}",inverse:"{color.neutral.950}"},
+interactive:{
+  primary:{bg:"{color.brand.500}",hover:"{color.brand.400}",active:"{color.brand.600}",text:"{color.neutral.50}",border:"{color.brand.500}"},
+  secondaryBrand:{bg:"{color.accent.500}",hover:"{color.accent.400}",active:"{color.accent.600}",text:"{color.neutral.950}",border:"{color.accent.500}"},
+  secondary:{bg:"{color.neutral.900}",hover:"{color.neutral.875}",active:"{color.neutral.850}",text:"{color.neutral.100}"},
+  ghost:{hover:"{color.neutral.900}",active:"{color.neutral.875}",text:"{color.neutral.250}"},
+  link:{"default":"{color.brand.400}",hover:"{color.brand.300}",visited:"{color.brand.500}"},
+},
+highlight:{
+  "default":"{color.accent.500}",
+  subtle:"{color.accent.100}",
+  border:"{color.accent.400}",
+},
+badge:{
+  secondaryBrand:{bg:"{color.accent.500}",text:"{color.neutral.950}",subtleBg:"{color.accent.50}"},
+},
+status:{
+  error:{bg:{subtle:"{color.error.100}",bold:"{color.error.500}"},text:{"default":"{color.error.300}",onBold:"{color.neutral.50}"},border:{"default":"{color.error.400}"},icon:{"default":"{color.error.500}"}},
+  success:{bg:{subtle:"{color.success.100}",bold:"{color.success.500}"},text:{"default":"{color.success.300}",onBold:"{color.neutral.50}"},border:{"default":"{color.success.400}"},icon:{"default":"{color.success.500}"}},
+  warning:{bg:{subtle:"{color.warning.100}",bold:"{color.warning.500}"},text:{"default":"{color.warning.300}",onBold:"{color.neutral.950}"},border:{"default":"{color.warning.400}"},icon:{"default":"{color.warning.500}"}},
+  info:{bg:{subtle:"{color.info.100}",bold:"{color.info.500}"},text:{"default":"{color.info.300}",onBold:"{color.neutral.50}"},border:{"default":"{color.info.400}"},icon:{"default":"{color.info.500}"}},
+},
+overlay:{scrim:{value:"{color.neutral.950}",alpha:.6},["scrim-heavy"]:{value:"{color.neutral.950}",alpha:.8}},
+};
+
+/* ── Helpers ─────────────────────────────────────────────────────── */
+function scaleStrip(family, steps){
+  let h='<div class="scale-strip">';
+  const s=steps||mainSteps;
+  s.forEach(k=>{
+    const hex=F[family][k];
+    const fg=isDark(hex)?"#fff":"#000";
+    h+=`<div class="ss-step" style="background:${hex}"><span style="color:${fg}">${k}</span></div>`;
+  });
+  return h+'</div>';
+}
+
+function tokenTable(prefix,tokens,id){
+  let rows='';
+  function walk(p,obj){
+    for(const[k,v]of Object.entries(obj)){
+      if(typeof v==='object'&&v.value){
+        const hex=res(v.value);
+        rows+=`<tr data-token="${p}.${k}"><td><span class="tok-sw" style="background:${hex}"></span></td><td class="tok-name">${p}.${k}</td><td class="tok-ref">${esc(v.value)}</td><td class="tok-hex">${hex}</td><td class="tok-desc">${v.description||''}</td></tr>`;
+      }else if(typeof v==='object'&&!v.value&&typeof Object.values(v)[0]==='object'){
+        walk(p+'.'+k,v);
+      }else if(typeof v==='string'){
+        const hex=res(v);
+        rows+=`<tr data-token="${p}.${k}"><td><span class="tok-sw" style="background:${hex}"></span></td><td class="tok-name">${p}.${k}</td><td class="tok-ref">${esc(v)}</td><td class="tok-hex">${hex}</td><td class="tok-desc"></td></tr>`;
+      }
+    }
+  }
+  walk(prefix,tokens);
+  return `<div class="token-table-wrap"><button class="copy-group-btn" data-copy-id="${id}" onclick="copyGroup(this,'${id}')">Copy JSON</button><table class="token-table" id="${id}"><thead><tr><th style="width:36px"></th><th>Token</th><th>Reference</th><th>Resolved</th><th>Description</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+function foundationTable(family,steps){
+  const s=steps||mainSteps;
+  let rows='';
+  s.forEach(k=>{
+    const hex=F[family][k];
+    rows+=`<tr data-token="color.${family}.${k}"><td><span class="tok-sw" style="background:${hex}"></span></td><td class="tok-name">color.${family}.${k}</td><td class="tok-hex">${hex}</td></tr>`;
+  });
+  return `<div class="token-table-wrap"><button class="copy-group-btn" data-copy-id="f-${family}" onclick="copyGroup(this,'f-${family}')">Copy JSON</button><table class="token-table" id="f-${family}"><thead><tr><th style="width:36px"></th><th>Token</th><th>Value</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+function contrastCard(fgLabel,bgLabel,fgHex,bgHex){
+  const ratio=cr(fgHex,bgHex);
+  const label=contrastLabel(ratio);
+  const cls=label.startsWith("AA")?"pass":label==="Fail"?"fail":"warn";
+  return `<div class="cg-card"><div class="cg-swatch" style="background:${bgHex};color:${fgHex}">Aa</div><div class="cg-info"><div style="color:var(--fg-1);font-weight:600">${fgLabel}</div><div class="cg-pair">on ${bgLabel}</div></div><span class="cg-badge ${cls}">${ratio.toFixed(1)} : 1 ${label}</span></div>`;
+}
+
+/* ── Build all sections ──────────────────────────────────────────── */
+let H='';
+
+/* ── INTRODUCTION ─────────────────────────────────────────────────── */
+H+=`<div class="section" id="introduction"><div class="s-head">
+<h2>Introduction</h2>
+<p>The BrainsMingle Design System provides a unified color token architecture for building consistent, accessible dark-first interfaces. It is organized in two layers:</p>
+</div>
+<div class="guideline">
+<strong>Foundations</strong> are the raw color scales (neutral, brand, accent, status) generated using OKLCH for perceptual uniformity. Each scale runs from 50 (lightest) to 950 (darkest). These are the single source of truth for all color values.
+</div>
+<div class="guideline">
+<strong>Semantic tokens</strong> reference foundation values through <code>{color.*.step}</code> paths. They encode <em>intent</em> — surface backgrounds, text hierarchies, border treatments, interactive states, highlights, and status feedback. No hex values exist in the semantic layer.
+</div>
+<div class="guideline">
+<strong>Architecture:</strong>&nbsp;
+<code>foundations/</code> &rarr; neutral, brand, accent, status scales &nbsp;&bull;&nbsp;
+<code>semantic/</code> &rarr; surface, text, border, interactive, highlight, icon, status, overlay &nbsp;&bull;&nbsp;
+<code>components/</code> &rarr; <em>coming soon</em>
+</div>
+<div class="guideline">
+<strong>Brand hierarchy:</strong>&nbsp;
+<span style="color:${F.brand[500]}">&#9632;</span> <strong>Primary brand</strong> (purple) for main CTAs and primary actions. &nbsp;
+<span style="color:${F.accent[500]}">&#9632;</span> <strong>Secondary brand</strong> (cyan) for supporting actions, highlights, and data emphasis.
+</div>
+</div>`;
+
+/* ── NEUTRAL ──────────────────────────────────────────────────────── */
+H+=`<div class="section" id="neutral"><div class="s-head">
+<h2>Neutral Scale</h2>
+<p>A bluish-tinted neutral scale with ${allNeutralSteps.length} steps, anchored to real product colors. Generated in OKLCH with consistent hue, controlled saturation, and perceptually even lightness.</p>
+<span class="s-path">foundations/neutral.json</span>
+</div>
+${scaleStrip('neutral',allNeutralSteps)}
+<div class="guideline"><strong>Usage:</strong> 950 is the base page background. 900 for cards. 800 for default borders. 100-300 for text hierarchy on dark. 50 as inverse light surface. Mid-range steps (400-600) for disabled/muted states.</div>
+${foundationTable('neutral',allNeutralSteps)}
+</div>`;
+
+/* ── BRAND ────────────────────────────────────────────────────────── */
+H+=`<div class="section" id="brand"><div class="s-head">
+<h2>Brand Scale <span style="color:${F.brand[500]}">&#9632;</span> Primary</h2>
+<p>A purple brand scale anchored at <code>brand.500 = #6723FF</code>. Rich violet with controlled saturation, avoiding neon or grey. Reserved for primary CTAs and main actions.</p>
+<span class="s-path">foundations/brand.json</span>
+</div>
+${scaleStrip('brand')}
+<div class="guideline"><strong>Usage:</strong> 500 is the primary brand color. 400 for hover states and links. 600 for pressed/active states. 50-100 for subtle background tints. 700+ for deep dark accents.</div>
+${foundationTable('brand')}
+</div>`;
+
+/* ── ACCENT ───────────────────────────────────────────────────────── */
+H+=`<div class="section" id="accent"><div class="s-head">
+<h2>Accent Scale <span style="color:${F.accent[500]}">&#9632;</span> Secondary Brand</h2>
+<p>A cyan/teal secondary brand scale anchored at <code>accent.500 = #00FFC6</code>. Chroma is slightly reduced to avoid neon glow while maintaining vibrancy. Designed to coexist with the purple primary brand on dark surfaces.</p>
+<span class="s-path">foundations/accent.json</span>
+</div>
+${scaleStrip('accent')}
+<div class="guideline"><strong>Usage:</strong> 500 for secondary actions and highlights. 400 for hover. 600 for pressed/active. 50-100 for subtle tinted backgrounds. 700+ for deep teal accents. <strong>Never use for destructive actions or status feedback.</strong></div>`;
+H+=foundationTable('accent');
+
+// Side-by-side brand comparison
+H+=`<div class="sub-section"><h3>Brand Comparison</h3>
+<div style="display:flex;gap:10px;margin:12px 0;flex-wrap:wrap">
+<div style="flex:1;min-width:200px;height:48px;border-radius:10px;display:flex;overflow:hidden;border:1px solid var(--border-subtle)">`;
+mainSteps.forEach(k=>{H+=`<div style="flex:1;background:${F.brand[k]}"></div>`;});
+H+=`</div><div style="flex:1;min-width:200px;height:48px;border-radius:10px;display:flex;overflow:hidden;border:1px solid var(--border-subtle)">`;
+mainSteps.forEach(k=>{H+=`<div style="flex:1;background:${F.accent[k]}"></div>`;});
+H+=`</div></div>
+<div class="guideline"><strong>Visual balance:</strong> Primary purple sits in the mid-lightness range. Secondary cyan is brighter at 500 — this distinction keeps hierarchy clear. Purple draws primary focus; cyan provides energetic supporting accents.</div>
+</div>`;
+
+// Dark UI preview
+H+=`<div class="sub-section"><h3>On Dark Surface</h3>
+<div class="preview-grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">
+<div class="preview-box" style="background:${F.neutral[950]}">
+  <div class="pb-label" style="color:${F.neutral[350]}">accent.500 on neutral.950</div>
+  <div class="pb-line" style="color:${F.accent[500]};font-weight:700;font-size:1.1rem">Highlighted metric: 2,847</div>
+  <div class="pb-line" style="color:${F.neutral[250]};font-size:.82rem">Supporting text beside accent emphasis</div>
+</div>
+<div class="preview-box" style="background:${F.neutral[900]}">
+  <div class="pb-label" style="color:${F.neutral[350]}">accent text on neutral.900</div>
+  <div class="pb-line" style="color:${F.accent[400]};font-weight:600">+24.5% growth</div>
+  <div class="pb-line" style="color:${F.accent[300]};font-size:.82rem">accent.300 — caption level</div>
+</div>
+</div></div>`;
+
+// Accessibility checks for accent
+H+=`<div class="sub-section"><h3>Accent Contrast Audit <span class="badge-cyan">Accessibility</span></h3>
+<div class="contrast-grid">`;
+const accentChecks=[
+  ["#ffffff","accent.500","white",F.accent[500]],
+  ["neutral.950","accent.500",F.neutral[950],F.accent[500]],
+  ["accent.500","neutral.950",F.accent[500],F.neutral[950]],
+  ["accent.400","neutral.950",F.accent[400],F.neutral[950]],
+  ["neutral.950","accent.50",F.neutral[950],F.accent[50]],
+  ["accent.300","neutral.950",F.accent[300],F.neutral[950]],
+  ["accent.700","neutral.950",F.accent[700],F.neutral[950]],
+];
+accentChecks.forEach(([fgL,bgL,fgH,bgH])=>{
+  H+=contrastCard(fgL,bgL,fgH,bgH);
+});
+H+=`</div></div></div>`;
+
+/* ── STATUS FOUNDATIONS ────────────────────────────────────────────── */
+H+=`<div class="section" id="status-foundations"><div class="s-head">
+<h2>Status Scales</h2>
+<p>Four OKLCH-generated status scales — error, success, warning, info — each anchored at step 500. Designed for readability on <code>neutral.950</code> backgrounds.</p>
+<span class="s-path">foundations/status-*.json</span>
+</div>`;
+['error','success','warning','info'].forEach(fam=>{
+  const anchor=F[fam]["500"];
+  H+=`<div class="sub-section"><h3>${fam.charAt(0).toUpperCase()+fam.slice(1)} <span class="badge">${anchor}</span></h3>`;
+  H+=scaleStrip(fam);
+  H+=foundationTable(fam);
+  H+=`</div>`;
+});
+H+=`</div>`;
+
+/* ── SURFACE ──────────────────────────────────────────────────────── */
+H+=`<div class="section" id="surface"><div class="s-head">
+<h2>Surface</h2>
+<p>Semantic surface tokens define the layered background system. Dark-first, from the deepest page background through elevated modals to inverse light contexts.</p>
+<span class="s-path">semantic/surface.json</span>
+</div>
+${tokenTable('surface',{base:{value:S.surface.base,description:"Main page background"},card:{value:S.surface.card,description:"Card and panel backgrounds"},raised:{value:S.surface.raised,description:"Elevated surface, popovers"},overlay:{value:S.surface.overlay,description:"Modal and overlay backgrounds"},sunken:{value:S.surface.sunken,description:"Recessed areas, wells, sidebar bg"},inverse:{value:S.surface.inverse,description:"Light surface for inverted contexts"}},'t-surface')}
+<div class="sub-section"><h3>Surface Stack Preview</h3>
+<div class="preview-grid">`;
+Object.entries(S.surface).forEach(([k,ref])=>{
+  const hex=res(ref);
+  const fg=isDark(hex)?F.neutral["100"]:F.neutral["950"];
+  const fg3=isDark(hex)?F.neutral["350"]:F.neutral["500"];
+  H+=`<div class="preview-box" style="background:${hex};color:${fg}"><div class="pb-label" style="color:${fg3}">surface.${k}</div><div class="pb-line">Content on ${k}</div><div class="pb-meta">${hex}</div></div>`;
+});
+H+=`</div></div></div>`;
+
+/* ── TEXT ──────────────────────────────────────────────────────────── */
+H+=`<div class="section" id="text"><div class="s-head">
+<h2>Text</h2>
+<p>Text tokens encode a four-level hierarchy for dark surfaces plus inverse and on-color variants.</p>
+<span class="s-path">semantic/text.json</span>
+</div>
+${tokenTable('text',{primary:{value:S.text.primary,description:"High-emphasis text"},secondary:{value:S.text.secondary,description:"Medium-emphasis text"},muted:{value:S.text.muted,description:"Low-emphasis, captions"},disabled:{value:S.text.disabled,description:"Disabled / inactive"},inverse:{value:S.text.inverse,description:"Text on light surfaces"},"on-brand":{value:S.text["on-brand"],description:"Text on brand.500"},"on-status":{value:S.text["on-status"],description:"Text on status bold"}},'t-text')}
+<div class="sub-section"><h3>Text on Surfaces</h3>
+<div class="preview-grid" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr))">`;
+["base","card"].forEach(surf=>{
+  const bg=res(S.surface[surf]);
+  H+=`<div class="preview-box" style="background:${bg}"><div class="pb-label" style="color:${res(S.text.muted)}">On surface.${surf}</div>`;
+  ["primary","secondary","muted","disabled"].forEach(t=>{
+    H+=`<div class="pb-line" style="color:${res(S.text[t])}">${t} — The quick brown fox</div>`;
+  });
+  H+=`<div class="pb-meta">${bg}</div></div>`;
+});
+H+=`<div class="preview-box" style="background:${F.brand["500"]};color:${res(S.text["on-brand"])}"><div class="pb-label" style="opacity:.6">On brand.500</div><div class="pb-line">on-brand text</div><div class="pb-meta">${F.brand["500"]}</div></div>`;
+H+=`<div class="preview-box" style="background:${F.accent["500"]};color:${F.neutral["950"]}"><div class="pb-label" style="opacity:.5">On accent.500</div><div class="pb-line">Dark text on cyan</div><div class="pb-meta">${F.accent["500"]}</div></div>`;
+H+=`</div></div></div>`;
+
+/* ── BORDER ────────────────────────────────────────────────────────── */
+H+=`<div class="section" id="border"><div class="s-head">
+<h2>Border</h2>
+<p>Border tokens from subtle separators to strong outlines, plus a brand-colored focus ring for accessibility.</p>
+<span class="s-path">semantic/border.json</span>
+</div>
+${tokenTable('border',{subtle:{value:S.border.subtle,description:"Subtle, low-contrast"},"default":{value:S.border.default,description:"Default border"},strong:{value:S.border.strong,description:"High-contrast"},divider:{value:S.border.divider,description:"Section dividers"},focus:{value:S.border.focus,description:"Focus ring (brand)"}},'t-border')}
+<div class="sub-section"><h3>Border Preview</h3>
+<div class="preview-grid" style="grid-template-columns:repeat(auto-fill,minmax(140px,1fr))">`;
+Object.entries(S.border).forEach(([k,ref])=>{
+  const hex=res(ref);
+  const style=k==="focus"?`outline:3px solid ${hex};outline-offset:2px;border:1px solid transparent`:`border:2px solid ${hex}`;
+  H+=`<div class="preview-box" style="background:${res(S.surface.base)};${style};text-align:center"><div class="pb-label" style="color:${res(S.text.muted)}">${k}</div><div class="pb-meta">${hex}</div></div>`;
+});
+H+=`</div></div></div>`;
+
+/* ── ICON ─────────────────────────────────────────────────────────── */
+H+=`<div class="section" id="icon"><div class="s-head">
+<h2>Icon</h2>
+<p>Icon tokens mirror the text hierarchy for consistent foreground treatment.</p>
+<span class="s-path">semantic/icon.json</span>
+</div>
+${tokenTable('icon',{primary:{value:S.icon.primary,description:"High-emphasis"},secondary:{value:S.icon.secondary,description:"Medium-emphasis"},muted:{value:S.icon.muted,description:"Low-emphasis"},disabled:{value:S.icon.disabled,description:"Disabled"},inverse:{value:S.icon.inverse,description:"On light surfaces"}},'t-icon')}
+<div class="sub-section"><h3>Icon Preview</h3>
+<div class="icon-row">`;
+Object.entries(S.icon).forEach(([k,ref])=>{
+  const hex=res(ref);
+  H+=`<div class="icon-item"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="${hex}" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="${hex}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="ii-label">icon.${k}</div></div>`;
+});
+H+=`</div></div></div>`;
+
+/* ── INTERACTIVE ──────────────────────────────────────────────────── */
+H+=`<div class="section" id="interactive"><div class="s-head">
+<h2>Interactive</h2>
+<p>Interaction primitives for buttons, links, and clickable regions. Five variants: primary (brand), secondary brand (accent), secondary (neutral), ghost (transparent), and link.</p>
+<span class="s-path">semantic/interactive.json</span>
+</div>`;
+// Token table
+let intTokens={};
+for(const[g,toks]of Object.entries(S.interactive)){for(const[k,ref]of Object.entries(toks)){if(!intTokens[g])intTokens[g]={};intTokens[g][k]={value:ref,description:""};}}
+H+=tokenTable('interactive',intTokens,'t-interactive');
+// Button previews
+H+=`<div class="sub-section"><h3>Button Preview</h3><div class="btn-row">`;
+// Primary
+H+=`<div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start"><span style="font-size:.55rem;text-transform:uppercase;font-weight:700;color:var(--fg-4);letter-spacing:.04em">Primary</span>`;
+H+=`<button class="ds-btn" style="background:${res(S.interactive.primary.bg)};color:${res(S.interactive.primary.text)}">Default</button>`;
+H+=`<button class="ds-btn" style="background:${res(S.interactive.primary.hover)};color:${res(S.interactive.primary.text)}">Hover</button>`;
+H+=`<button class="ds-btn" style="background:${res(S.interactive.primary.active)};color:${res(S.interactive.primary.text)}">Active</button>`;
+H+=`<button class="ds-btn" style="background:transparent;color:${res(S.interactive.primary.bg)};border:1.5px solid ${res(S.interactive.primary.border)}">Outline</button></div>`;
+// Secondary Brand
+H+=`<div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start"><span style="font-size:.55rem;text-transform:uppercase;font-weight:700;color:var(--fg-4);letter-spacing:.04em">Secondary Brand</span>`;
+H+=`<button class="ds-btn" style="background:${res(S.interactive.secondaryBrand.bg)};color:${res(S.interactive.secondaryBrand.text)}">Default</button>`;
+H+=`<button class="ds-btn" style="background:${res(S.interactive.secondaryBrand.hover)};color:${res(S.interactive.secondaryBrand.text)}">Hover</button>`;
+H+=`<button class="ds-btn" style="background:${res(S.interactive.secondaryBrand.active)};color:${res(S.interactive.secondaryBrand.text)}">Active</button>`;
+H+=`<button class="ds-btn" style="background:transparent;color:${res(S.interactive.secondaryBrand.bg)};border:1.5px solid ${res(S.interactive.secondaryBrand.border)}">Outline</button></div>`;
+// Secondary
+H+=`<div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start"><span style="font-size:.55rem;text-transform:uppercase;font-weight:700;color:var(--fg-4);letter-spacing:.04em">Secondary</span>`;
+H+=`<button class="ds-btn" style="background:${res(S.interactive.secondary.bg)};color:${res(S.interactive.secondary.text)};border:1px solid ${res(S.border.default)}">Default</button>`;
+H+=`<button class="ds-btn" style="background:${res(S.interactive.secondary.hover)};color:${res(S.interactive.secondary.text)};border:1px solid ${res(S.border.default)}">Hover</button>`;
+H+=`<button class="ds-btn" style="background:${res(S.interactive.secondary.active)};color:${res(S.interactive.secondary.text)};border:1px solid ${res(S.border.default)}">Active</button></div>`;
+// Ghost
+H+=`<div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start"><span style="font-size:.55rem;text-transform:uppercase;font-weight:700;color:var(--fg-4);letter-spacing:.04em">Ghost</span>`;
+H+=`<button class="ds-btn" style="background:transparent;color:${res(S.interactive.ghost.text)}">Default</button>`;
+H+=`<button class="ds-btn" style="background:${res(S.interactive.ghost.hover)};color:${res(S.interactive.ghost.text)}">Hover</button>`;
+H+=`<button class="ds-btn" style="background:${res(S.interactive.ghost.active)};color:${res(S.interactive.ghost.text)}">Active</button></div>`;
+// Link
+H+=`<div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start"><span style="font-size:.55rem;text-transform:uppercase;font-weight:700;color:var(--fg-4);letter-spacing:.04em">Link</span>`;
+H+=`<a href="#" onclick="return false" style="color:${res(S.interactive.link.default)};font-size:.85rem;font-weight:600">Default</a>`;
+H+=`<a href="#" onclick="return false" style="color:${res(S.interactive.link.hover)};text-decoration:underline;font-size:.85rem;font-weight:600">Hover</a>`;
+H+=`<a href="#" onclick="return false" style="color:${res(S.interactive.link.visited)};font-size:.85rem;font-weight:600;opacity:.7">Visited</a></div>`;
+H+=`</div></div></div>`;
+
+/* ── HIGHLIGHT & BADGE ────────────────────────────────────────────── */
+H+=`<div class="section" id="highlight"><div class="s-head">
+<h2>Highlight &amp; Badge</h2>
+<p>Accent-powered tokens for data emphasis, inline highlights, and secondary brand badges. Uses the cyan accent scale for visual distinction from status colors.</p>
+<span class="s-path">semantic/highlight.json</span>
+</div>`;
+// Token tables
+H+=`<div class="sub-section"><h3>Highlight Tokens</h3>`;
+H+=tokenTable('highlight',{"default":{value:S.highlight.default,description:"Default highlight color"},subtle:{value:S.highlight.subtle,description:"Subtle highlight background"},border:{value:S.highlight.border,description:"Highlight border"}},'t-highlight');
+H+=`</div>`;
+H+=`<div class="sub-section"><h3>Badge Tokens</h3>`;
+H+=tokenTable('badge.secondaryBrand',{bg:{value:S.badge.secondaryBrand.bg,description:"Badge background"},text:{value:S.badge.secondaryBrand.text,description:"Badge text"},subtleBg:{value:S.badge.secondaryBrand.subtleBg,description:"Badge subtle background"}},'t-badge');
+H+=`</div>`;
+
+// Highlight preview
+H+=`<div class="sub-section"><h3>Highlight Preview</h3>
+<div class="hl-demo" style="background:${res(S.surface.base)}">
+  <div class="hl-text" style="color:${res(S.text.secondary)}">
+    Total revenue increased by <span style="color:${res(S.highlight.default)};font-weight:700">$124,500</span> this quarter.
+    The <mark style="background:${res(S.highlight.subtle)}18;color:${res(S.highlight.default)}">conversion rate</mark> improved by
+    <span style="color:${res(S.highlight.default)};font-weight:700">+12.4%</span> compared to the previous period.
+  </div>
+</div>
+<div class="hl-demo" style="background:${res(S.surface.card)};border-left:3px solid ${res(S.highlight.border)};margin-top:8px">
+  <div class="hl-text" style="color:${res(S.text.primary)};font-size:.85rem">
+    <span style="color:${res(S.highlight.default)}">Tip:</span> Use highlight tokens for data emphasis and inline callouts — never for status or errors.
+  </div>
+</div></div>`;
+
+// Badge preview
+H+=`<div class="sub-section"><h3>Badge Preview</h3>
+<div class="badge-row">
+  <span class="ds-badge" style="background:${res(S.badge.secondaryBrand.bg)};color:${res(S.badge.secondaryBrand.text)}">New Feature</span>
+  <span class="ds-badge" style="background:${res(S.badge.secondaryBrand.bg)};color:${res(S.badge.secondaryBrand.text)}">Beta</span>
+  <span class="ds-badge" style="background:${res(S.badge.secondaryBrand.subtleBg)};color:${res(S.highlight.default)}">v2.4.0</span>
+  <span class="ds-badge" style="background:${res(S.badge.secondaryBrand.subtleBg)};color:${res(S.highlight.default)}">Online</span>
+</div>
+<div class="badge-row" style="margin-top:4px">
+  <span style="font-size:.6rem;color:var(--fg-4);font-weight:700;text-transform:uppercase;letter-spacing:.04em">Compared with primary:</span>
+  <span class="ds-badge" style="background:${F.brand[500]};color:#fff">Primary</span>
+  <span class="ds-badge" style="background:${F.accent[500]};color:${F.neutral[950]}">Secondary</span>
+  <span class="ds-badge" style="background:${res(S.interactive.secondary.bg)};color:${res(S.interactive.secondary.text)};border:1px solid ${res(S.border.default)}">Neutral</span>
+</div></div></div>`;
+
+/* ── STATUS SEMANTIC ──────────────────────────────────────────────── */
+H+=`<div class="section" id="status-semantic"><div class="s-head">
+<h2>Status (Semantic)</h2>
+<p>Unified semantic tokens for error, success, warning, and info feedback. Each family provides bg, text, border, and icon tokens for both subtle and bold contexts.</p>
+<span class="s-path">semantic/status.json</span>
+</div>`;
+for(const[family,groups]of Object.entries(S.status)){
+  let toks={};
+  for(const[g,items]of Object.entries(groups)){toks[g]={};for(const[k,ref]of Object.entries(items)){toks[g][k]={value:ref,description:""};}}
+  H+=`<div class="sub-section"><h3>${family.charAt(0).toUpperCase()+family.slice(1)}</h3>`;
+  H+=tokenTable('status.'+family,toks,'t-status-'+family);
+  const subtleBg=res(groups.bg.subtle)+"18";
+  const boldBg=res(groups.bg.bold);
+  const textCol=res(groups.text.default);
+  const borderCol=res(groups.border.default);
+  const iconCol=res(groups.icon.default);
+  const onBold=res(groups.text.onBold);
+  H+=`<div class="status-row">`;
+  H+=`<div class="status-card" style="background:${subtleBg};border:1px solid ${borderCol}30"><div class="sc-head" style="color:${textCol}"><span class="sc-dot" style="background:${iconCol}"></span>${family} — subtle</div><div class="sc-body" style="color:${textCol}">This is a ${family} message on a subtle tinted surface.</div><div class="sc-meta">bg.subtle + text.default + border.default</div></div>`;
+  H+=`<div class="status-card" style="background:${boldBg}"><div class="sc-head" style="color:${onBold}"><span class="sc-dot" style="background:${onBold}"></span>${family} — bold</div><div class="sc-body" style="color:${onBold}">Critical ${family} notification on bold surface.</div><div class="sc-meta" style="color:${onBold}88">bg.bold + text.onBold</div></div>`;
+  H+=`</div></div>`;
+}
+H+=`</div>`;
+
+/* ── OVERLAY ──────────────────────────────────────────────────────── */
+H+=`<div class="section" id="overlay"><div class="s-head">
+<h2>Overlay</h2>
+<p>Scrim tokens for modal backdrops and focus traps. Base color references <code>neutral.950</code> with alpha metadata applied at build time.</p>
+<span class="s-path">semantic/overlay.json</span>
+</div>
+<div class="token-table-wrap"><table class="token-table"><thead><tr><th style="width:36px"></th><th>Token</th><th>Reference</th><th>Alpha</th><th>Description</th></tr></thead><tbody>
+<tr data-token="overlay.scrim"><td><span class="tok-sw" style="background:${res(S.overlay.scrim.value)}99"></span></td><td class="tok-name">overlay.scrim</td><td class="tok-ref">${esc(S.overlay.scrim.value)}</td><td class="tok-hex">0.6</td><td class="tok-desc">Modal backdrop</td></tr>
+<tr data-token="overlay.scrim-heavy"><td><span class="tok-sw" style="background:${res(S.overlay["scrim-heavy"].value)}cc"></span></td><td class="tok-name">overlay.scrim-heavy</td><td class="tok-ref">${esc(S.overlay["scrim-heavy"].value)}</td><td class="tok-hex">0.8</td><td class="tok-desc">Critical overlay</td></tr>
+</tbody></table></div>
+<div class="sub-section"><h3>Overlay Preview</h3>
+<div class="overlay-demo">
+<div style="position:absolute;inset:0;background:${res(S.surface.card)};display:flex;align-items:center;justify-content:center;color:${res(S.text.primary)};font-size:.85rem">Page content behind scrim</div>
+<div style="position:absolute;inset:0;background:${res(S.overlay.scrim.value)}99;display:flex;align-items:center;justify-content:center">
+<div style="background:${res(S.surface.overlay)};border:1px solid ${res(S.border.default)};border-radius:10px;padding:16px 32px;color:${res(S.text.primary)};font-weight:600;font-size:.9rem;box-shadow:0 8px 32px rgba(0,0,0,.5)">Modal Dialog</div>
+</div></div></div></div>`;
+
+/* ── ACCESSIBILITY ────────────────────────────────────────────────── */
+H+=`<div class="section" id="accessibility"><div class="s-head">
+<h2>Accessibility</h2>
+<p>WCAG contrast ratio audit for semantic text tokens on their intended surfaces. Ratios are calculated using relative luminance.</p>
+</div>
+<div class="sub-section"><h3>Core Contrast Audit <span class="badge">Auto-calculated</span></h3>
+<div class="contrast-grid">`;
+const checks=[
+  ["text.primary","surface.base",S.text.primary,S.surface.base],
+  ["text.secondary","surface.base",S.text.secondary,S.surface.base],
+  ["text.muted","surface.base",S.text.muted,S.surface.base],
+  ["text.disabled","surface.base",S.text.disabled,S.surface.base],
+  ["text.primary","surface.card",S.text.primary,S.surface.card],
+  ["text.secondary","surface.card",S.text.secondary,S.surface.card],
+  ["text.muted","surface.card",S.text.muted,S.surface.card],
+  ["text.on-brand","brand.500",S.text["on-brand"],"{color.brand.500}"],
+  ["interactive.primary.text","interactive.primary.bg",S.interactive.primary.text,S.interactive.primary.bg],
+];
+checks.forEach(([fgL,bgL,fgR,bgR])=>{H+=contrastCard(fgL,bgL,res(fgR),res(bgR));});
+H+=`</div></div>`;
+
+// Accent contrast
+H+=`<div class="sub-section"><h3>Accent Contrast Audit <span class="badge-cyan">Secondary Brand</span></h3>
+<div class="contrast-grid">`;
+const accentA11y=[
+  ["#ffffff","accent.500","#ffffff",F.accent[500]],
+  ["neutral.950","accent.500",F.neutral[950],F.accent[500]],
+  ["accent.500","neutral.950",F.accent[500],F.neutral[950]],
+  ["accent.400","neutral.950",F.accent[400],F.neutral[950]],
+  ["neutral.950","accent.50",F.neutral[950],F.accent[50]],
+];
+accentA11y.forEach(([fgL,bgL,fgH,bgH])=>{H+=contrastCard(fgL,bgL,fgH,bgH);});
+H+=`</div></div>`;
+
+// Status contrast
+H+=`<div class="sub-section"><h3>Status Contrast Audit</h3>
+<div class="contrast-grid">`;
+const statusA11y=[
+  ["status.error.text.default","surface.base",res(S.status.error.text.default),res(S.surface.base)],
+  ["status.success.text.default","surface.base",res(S.status.success.text.default),res(S.surface.base)],
+  ["status.warning.text.default","surface.base",res(S.status.warning.text.default),res(S.surface.base)],
+  ["status.info.text.default","surface.base",res(S.status.info.text.default),res(S.surface.base)],
+  ["status.error.text.onBold","status.error.bg.bold",res(S.status.error.text.onBold),res(S.status.error.bg.bold)],
+  ["status.warning.text.onBold","status.warning.bg.bold",res(S.status.warning.text.onBold),res(S.status.warning.bg.bold)],
+];
+statusA11y.forEach(([fgL,bgL,fgH,bgH])=>{H+=contrastCard(fgL,bgL,fgH,bgH);});
+H+=`</div></div></div>`;
+
+/* ── GUIDELINES ───────────────────────────────────────────────────── */
+H+=`<div class="section" id="guidelines"><div class="s-head">
+<h2>Guidelines</h2>
+<p>Principles and rules for using the BrainsMingle color system effectively.</p>
+</div>
+<div class="guideline"><strong>Never use hex values directly.</strong> Always reference semantic tokens. Components should never hard-code colors from foundations — use surface, text, border, and interactive tokens.</div>
+<div class="guideline"><strong>Respect the layer stack.</strong> Surface tokens define a clear z-axis: sunken &lt; base &lt; card &lt; raised &lt; overlay. Do not skip layers or invert the stack without intentional design reasoning.</div>
+<div class="guideline"><strong>Text hierarchy is mandatory.</strong> Use primary for headings and body. Secondary for supporting text. Muted for captions and labels. Disabled for inactive elements. Never use muted for critical information.</div>
+<div class="guideline"><strong>Status colors carry meaning.</strong> Do not use error red for decorative purposes. Do not mix status families. Each status has subtle and bold variants — use subtle for inline messages, bold for critical alerts.</div>
+<div class="guideline"><strong>Primary brand = main CTA.</strong> Reserve <span style="color:${F.brand[500]}">brand.500</span> for primary actions, CTAs, and active states. Do not use brand colors for backgrounds or large surfaces. Subtle tints (50-100) are acceptable for backgrounds in limited contexts.</div>
+<div class="guideline"><strong>Secondary brand = supporting actions, highlights, data emphasis.</strong> Use <span style="color:${F.accent[500]}">accent.500</span> for secondary CTAs, inline highlights, metric emphasis, and badges that need visual distinction from neutral UI. <strong>Never use secondary brand for destructive actions. Never use secondary brand for status feedback.</strong></div>
+<div class="guideline"><strong>Brand hierarchy is intentional.</strong> Purple (primary) draws dominant attention. Cyan (secondary) provides energetic supporting accents. In any view, primary brand should appear on the most important action; secondary brand on supporting elements. Never let secondary brand compete with or replace primary.</div>
+<div class="guideline"><strong>Focus is required.</strong> Every interactive element must show <code>border.focus</code> on keyboard navigation. The brand-colored focus ring ensures visibility on both dark and light surfaces.</div>
+<div class="guideline"><strong>Dark-first, light-aware.</strong> This system is dark-first. Semantic tokens resolve differently in light mode. When implementing theme switching, always test both modes. Never assume one mode.</div>
+<div class="guideline"><strong>Overlay requires alpha.</strong> The overlay tokens carry alpha metadata. Build tools must apply the alpha channel. Do not approximate by using a lighter hex — use actual transparency for proper backdrop compositing.</div>
+</div>`;
+
+/* ── COMPONENTS ───────────────────────────────────────────────────── */
+H+=`<div class="section" id="components"><div class="s-head">
+<h2>Components</h2>
+<p>Component-level tokens (button, badge, alert, input, card) will be built on top of the semantic layer. This section is planned for a future release.</p>
+</div>
+<div class="guideline" style="text-align:center;padding:32px;color:var(--fg-4)"><strong>Coming soon</strong><br>Component tokens will map semantic values to specific UI elements — buttons, badges, alerts, form controls, and more.</div>
+</div>`;
+
+document.getElementById("mainContent").innerHTML=H;
+
+/* ================================================================
+   INTERACTIONS
+   ================================================================ */
+
+/* ── Theme toggle ─────────────────────────────────────────────────── */
+const themeBtn=document.getElementById("themeBtn");
+const themeIcon=document.getElementById("themeIcon");
+const sunSVG='<circle cx="8" cy="8" r="3.5"/><line x1="8" y1="1" x2="8" y2="3"/><line x1="8" y1="13" x2="8" y2="15"/><line x1="1" y1="8" x2="3" y2="8"/><line x1="13" y1="8" x2="15" y2="8"/><line x1="3.05" y1="3.05" x2="4.46" y2="4.46"/><line x1="11.54" y1="11.54" x2="12.95" y2="12.95"/><line x1="3.05" y1="12.95" x2="4.46" y2="11.54"/><line x1="11.54" y1="4.46" x2="12.95" y2="3.05"/>';
+const moonSVG='<path d="M13.5 2.5a6.5 6.5 0 1 0 0 11A7.5 7.5 0 0 1 13.5 2.5z"/>';
+function setTheme(t){
+  document.documentElement.setAttribute("data-theme",t);
+  themeIcon.innerHTML=t==="dark"?sunSVG:moonSVG;
+  try{localStorage.setItem("bm-ds-theme",t)}catch(e){}
+}
+themeBtn.addEventListener("click",()=>{
+  setTheme(document.documentElement.getAttribute("data-theme")==="dark"?"light":"dark");
+});
+try{const saved=localStorage.getItem("bm-ds-theme");if(saved)setTheme(saved)}catch(e){}
+
+/* ── Sidebar collapse ─────────────────────────────────────────────── */
+document.querySelectorAll(".nav-group-title").forEach(el=>{
+  el.addEventListener("click",()=>el.parentElement.classList.toggle("collapsed"));
+});
+
+/* ── Sidebar active tracking ──────────────────────────────────────── */
+const sections=document.querySelectorAll(".section");
+const navItems=document.querySelectorAll(".nav-item");
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      navItems.forEach(n=>n.classList.remove("active"));
+      const link=document.querySelector(`.nav-item[href="#${e.target.id}"]`);
+      if(link)link.classList.add("active");
+    }
+  });
+},{rootMargin:"-80px 0px -70% 0px",threshold:0});
+sections.forEach(s=>obs.observe(s));
+
+/* ── Mobile sidebar ───────────────────────────────────────────────── */
+const sidebar=document.getElementById("sidebar");
+document.getElementById("menuBtn").addEventListener("click",()=>sidebar.classList.toggle("open"));
+navItems.forEach(el=>el.addEventListener("click",()=>sidebar.classList.remove("open")));
+
+/* ── Search ───────────────────────────────────────────────────────── */
+const searchInput=document.getElementById("searchInput");
+searchInput.addEventListener("input",()=>{
+  const q=searchInput.value.trim().toLowerCase();
+  document.querySelectorAll(".token-table tr[data-token]").forEach(row=>{
+    const token=row.getAttribute("data-token").toLowerCase();
+    const hidden=q&&!token.includes(q);
+    row.classList.toggle("search-hidden",hidden);
+  });
+});
+document.addEventListener("keydown",e=>{
+  if((e.metaKey||e.ctrlKey)&&e.key==="k"){e.preventDefault();searchInput.focus();searchInput.select()}
+});
+
+/* ── Copy JSON ────────────────────────────────────────────────────── */
+window.copyGroup=function(btn,id){
+  const table=document.getElementById(id);
+  if(!table)return;
+  const rows=table.querySelectorAll("tbody tr:not(.search-hidden)");
+  const obj={};
+  rows.forEach(r=>{
+    const name=r.querySelector(".tok-name")?.textContent;
+    const val=r.querySelector(".tok-ref")?.textContent||r.querySelector(".tok-hex")?.textContent;
+    if(name&&val)obj[name]=val;
+  });
+  navigator.clipboard.writeText(JSON.stringify(obj,null,2)).then(()=>{
+    btn.classList.add("copied");btn.textContent="Copied!";
+    setTimeout(()=>{btn.classList.remove("copied");btn.textContent="Copy JSON"},1500);
+  }).catch(()=>{});
+};
+</script>
+</body>
+</html>
