@@ -94,21 +94,33 @@ a:hover{text-decoration:underline}
 .theme-btn:hover{border-color:var(--accent);color:var(--accent)}
 .menu-btn{display:none;background:none;border:1px solid var(--border-default);color:var(--fg-2);width:32px;height:32px;border-radius:8px;cursor:pointer;align-items:center;justify-content:center}
 
+/* Motion tokens */
+:root{--motion-fast:150ms;--motion-normal:250ms;--motion-slow:400ms;--motion-ease:cubic-bezier(.2,.8,.2,1);--motion-ease-in:cubic-bezier(.4,0,1,1);--motion-ease-out:cubic-bezier(0,0,.2,1);--motion-scale-press:0.98}
+
 /* Sidebar */
-.sidebar{position:fixed;top:var(--header-h);left:0;bottom:0;width:var(--sidebar-w);background:var(--bg-sidebar);border-right:1px solid var(--border-subtle);overflow-y:auto;padding:16px 0;z-index:90;transition:transform .25s var(--ease),background .2s var(--ease),border-color .2s var(--ease)}
-.sidebar nav{padding:0 12px}
-.sidebar .nav-group{margin-bottom:4px}
-.sidebar .nav-group-title{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--fg-4);padding:12px 12px 4px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;border-radius:6px;transition:color .12s}
+.sidebar{position:fixed;top:var(--header-h);left:0;bottom:0;width:var(--sidebar-w);background:var(--bg-sidebar);border-right:1px solid var(--border-subtle);overflow-y:auto;padding:12px 0 24px;z-index:90;transition:transform .25s var(--ease),background .2s var(--ease),border-color .2s var(--ease)}
+.sidebar nav{padding:0 10px;display:flex;flex-direction:column;gap:2px}
+.sidebar .nav-group{margin-bottom:0}
+.sidebar .nav-group-title{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--fg-4);padding:14px 12px 5px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;border-radius:6px;transition:color var(--motion-fast) var(--motion-ease)}
 .sidebar .nav-group-title:hover{color:var(--fg-2)}
-.sidebar .nav-group-title svg{transition:transform .2s var(--ease);flex-shrink:0}
+.sidebar .nav-group-title svg{transition:transform .2s var(--motion-ease);flex-shrink:0}
 .sidebar .nav-group.collapsed .nav-group-title svg{transform:rotate(-90deg)}
-.sidebar .nav-group.collapsed .nav-items{display:none}
-.sidebar .nav-items{padding:0 0 4px}
-.sidebar .nav-item{display:block;font-size:.8rem;color:var(--fg-3);padding:5px 12px 5px 20px;border-radius:6px;transition:all .12s var(--ease);cursor:pointer;text-decoration:none;line-height:1.4}
+.sidebar .nav-items{overflow:hidden;transition:max-height var(--motion-normal) var(--motion-ease);padding:0 0 2px}
+.sidebar .nav-group.collapsed .nav-items{max-height:0 !important;padding:0}
+.sidebar .nav-label{font-size:.55rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--fg-4);padding:10px 12px 3px;opacity:.6}
+.sidebar .nav-item{display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--fg-3);padding:5px 12px 5px 16px;border-radius:6px;transition:all var(--motion-fast) var(--motion-ease);cursor:pointer;text-decoration:none;line-height:1.4;position:relative}
 .sidebar .nav-item:hover{color:var(--fg-1);background:var(--bg-card);text-decoration:none}
-.sidebar .nav-item.active{color:var(--accent);background:color-mix(in srgb, var(--accent) 8%, transparent);font-weight:600}
-.sidebar .nav-item .coming{font-size:.55rem;background:var(--border-default);color:var(--fg-4);padding:1px 5px;border-radius:4px;margin-left:4px;font-weight:700;vertical-align:middle}
-.sidebar .nav-item .new-tag{font-size:.55rem;background:var(--a500);color:var(--n950);padding:1px 5px;border-radius:4px;margin-left:4px;font-weight:700;vertical-align:middle}
+.sidebar .nav-item.active{color:var(--b400);font-weight:600;background:linear-gradient(135deg,color-mix(in srgb,var(--b500) 10%,transparent),color-mix(in srgb,var(--a500) 6%,transparent))}
+.sidebar .nav-item.active::before{content:'';position:absolute;left:0;top:4px;bottom:4px;width:2px;border-radius:1px;background:linear-gradient(180deg,var(--b400),var(--a500))}
+.sidebar .nav-item .coming{font-size:.5rem;background:var(--border-default);color:var(--fg-4);padding:1px 5px;border-radius:4px;margin-left:auto;font-weight:700}
+.sidebar .nav-item .new-tag{font-size:.5rem;background:var(--a500);color:var(--n950);padding:1px 5px;border-radius:4px;margin-left:auto;font-weight:700}
+.sidebar .nav-item .phase-tag{font-size:.5rem;background:var(--b500);color:#fff;padding:1px 5px;border-radius:4px;margin-left:auto;font-weight:700}
+.sidebar .nav-divider{height:1px;background:var(--border-subtle);margin:8px 12px}
+
+/* Animated component icons in sidebar */
+.sidebar .nav-item svg.nav-icon{width:14px;height:14px;flex-shrink:0;stroke:var(--fg-4);transition:stroke var(--motion-fast) var(--motion-ease),transform 180ms var(--motion-ease)}
+.sidebar .nav-item:hover svg.nav-icon{stroke:var(--fg-2)}
+.sidebar .nav-item.active svg.nav-icon{stroke:var(--b400)}
 
 /* Main */
 .main{margin-left:var(--sidebar-w);padding:calc(var(--header-h) + 28px) 40px 60px;max-width:960px;transition:margin .25s var(--ease)}
@@ -121,7 +133,7 @@ a:hover{text-decoration:underline}
 .section > .s-head h2{font-size:1.5rem;font-weight:700;letter-spacing:-.025em;color:var(--fg-1);margin-bottom:4px}
 .section > .s-head p{color:var(--fg-3);font-size:.88rem;max-width:640px}
 .section > .s-head .s-path{font-size:.7rem;font-family:var(--font-mono);color:var(--fg-4);margin-top:6px;padding:3px 8px;background:var(--code-bg);border-radius:5px;display:inline-block}
-.sub-section{margin-top:32px}
+.sub-section{margin-top:32px;scroll-margin-top:calc(var(--header-h) + 24px)}
 .sub-section h3{font-size:1.05rem;font-weight:600;color:var(--fg-1);margin-bottom:10px;display:flex;align-items:center;gap:8px}
 .sub-section h3 .badge{font-size:.55rem;background:var(--accent);color:#fff;padding:2px 7px;border-radius:5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
 .sub-section h3 .badge-cyan{font-size:.55rem;background:var(--a500);color:var(--n950);padding:2px 7px;border-radius:5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
@@ -207,6 +219,58 @@ a:hover{text-decoration:underline}
 .hl-demo mark{border-radius:3px;padding:1px 4px}
 
 /* ================================================================
+   ANIMATED COMPONENT ICONS
+   ================================================================ */
+.comp-icon-card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:12px;padding:16px 18px;display:flex;align-items:center;gap:12px;text-decoration:none;transition:all 180ms var(--motion-ease);position:relative;overflow:hidden}
+.comp-icon-card:hover{border-color:var(--border-default);background:var(--bg-raised);transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.15);text-decoration:none}
+.comp-icon-card:active{transform:scale(var(--motion-scale-press))}
+.comp-icon-card .ci-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 180ms var(--motion-ease);background:color-mix(in srgb,var(--accent) 8%,transparent)}
+.comp-icon-card:hover .ci-icon{background:color-mix(in srgb,var(--accent) 14%,transparent);box-shadow:0 0 12px color-mix(in srgb,var(--accent) 15%,transparent)}
+.comp-icon-card .ci-icon svg{transition:all 180ms var(--motion-ease)}
+.comp-icon-card:hover .ci-icon svg{transform:scale(1.08)}
+.comp-icon-card .ci-body{flex:1;min-width:0}
+.comp-icon-card .ci-name{font-size:.82rem;font-weight:600;color:var(--fg-1)}
+.comp-icon-card .ci-meta{font-size:.55rem;color:var(--fg-4);margin-top:1px}
+.comp-icon-card .ci-arrow{color:var(--fg-4);transition:transform 180ms var(--motion-ease),color 180ms var(--motion-ease);flex-shrink:0}
+.comp-icon-card:hover .ci-arrow{color:var(--accent);transform:translateX(2px)}
+
+/* Button icon pulse */
+.comp-icon-card[data-comp="button"]:hover .ci-icon svg{filter:drop-shadow(0 0 4px var(--accent))}
+/* Input icon caret */
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.comp-icon-card[data-comp="input"]:hover .ci-caret{animation:blink 1s step-end infinite}
+/* Toggle icon slide */
+.comp-icon-card[data-comp="toggle"]:hover .ci-thumb{transform:translateX(12px);transition:transform .25s var(--motion-ease)}
+/* Alert icon shake */
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-2px)}40%,80%{transform:translateX(2px)}}
+.comp-icon-card[data-comp="alert"]:hover .ci-icon svg{animation:shake .4s ease}
+/* Tabs icon slide */
+.comp-icon-card[data-comp="tabs"]:hover .ci-indicator{transform:translateX(10px);transition:transform .25s var(--motion-ease)}
+/* Modal icon fade */
+@keyframes fadeSlideUp{from{opacity:.3;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
+.comp-icon-card[data-comp="modal"]:hover .ci-panel{animation:fadeSlideUp .3s var(--motion-ease)}
+
+/* Component page section headers */
+.comp-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px}
+.comp-header .ch-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:color-mix(in srgb,var(--accent) 10%,transparent)}
+.comp-header .ch-body h2{font-size:1.5rem;font-weight:700;letter-spacing:-.025em;color:var(--fg-1);margin-bottom:2px;display:flex;align-items:center;gap:8px}
+.comp-header .ch-body p{color:var(--fg-3);font-size:.88rem;max-width:640px}
+.comp-header .ch-badges{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+.comp-header .ch-badge{font-size:.5rem;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;letter-spacing:.04em}
+.comp-header .ch-badge-stable{background:rgba(22,163,74,.12);color:#5ec476}
+.comp-header .ch-badge-version{background:var(--bg-raised);color:var(--fg-4);border:1px solid var(--border-subtle)}
+.comp-header .ch-badge-tokens{background:color-mix(in srgb,var(--accent) 10%,transparent);color:var(--b400);border:1px solid color-mix(in srgb,var(--accent) 15%,transparent)}
+
+/* Usage guidelines */
+.usage-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+@media(max-width:640px){.usage-grid{grid-template-columns:1fr}}
+.usage-do,.usage-dont{border-radius:10px;padding:14px 16px;font-size:.78rem;line-height:1.5}
+.usage-do{background:rgba(22,163,74,.06);border:1px solid rgba(22,163,74,.15);color:var(--fg-2)}
+.usage-do::before{content:'✓ Do';display:block;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#5ec476;margin-bottom:6px}
+.usage-dont{background:rgba(220,38,38,.06);border:1px solid rgba(220,38,38,.15);color:var(--fg-2)}
+.usage-dont::before{content:'✕ Don\\'t';display:block;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#f3776b;margin-bottom:6px}
+
+/* ================================================================
    RESPONSIVE
    ================================================================ */
 @media(max-width:900px){
@@ -220,6 +284,7 @@ a:hover{text-decoration:underline}
   .search-box{width:120px}
   .preview-grid{grid-template-columns:1fr}
 }
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
@@ -247,40 +312,98 @@ a:hover{text-decoration:underline}
      ============================================================ -->
 <aside class="sidebar" id="sidebar">
 <nav>
+  <!-- 1. OVERVIEW -->
   <div class="nav-group">
-    <div class="nav-group-title" data-group="intro">Overview<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,2 7,5 3,8"/></svg></div>
+    <div class="nav-group-title" data-group="overview">Overview<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,2 7,5 3,8"/></svg></div>
     <div class="nav-items">
       <a class="nav-item active" href="#introduction">Introduction</a>
+      <a class="nav-item" href="#guidelines">Principles</a>
+      <a class="nav-item" href="#changelog">Changelog</a>
     </div>
   </div>
+
+  <!-- 2. FOUNDATIONS -->
   <div class="nav-group">
     <div class="nav-group-title" data-group="foundations">Foundations<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,2 7,5 3,8"/></svg></div>
     <div class="nav-items">
+      <div class="nav-label">Color</div>
       <a class="nav-item" href="#neutral">Neutral</a>
       <a class="nav-item" href="#brand">Brand (Primary)</a>
-      <a class="nav-item" href="#accent">Accent (Secondary) <span class="new-tag">New</span></a>
-      <a class="nav-item" href="#status-foundations">Status</a>
+      <a class="nav-item" href="#accent">Accent (Secondary)</a>
+      <a class="nav-item" href="#status-foundations">Status Colors</a>
+      <div class="nav-label">Typography</div>
+      <a class="nav-item" href="#type-scale">Type Scale</a>
+      <a class="nav-item" href="#type-preview">Visual Preview</a>
+      <a class="nav-item" href="#type-migration">Migration Map</a>
+      <a class="nav-item" href="#type-summary">Audit Summary</a>
+      <div class="nav-label">Layout</div>
+      <a class="nav-item" href="#spacing">Spacing <span class="coming">Soon</span></a>
+      <a class="nav-item" href="#elevation">Elevation <span class="coming">Soon</span></a>
+      <a class="nav-item" href="#motion">Motion <span class="coming">Soon</span></a>
     </div>
   </div>
+
+  <!-- 3. SEMANTIC TOKENS -->
   <div class="nav-group">
-    <div class="nav-group-title" data-group="semantic">Semantic<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,2 7,5 3,8"/></svg></div>
+    <div class="nav-group-title" data-group="tokens">Semantic Tokens<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,2 7,5 3,8"/></svg></div>
     <div class="nav-items">
       <a class="nav-item" href="#surface">Surface</a>
       <a class="nav-item" href="#text">Text</a>
       <a class="nav-item" href="#border">Border</a>
       <a class="nav-item" href="#icon">Icon</a>
       <a class="nav-item" href="#interactive">Interactive</a>
-      <a class="nav-item" href="#highlight">Highlight <span class="new-tag">New</span></a>
-      <a class="nav-item" href="#status-semantic">Status</a>
+      <a class="nav-item" href="#highlight">Highlight</a>
+      <a class="nav-item" href="#status-semantic">Status Tokens</a>
       <a class="nav-item" href="#overlay">Overlay</a>
     </div>
   </div>
+
+  <!-- 4. COMPONENTS -->
   <div class="nav-group">
-    <div class="nav-group-title" data-group="more">More<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,2 7,5 3,8"/></svg></div>
+    <div class="nav-group-title" data-group="components">Components<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,2 7,5 3,8"/></svg></div>
     <div class="nav-items">
-      <a class="nav-item" href="#accessibility">Accessibility</a>
-      <a class="nav-item" href="#guidelines">Guidelines</a>
-      <a class="nav-item" href="#components">Components <span class="coming">Soon</span></a>
+      <div class="nav-label">Phase 1 — Core</div>
+      <a class="nav-item" href="#comp-overview">Overview</a>
+      <a class="nav-item" href="#comp-button"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="10" rx="3"/></svg>Button</a>
+      <a class="nav-item" href="#comp-input"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="10" rx="2"/><line x1="7" y1="10" x2="7" y2="14"/></svg>Input</a>
+      <a class="nav-item" href="#comp-card"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="3" y1="9" x2="21" y2="9"/></svg>Card</a>
+      <a class="nav-item" href="#comp-badge"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="8" rx="4"/></svg>Badge</a>
+      <a class="nav-item" href="#comp-alert"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4m0 4h.01M5.07 19h13.86c1.54 0 2.5-1.67 1.73-3L13.73 4c-.77-1.33-2.69-1.33-3.46 0L3.34 16c-.77 1.33.19 3 1.73 3z"/></svg>Alert</a>
+      <a class="nav-item" href="#comp-checkbox"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12l3 3 5-5"/></svg>Checkbox</a>
+      <a class="nav-item" href="#comp-toggle"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="20" height="8" rx="4"/><circle cx="16" cy="12" r="2.5"/></svg>Toggle</a>
+      <a class="nav-item" href="#comp-tabs"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="18" x2="20" y2="18"/><line x1="4" y1="18" x2="10" y2="18" stroke-width="3"/></svg>Tabs</a>
+      <a class="nav-item" href="#comp-modal"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="14" height="14" rx="2"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>Modal</a>
+      <div class="nav-label">Phase 2 — Composite</div>
+      <a class="nav-item" href="#comp-overview">Dropdown <span class="coming">Soon</span></a>
+      <a class="nav-item" href="#comp-overview">Tooltip <span class="coming">Soon</span></a>
+      <a class="nav-item" href="#comp-overview">Toast <span class="coming">Soon</span></a>
+      <a class="nav-item" href="#comp-overview">Table <span class="coming">Soon</span></a>
+      <a class="nav-item" href="#comp-overview">Form <span class="coming">Soon</span></a>
+      <div class="nav-label">Navigation</div>
+      <a class="nav-item" href="#comp-overview">Sidebar <span class="coming">Soon</span></a>
+      <a class="nav-item" href="#comp-overview">Navbar <span class="coming">Soon</span></a>
+    </div>
+  </div>
+
+  <!-- 5. ACCESSIBILITY -->
+  <div class="nav-group">
+    <div class="nav-group-title" data-group="a11y">Accessibility<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,2 7,5 3,8"/></svg></div>
+    <div class="nav-items">
+      <a class="nav-item" href="#a11y-contrast">Contrast</a>
+      <a class="nav-item" href="#a11y-focus">Focus</a>
+      <a class="nav-item" href="#a11y-keyboard">Keyboard</a>
+      <a class="nav-item" href="#a11y-motion">Motion Safety</a>
+    </div>
+  </div>
+
+  <!-- 6. HANDOFF -->
+  <div class="nav-group">
+    <div class="nav-group-title" data-group="handoff">Handoff<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,2 7,5 3,8"/></svg></div>
+    <div class="nav-items">
+      <a class="nav-item" href="#handoff-json">Token JSON</a>
+      <a class="nav-item" href="#handoff-figma">Figma Variables</a>
+      <a class="nav-item" href="#handoff-naming">Naming Convention</a>
+      <a class="nav-item" href="#handoff-versioning">Versioning Strategy</a>
     </div>
   </div>
 </nav>
@@ -411,13 +534,40 @@ H+=`<div class="section" id="introduction"><div class="s-head">
 <strong>Architecture:</strong>&nbsp;
 <code>foundations/</code> &rarr; neutral, brand, accent, status scales &nbsp;&bull;&nbsp;
 <code>semantic/</code> &rarr; surface, text, border, interactive, highlight, icon, status, overlay &nbsp;&bull;&nbsp;
-<code>components/</code> &rarr; <em>coming soon</em>
+<code>components/</code> &rarr; button (more coming soon)
 </div>
 <div class="guideline">
 <strong>Brand hierarchy:</strong>&nbsp;
 <span style="color:${F.brand[500]}">&#9632;</span> <strong>Primary brand</strong> (purple) for main CTAs and primary actions. &nbsp;
 <span style="color:${F.accent[500]}">&#9632;</span> <strong>Secondary brand</strong> (cyan) for supporting actions, highlights, and data emphasis.
 </div>
+</div>`;
+
+/* ── PRINCIPLES ──────────────────────────────────────────────────── */
+H+=`<div class="section" id="guidelines"><div class="s-head">
+<h2>Principles</h2>
+<p>Rules and guidelines for using the BrainsMingle design system effectively.</p>
+</div>
+<div class="guideline"><strong>Never use hex values directly.</strong> Always reference semantic tokens. Components should never hard-code colors from foundations — use surface, text, border, and interactive tokens.</div>
+<div class="guideline"><strong>Respect the layer stack.</strong> Surface tokens define a clear z-axis: sunken &lt; base &lt; card &lt; raised &lt; overlay. Do not skip layers or invert the stack without intentional design reasoning.</div>
+<div class="guideline"><strong>Text hierarchy is mandatory.</strong> Use primary for headings and body. Secondary for supporting text. Muted for captions and labels. Disabled for inactive elements. Never use muted for critical information.</div>
+<div class="guideline"><strong>Status colors carry meaning.</strong> Do not use error red for decorative purposes. Do not mix status families. Each status has subtle and bold variants — use subtle for inline messages, bold for critical alerts.</div>
+<div class="guideline"><strong>Primary brand = main CTA.</strong> Reserve <span style="color:${F.brand[500]}">brand.500</span> for primary actions, CTAs, and active states. Do not use brand colors for backgrounds or large surfaces.</div>
+<div class="guideline"><strong>Secondary brand = supporting actions.</strong> Use <span style="color:${F.accent[500]}">accent.500</span> for secondary CTAs, inline highlights, metric emphasis, and badges. Never use for destructive actions or status feedback.</div>
+<div class="guideline"><strong>Brand hierarchy is intentional.</strong> Purple (primary) draws dominant attention. Cyan (secondary) provides supporting accents. Primary brand should appear on the most important action; secondary brand on supporting elements.</div>
+<div class="guideline"><strong>Focus is required.</strong> Every interactive element must show <code>border.focus</code> on keyboard navigation. The brand-colored focus ring ensures visibility on both dark and light surfaces.</div>
+<div class="guideline"><strong>Dark-first, light-aware.</strong> Semantic tokens resolve differently in light mode. Always test both modes. Never assume one mode.</div>
+<div class="guideline"><strong>Overlay requires alpha.</strong> The overlay tokens carry alpha metadata. Build tools must apply the alpha channel. Use actual transparency for proper backdrop compositing.</div>
+</div>`;
+
+/* ── CHANGELOG ───────────────────────────────────────────────────── */
+H+=`<div class="section" id="changelog"><div class="s-head">
+<h2>Changelog</h2>
+<p>Design system version history and notable changes.</p>
+</div>
+<div class="guideline" style="display:flex;gap:12px;align-items:flex-start"><span style="font-size:.55rem;font-weight:700;background:var(--a500);color:var(--n950);padding:2px 7px;border-radius:4px;flex-shrink:0">v1.0.0</span><div><strong>Phase 1 — Core Components</strong><br>9 component token files (button, input, card, badge, alert, checkbox, toggle, tabs, modal). Typography token system. Full docs site with visual previews, token tables, accessibility audits.</div></div>
+<div class="guideline" style="display:flex;gap:12px;align-items:flex-start"><span style="font-size:.55rem;font-weight:700;background:var(--bg-raised);color:var(--fg-4);padding:2px 7px;border-radius:4px;flex-shrink:0">v0.9.0</span><div><strong>Semantic Token Layer</strong><br>Surface, text, border, icon, interactive, status, overlay, and highlight tokens. Multi-mode (dark + light) support via Tokens Studio extensions.</div></div>
+<div class="guideline" style="display:flex;gap:12px;align-items:flex-start"><span style="font-size:.55rem;font-weight:700;background:var(--bg-raised);color:var(--fg-4);padding:2px 7px;border-radius:4px;flex-shrink:0">v0.8.0</span><div><strong>Foundation Color Scales</strong><br>7 color families (neutral, brand, accent, error, success, warning, info) with 11 steps each. Primitives layer in DTCG format.</div></div>
 </div>`;
 
 /* ── NEUTRAL ──────────────────────────────────────────────────────── */
@@ -497,8 +647,8 @@ H+=`</div></div></div>`;
 
 /* ── STATUS FOUNDATIONS ────────────────────────────────────────────── */
 H+=`<div class="section" id="status-foundations"><div class="s-head">
-<h2>Status Scales</h2>
-<p>Four OKLCH-generated status scales — error, success, warning, info — each anchored at step 500. Designed for readability on <code>neutral.950</code> backgrounds.</p>
+<h2>Status Colors</h2>
+<p>Four OKLCH-generated status color scales — error, success, warning, info — each anchored at step 500. Foundation primitives for status feedback. Designed for readability on <code>neutral.950</code> backgrounds.</p>
 <span class="s-path">foundations/status-*.json</span>
 </div>`;
 ['error','success','warning','info'].forEach(fam=>{
@@ -622,8 +772,8 @@ H+=`</div></div></div>`;
 
 /* ── HIGHLIGHT & BADGE ────────────────────────────────────────────── */
 H+=`<div class="section" id="highlight"><div class="s-head">
-<h2>Highlight &amp; Badge</h2>
-<p>Accent-powered tokens for data emphasis, inline highlights, and secondary brand badges. Uses the cyan accent scale for visual distinction from status colors.</p>
+<h2>Highlight</h2>
+<p>Accent-powered semantic tokens for data emphasis, inline highlights, and secondary brand badges. Uses the cyan accent scale for visual distinction from status colors.</p>
 <span class="s-path">semantic/highlight.json</span>
 </div>`;
 // Token tables
@@ -666,8 +816,8 @@ H+=`<div class="sub-section"><h3>Badge Preview</h3>
 
 /* ── STATUS SEMANTIC ──────────────────────────────────────────────── */
 H+=`<div class="section" id="status-semantic"><div class="s-head">
-<h2>Status (Semantic)</h2>
-<p>Unified semantic tokens for error, success, warning, and info feedback. Each family provides bg, text, border, and icon tokens for both subtle and bold contexts.</p>
+<h2>Status Tokens</h2>
+<p>Semantic status tokens for error, success, warning, and info feedback. References status color primitives. Each family provides bg, text, border, and icon tokens for both subtle and bold contexts.</p>
 <span class="s-path">semantic/status.json</span>
 </div>`;
 for(const[family,groups]of Object.entries(S.status)){
@@ -708,9 +858,9 @@ H+=`<div class="section" id="overlay"><div class="s-head">
 /* ── ACCESSIBILITY ────────────────────────────────────────────────── */
 H+=`<div class="section" id="accessibility"><div class="s-head">
 <h2>Accessibility</h2>
-<p>WCAG contrast ratio audit for semantic text tokens on their intended surfaces. Ratios are calculated using relative luminance.</p>
+<p>Comprehensive accessibility audit including WCAG contrast ratios, focus management, keyboard navigation, and motion safety guidelines.</p>
 </div>
-<div class="sub-section"><h3>Core Contrast Audit <span class="badge">Auto-calculated</span></h3>
+<div class="sub-section" id="a11y-contrast"><h3>Core Contrast Audit <span class="badge">Auto-calculated</span></h3>
 <div class="contrast-grid">`;
 const checks=[
   ["text.primary","surface.base",S.text.primary,S.surface.base],
@@ -751,34 +901,931 @@ const statusA11y=[
   ["status.warning.text.onBold","status.warning.bg.bold",res(S.status.warning.text.onBold),res(S.status.warning.bg.bold)],
 ];
 statusA11y.forEach(([fgL,bgL,fgH,bgH])=>{H+=contrastCard(fgL,bgL,fgH,bgH);});
-H+=`</div></div></div>`;
+H+=`</div></div>`;
 
-/* ── GUIDELINES ───────────────────────────────────────────────────── */
-H+=`<div class="section" id="guidelines"><div class="s-head">
-<h2>Guidelines</h2>
-<p>Principles and rules for using the BrainsMingle color system effectively.</p>
-</div>
-<div class="guideline"><strong>Never use hex values directly.</strong> Always reference semantic tokens. Components should never hard-code colors from foundations — use surface, text, border, and interactive tokens.</div>
-<div class="guideline"><strong>Respect the layer stack.</strong> Surface tokens define a clear z-axis: sunken &lt; base &lt; card &lt; raised &lt; overlay. Do not skip layers or invert the stack without intentional design reasoning.</div>
-<div class="guideline"><strong>Text hierarchy is mandatory.</strong> Use primary for headings and body. Secondary for supporting text. Muted for captions and labels. Disabled for inactive elements. Never use muted for critical information.</div>
-<div class="guideline"><strong>Status colors carry meaning.</strong> Do not use error red for decorative purposes. Do not mix status families. Each status has subtle and bold variants — use subtle for inline messages, bold for critical alerts.</div>
-<div class="guideline"><strong>Primary brand = main CTA.</strong> Reserve <span style="color:${F.brand[500]}">brand.500</span> for primary actions, CTAs, and active states. Do not use brand colors for backgrounds or large surfaces. Subtle tints (50-100) are acceptable for backgrounds in limited contexts.</div>
-<div class="guideline"><strong>Secondary brand = supporting actions, highlights, data emphasis.</strong> Use <span style="color:${F.accent[500]}">accent.500</span> for secondary CTAs, inline highlights, metric emphasis, and badges that need visual distinction from neutral UI. <strong>Never use secondary brand for destructive actions. Never use secondary brand for status feedback.</strong></div>
-<div class="guideline"><strong>Brand hierarchy is intentional.</strong> Purple (primary) draws dominant attention. Cyan (secondary) provides energetic supporting accents. In any view, primary brand should appear on the most important action; secondary brand on supporting elements. Never let secondary brand compete with or replace primary.</div>
-<div class="guideline"><strong>Focus is required.</strong> Every interactive element must show <code>border.focus</code> on keyboard navigation. The brand-colored focus ring ensures visibility on both dark and light surfaces.</div>
-<div class="guideline"><strong>Dark-first, light-aware.</strong> This system is dark-first. Semantic tokens resolve differently in light mode. When implementing theme switching, always test both modes. Never assume one mode.</div>
-<div class="guideline"><strong>Overlay requires alpha.</strong> The overlay tokens carry alpha metadata. Build tools must apply the alpha channel. Do not approximate by using a lighter hex — use actual transparency for proper backdrop compositing.</div>
+// Focus
+H+=`<div class="sub-section" id="a11y-focus"><h3>Focus Management</h3>
+<div class="guideline"><strong>Focus ring token:</strong> <code>border.focus</code> → brand-colored 2px outline with 2px offset. Ensures visibility on both dark and light surfaces across all interactive components.</div>
+<div class="guideline"><strong>:focus-visible only.</strong> Focus ring appears on keyboard navigation, not mouse clicks. All components use <code>:focus-visible</code> pseudo-class for non-intrusive UX.</div>
+<div class="guideline"><strong>Focus trap in modals.</strong> When a modal opens, focus is trapped inside. Tab cycles through focusable elements. First focusable element receives focus on open. On close, focus returns to the trigger element.</div>
+<div class="guideline"><strong>Skip links.</strong> Provide skip-to-content links for keyboard users to bypass navigation. Hidden visually but accessible to screen readers.</div>
 </div>`;
 
-/* ── COMPONENTS ───────────────────────────────────────────────────── */
-H+=`<div class="section" id="components"><div class="s-head">
-<h2>Components</h2>
-<p>Component-level tokens (button, badge, alert, input, card) will be built on top of the semantic layer. This section is planned for a future release.</p>
+// Keyboard
+H+=`<div class="sub-section" id="a11y-keyboard"><h3>Keyboard Navigation</h3>
+<div class="guideline"><strong>All interactive elements are reachable via Tab.</strong> Buttons, inputs, checkboxes, toggles, tabs, links — all must be focusable and operable without a mouse.</div>
+<div class="guideline"><strong>Arrow keys for composite widgets.</strong> Tabs use left/right arrows. Dropdowns use up/down arrows. Radio groups use arrows for selection within the group.</div>
+<div class="guideline"><strong>Enter/Space activation.</strong> Buttons activate on Enter or Space. Checkboxes toggle on Space. Links activate on Enter only.</div>
+<div class="guideline"><strong>Escape to dismiss.</strong> Modals, dropdowns, tooltips, and toasts dismiss on Escape key. Focus returns to trigger.</div>
+</div>`;
+
+// Motion safety
+H+=`<div class="sub-section" id="a11y-motion"><h3>Motion Safety</h3>
+<div class="guideline"><strong>prefers-reduced-motion.</strong> All animations and transitions respect the <code>@media (prefers-reduced-motion: reduce)</code> query. When active, transition durations collapse to 0ms and transform animations are disabled.</div>
+<div class="guideline"><strong>No auto-playing animations.</strong> Decorative motion (icon micro-interactions, skeleton loaders) must not auto-play. They should trigger only on user interaction or be suppressible.</div>
+<div class="guideline"><strong>Motion tokens support override.</strong> The <code>motion.duration.fast</code> / <code>motion.duration.normal</code> tokens can be overridden globally for reduced-motion preference at the CSS custom property level.</div>
+</div></div>`;
+
+/* ── TYPOGRAPHY — Type Scale ──────────────────────────────────────── */
+H+=`<div class="section" id="type-scale"><div class="s-head">
+<h2>Typography — Type Scale</h2>
+<p>A normalized typography system built from the audit of all CSS across the project. 22 detected sizes consolidated into 9 scale steps. 6 font stacks reduced to 2. All tokens reference primitives only.</p>
+<span class="s-path">primitives/typography.json → semantic/typography.json</span>
+</div>`;
+
+// Primitives table
+H+=`<div class="sub-section"><h3>Primitive Scale <span class="badge">Font Sizes</span></h3>`;
+const typeScale=[
+  {token:"font.size.xs",  val:"12px", usage:"Captions, badges, small labels, overlines"},
+  {token:"font.size.sm",  val:"14px", usage:"Body default, buttons, form labels, code"},
+  {token:"font.size.md",  val:"16px", usage:"Body large, paragraphs"},
+  {token:"font.size.lg",  val:"18px", usage:"Small headings (h5), card titles"},
+  {token:"font.size.xl",  val:"20px", usage:"Sub-headings (h4)"},
+  {token:"font.size.2xl", val:"24px", usage:"Section headings (h3)"},
+  {token:"font.size.3xl", val:"30px", usage:"Page headings (h2)"},
+  {token:"font.size.4xl", val:"36px", usage:"Hero headings (h1)"},
+  {token:"font.size.5xl", val:"48px", usage:"Display / marketing"},
+];
+H+=`<div class="token-table-wrap"><table class="token-table"><thead><tr><th>Token</th><th>Value</th><th>Preview</th><th>Usage</th></tr></thead><tbody>`;
+typeScale.forEach(t=>{
+  H+=`<tr><td class="tok-name">${t.token}</td><td class="tok-hex">${t.val}</td><td style="font-size:${t.val};font-weight:600;line-height:1.2">Aa</td><td class="tok-desc">${t.usage}</td></tr>`;
+});
+H+=`</tbody></table></div></div>`;
+
+// Weights
+H+=`<div class="sub-section"><h3>Font Weights <span class="badge">4 values</span></h3>`;
+const weights=[
+  {token:"font.weight.regular",  val:"400", label:"Regular"},
+  {token:"font.weight.medium",   val:"500", label:"Medium"},
+  {token:"font.weight.semibold", val:"600", label:"SemiBold"},
+  {token:"font.weight.bold",     val:"700", label:"Bold"},
+];
+H+=`<div class="token-table-wrap"><table class="token-table"><thead><tr><th>Token</th><th>Value</th><th>Label</th><th>Preview</th></tr></thead><tbody>`;
+weights.forEach(w=>{
+  H+=`<tr><td class="tok-name">${w.token}</td><td class="tok-hex">${w.val}</td><td class="tok-desc">${w.label}</td><td style="font-weight:${w.val};font-size:1rem">The quick brown fox</td></tr>`;
+});
+H+=`</tbody></table></div></div>`;
+
+// Families
+H+=`<div class="sub-section"><h3>Font Families <span class="badge">2 stacks</span></h3>
+<div class="guideline"><strong>font.family.primary</strong> → Inter (with system-ui fallback). Used for all UI text: headings, body, buttons, labels.<br><strong>font.family.mono</strong> → JetBrains Mono. Used for code, token names, paths, and developer-facing metadata.</div>
+</div>`;
+
+// Line heights
+H+=`<div class="sub-section"><h3>Line Heights <span class="badge">9 steps</span></h3>`;
+const lhScale=[
+  {token:"lineHeight.xs",  val:"16px"},{token:"lineHeight.sm",  val:"20px"},
+  {token:"lineHeight.md",  val:"24px"},{token:"lineHeight.lg",  val:"28px"},
+  {token:"lineHeight.xl",  val:"28px"},{token:"lineHeight.2xl", val:"32px"},
+  {token:"lineHeight.3xl", val:"36px"},{token:"lineHeight.4xl", val:"44px"},
+  {token:"lineHeight.5xl", val:"56px"},
+];
+H+=`<div class="token-table-wrap"><table class="token-table"><thead><tr><th>Token</th><th>Value</th><th>Paired With</th></tr></thead><tbody>`;
+lhScale.forEach((l,i)=>{H+=`<tr><td class="tok-name">${l.token}</td><td class="tok-hex">${l.val}</td><td class="tok-desc">font.size.${typeScale[i].token.split('.')[2]}</td></tr>`;});
+H+=`</tbody></table></div></div>`;
+
+// Letter spacing
+H+=`<div class="sub-section"><h3>Letter Spacing <span class="badge">4 values</span></h3>`;
+const lsScale=[
+  {token:"letterSpacing.tight",  val:"-0.02em", usage:"Headings h1–h2"},
+  {token:"letterSpacing.normal", val:"0em",      usage:"Default — body, labels, buttons"},
+  {token:"letterSpacing.wide",   val:"0.02em",   usage:"Badges"},
+  {token:"letterSpacing.wider",  val:"0.06em",   usage:"Overlines, table headers"},
+];
+H+=`<div class="token-table-wrap"><table class="token-table"><thead><tr><th>Token</th><th>Value</th><th>Usage</th></tr></thead><tbody>`;
+lsScale.forEach(l=>{H+=`<tr><td class="tok-name">${l.token}</td><td class="tok-hex">${l.val}</td><td class="tok-desc">${l.usage}</td></tr>`;});
+H+=`</tbody></table></div></div></div>`;
+
+/* ── TYPOGRAPHY — Visual Preview ─────────────────────────────────── */
+H+=`<div class="section" id="type-preview"><div class="s-head">
+<h2>Typography — Visual Preview</h2>
+<p>Live-rendered previews of each semantic typography role at their specified size, weight, line-height, and letter-spacing.</p>
+<span class="s-path">semantic/typography.json</span>
+</div>`;
+
+const typePreviews=[
+  {role:"heading.h1", style:"font-size:36px;font-weight:700;letter-spacing:-0.02em;line-height:44px", text:"Page Title Heading", meta:"36px / bold / lh:44px / ls:-0.02em"},
+  {role:"heading.h2", style:"font-size:30px;font-weight:600;letter-spacing:-0.02em;line-height:36px", text:"Section Heading", meta:"30px / semibold / lh:36px / ls:-0.02em"},
+  {role:"heading.h3", style:"font-size:24px;font-weight:600;line-height:32px", text:"Subsection Heading", meta:"24px / semibold / lh:32px"},
+  {role:"heading.h4", style:"font-size:20px;font-weight:600;line-height:28px", text:"Group Title Heading", meta:"20px / semibold / lh:28px"},
+  {role:"heading.h5", style:"font-size:18px;font-weight:600;line-height:28px", text:"Small Heading", meta:"18px / semibold / lh:28px"},
+  {role:"body.lg", style:"font-size:16px;font-weight:400;line-height:24px;color:var(--fg-2)", text:"Body large — Lead Product Designer with +10 years experience building design systems and scalable UI architectures.", meta:"16px / regular / lh:24px"},
+  {role:"body.md", style:"font-size:14px;font-weight:400;line-height:20px;color:var(--fg-2)", text:"Body medium — Offer 1-on-1 video consultations with built-in scheduling, payments, and video calls. Everything you need in one platform.", meta:"14px / regular / lh:20px"},
+  {role:"body.sm", style:"font-size:12px;font-weight:400;line-height:16px;color:var(--fg-3)", text:"Body small — Retain 85-90% of your consultation fees on paid plans.", meta:"12px / regular / lh:16px"},
+  {role:"label.md", style:"font-size:14px;font-weight:500;line-height:20px", text:"Form Label / Nav Item", meta:"14px / medium / lh:20px"},
+  {role:"label.sm", style:"font-size:12px;font-weight:500;line-height:16px", text:"Small Label / Badge Text", meta:"12px / medium / lh:16px"},
+  {role:"button.md", style:"font-size:14px;font-weight:600;line-height:20px;background:var(--accent,#00ffc6);color:#0a0b0f;display:inline-block;padding:8px 20px;border-radius:8px", text:"Button Medium", meta:"14px / semibold / lh:20px"},
+  {role:"button.sm", style:"font-size:12px;font-weight:600;line-height:16px;background:var(--accent,#00ffc6);color:#0a0b0f;display:inline-block;padding:5px 14px;border-radius:6px", text:"Button Small", meta:"12px / semibold / lh:16px"},
+  {role:"caption", style:"font-size:12px;font-weight:400;line-height:16px;color:var(--fg-4)", text:"Caption — Last updated 2 hours ago", meta:"12px / regular / lh:16px"},
+  {role:"overline", style:"font-size:12px;font-weight:500;line-height:16px;letter-spacing:0.06em;text-transform:uppercase;color:var(--fg-4)", text:"Overline / Table Header", meta:"12px / medium / lh:16px / ls:0.06em / uppercase"},
+  {role:"code.inline", style:"font-size:14px;font-weight:400;line-height:20px;font-family:var(--font-mono,'SF Mono',monospace);background:var(--code-bg,var(--bg-card,#15171f));padding:2px 6px;border-radius:4px;color:var(--fg-2)", text:"surface.base → neutral.950", meta:"14px / mono / regular / lh:20px"},
+];
+
+H+=`<div class="preview-grid" style="grid-template-columns:1fr">`;
+typePreviews.forEach(p=>{
+  H+=`<div style="background:var(--bg-card,#15171f);border:1px solid var(--border-subtle,#15171f);border-radius:10px;padding:16px 20px;margin-bottom:6px;transition:all .15s">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:8px">
+      <span style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--accent,#00ffc6)">${p.role}</span>
+      <span style="font-size:.55rem;font-family:var(--font-mono,'SF Mono',monospace);color:var(--fg-4,#676c73)">${p.meta}</span>
+    </div>
+    <div style="${p.style}">${p.text}</div>
+  </div>`;
+});
+H+=`</div></div>`;
+
+/* ── TYPOGRAPHY — Migration Map ──────────────────────────────────── */
+H+=`<div class="section" id="type-migration"><div class="s-head">
+<h2>Typography — Migration Map</h2>
+<p>Maps every detected CSS typography pair to its closest semantic token role. Confidence indicates how well the old value fits the new scale.</p>
+<span class="s-path">audit/typography-migration-map.json</span>
+</div>`;
+
+const migrations=[
+  {old:".5rem (7.5px) / 700",sel:".scale-strip .ss-step",role:"caption",conf:"low",note:"Below minimum scale. Needs review."},
+  {old:".55rem (8.25px) / 700",sel:".badge, .new-tag",role:"overline",conf:"low",note:"Below minimum. Map to overline or label.sm."},
+  {old:".6rem (9px) / 700",sel:"th, .pb-label",role:"overline",conf:"medium",note:"Table headers → overline (uppercase + wider)."},
+  {old:".65rem (9.75px) / 400–700",sel:".tok-ref, .tok-hex",role:"caption",conf:"medium",note:"Token metadata → caption (xs/12px)."},
+  {old:".7rem (10.5px) / 600–700",sel:".meta-tag, .ds-badge",role:"label.sm",conf:"medium",note:"Tags/badges → label.sm (xs/12px + medium)."},
+  {old:".72rem (10.8px) / 400",sel:".tok-name, .tok-desc",role:"code.inline",conf:"high",note:"Mono token names → code.inline (sm/14px)."},
+  {old:".75rem (11.25px) / 500–600",sel:".btn-logout, .profile-username",role:"label.sm",conf:"high",note:"Small UI text → label.sm."},
+  {old:".78rem (11.7px) / 500–600",sel:".btn, .service-card-desc",role:"button.sm / body.sm",conf:"high",note:"Buttons→button.sm, desc→body.sm."},
+  {old:".8rem (12px) / 500",sel:".nav-item, .tab",role:"label.md",conf:"high",note:"12px nav matches label.md (sm/14px)."},
+  {old:".82rem (12.3px) / 400–600",sel:".guideline, .section-desc",role:"body.md",conf:"high",note:"Body text → body.md (sm/14px)."},
+  {old:".85rem (12.75px) / 400–600",sel:"code, .profile-title",role:"body.md / code.inline",conf:"high",note:"Code→code.inline, text→body.md."},
+  {old:".88rem (13.2px) / 400",sel:".about-body, .day-name",role:"body.md",conf:"high",note:"Primary body → body.md (sm/14px)."},
+  {old:".95rem (14.25px) / 700",sel:".service-card-title",role:"heading.h5",conf:"high",note:"Card titles → heading.h5 (lg/18px)."},
+  {old:"1rem (15px) / 700",sel:".logo, .services-bar h3",role:"heading.h5",conf:"high",note:"Section subtitles → heading.h5."},
+  {old:"1.05rem (15.75px) / 600",sel:".sub-section h3",role:"heading.h4",conf:"high",note:"Sub-heads → heading.h4 (xl/20px)."},
+  {old:"1.15rem (17.25px) / 700",sel:".about-header h2",role:"heading.h4",conf:"high",note:"Card headings → heading.h4."},
+  {old:"1.2rem (18px)",sel:".bm-button",role:"button.md",conf:"high",note:"CTA → button.md (sm/14px)."},
+  {old:"1.5rem (22.5px) / 700",sel:".section h2",role:"heading.h3",conf:"high",note:"Section headings → heading.h3 (2xl/24px)."},
+  {old:"1.6rem (24px) / 700",sel:".profile-name",role:"heading.h2",conf:"high",note:"Profile name → heading.h2 (3xl/30px)."},
+  {old:"12px / 600",sel:"header span, button",role:"button.sm",conf:"high",note:"Hardcoded → button.sm. Migrate to rem."},
+  {old:"14px",sel:".bm-text-input",role:"body.md",conf:"high",note:"Hardcoded → body.md. Migrate to rem."},
+  {old:"16px",sel:"p",role:"body.lg",conf:"high",note:"Hardcoded → body.lg. Migrate to rem."},
+];
+
+H+=`<div class="token-table-wrap"><table class="token-table" id="t-migration"><thead><tr><th>Old (Size / Weight)</th><th>Selector</th><th>→ New Role</th><th>Confidence</th><th>Note</th></tr></thead><tbody>`;
+migrations.forEach(m=>{
+  const cls=m.conf==='high'?'color:var(--suc500,#16a34a)':m.conf==='medium'?'color:var(--war500,#f59e0b)':'color:var(--err500,#dc2626)';
+  const badge=m.conf==='high'?'background:rgba(22,163,74,.12)':m.conf==='medium'?'background:rgba(245,158,11,.12)':'background:rgba(220,38,38,.12)';
+  H+=`<tr>
+    <td class="tok-name" style="font-size:.65rem">${m.old}</td>
+    <td class="tok-ref">${m.sel}</td>
+    <td><span style="${cls};font-weight:700;font-size:.72rem">${m.role}</span></td>
+    <td><span style="${badge};${cls};padding:2px 8px;border-radius:12px;font-size:.55rem;font-weight:700">${m.conf}</span></td>
+    <td class="tok-desc">${m.note}</td>
+  </tr>`;
+});
+H+=`</tbody></table></div></div>`;
+
+/* ── TYPOGRAPHY — Audit Summary ──────────────────────────────────── */
+H+=`<div class="section" id="type-summary"><div class="s-head">
+<h2>Typography — Audit Summary</h2>
+<p>Impact of normalizing the typography system.</p>
+</div>`;
+
+H+=`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:12px 0">`;
+const summaryCards=[
+  {val:"22 → 9", label:"Font Sizes", sub:"13 sizes removed"},
+  {val:"6 → 2",  label:"Font Families", sub:"4 stacks eliminated"},
+  {val:"5 → 4",  label:"Font Weights", sub:"800 (ExtraBold) removed"},
+  {val:"6 → 4",  label:"Line Heights", sub:"Normalized to paired scale"},
+  {val:"8 → 4",  label:"Letter Spacings", sub:"Unified to tight/normal/wide/wider"},
+  {val:"3 → 0",  label:"Hardcoded px", sub:"All migrated to rem tokens"},
+];
+summaryCards.forEach(c=>{
+  H+=`<div style="background:var(--bg-card,#15171f);border:1px solid var(--border-subtle,#15171f);border-radius:10px;padding:16px 18px">
+    <div style="font-size:1.4rem;font-weight:800;color:var(--accent,#00ffc6);letter-spacing:-.03em;line-height:1.1">${c.val}</div>
+    <div style="font-size:.72rem;font-weight:700;color:var(--fg-1,#dde0e3);margin-top:4px">${c.label}</div>
+    <div style="font-size:.6rem;color:var(--fg-4,#676c73);margin-top:2px">${c.sub}</div>
+  </div>`;
+});
+H+=`</div>`;
+
+H+=`<div class="sub-section"><h3>Issues Resolved</h3>`;
+const resolved=[
+  {type:"err",text:"<strong>Poppins font stack on .bm-button</strong> — replaced with primary (Inter) for consistency."},
+  {type:"err",text:"<strong>Monaco, courier, monospace on form inputs</strong> — replaced with mono (JetBrains Mono) stack."},
+  {type:"err",text:"<strong>3 hardcoded px sizes (12px, 14px, 16px)</strong> — all mapped to rem-based scale tokens."},
+  {type:"warn",text:"<strong>font-weight 800 (ExtraBold)</strong> used only once — normalized to 700 (bold)."},
+  {type:"warn",text:"<strong>22 font sizes</strong> with close neighbors (.78/.8/.82) — consolidated to 9-step scale."},
+  {type:"warn",text:"<strong>Line-height drift (1.4–1.65)</strong> — normalized to a paired pixel-based scale."},
+  {type:"ok",text:"<strong>letter-spacing pattern preserved</strong> — tighter for headings, wider for overlines."},
+  {type:"ok",text:"<strong>text-transform: uppercase</strong> correctly scoped to overline role only."},
+];
+H+=`<div style="display:flex;flex-direction:column;gap:6px">`;
+resolved.forEach(r=>{
+  const color=r.type==='err'?'var(--err500,#dc2626)':r.type==='warn'?'var(--war500,#f59e0b)':'var(--suc500,#16a34a)';
+  const bg=r.type==='err'?'rgba(220,38,38,.1)':r.type==='warn'?'rgba(245,158,11,.1)':'rgba(22,163,74,.1)';
+  const icon=r.type==='err'?'✕':r.type==='warn'?'!':'✓';
+  H+=`<div class="guideline" style="display:flex;align-items:flex-start;gap:10px;padding:10px 16px">
+    <span style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:${bg};color:${color};display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700">${icon}</span>
+    <span>${r.text}</span>
+  </div>`;
+});
+H+=`</div></div></div>`;
+
+/* ══════════════════════════════════════════════════════════════════
+   COMPONENTS — Phase 1
+   ══════════════════════════════════════════════════════════════════ */
+
+const BV={
+  primary:{bg:res(S.interactive.primary.bg),hover:res(S.interactive.primary.hover),active:res(S.interactive.primary.active),text:res(S.interactive.primary.text),ring:res(S.border.focus),shadow:"0 1px 3px rgba(103,35,255,.24)",shadowHover:"0 2px 8px rgba(103,35,255,.32)"},
+  secondaryBrand:{bg:res(S.interactive.secondaryBrand.bg),hover:res(S.interactive.secondaryBrand.hover),active:res(S.interactive.secondaryBrand.active),text:res(S.interactive.secondaryBrand.text),ring:res(S.border.focus),shadow:"0 1px 3px rgba(0,255,198,.18)",shadowHover:"0 2px 8px rgba(0,255,198,.26)"},
+  secondary:{bg:res(S.surface.card),hover:res(S.surface.raised),active:res(S.interactive.secondary.active),text:res(S.text.primary),border:res(S.border.default),ring:res(S.border.focus)},
+  ghost:{bg:"transparent",hover:res(S.surface.raised),active:res(S.interactive.ghost.active),text:res(S.text.primary),ring:res(S.border.focus)},
+  destructive:{bg:res(S.status.error.bg.bold),hover:F.error["600"],active:F.error["700"],text:res(S.status.error.text.onBold),ring:res(S.status.error.border.default)},
+};
+const BSZ={
+  sm:{fs:"12px",lh:"16px",py:"6px",px:"14px",h:"32px"},
+  md:{fs:"14px",lh:"20px",py:"8px",px:"20px",h:"40px"},
+  lg:{fs:"16px",lh:"24px",py:"12px",px:"28px",h:"48px"},
+};
+
+function btnStyle(v,sz,extra){
+  const d=BV[v],s=BSZ[sz||'md'];
+  let css=`font-size:${s.fs};line-height:${s.lh};padding:${s.py} ${s.px};min-height:${s.h};font-weight:600;border-radius:12px;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:all 150ms ease;font-family:inherit;white-space:nowrap;`;
+  css+=`background:${d.bg};color:${d.text};`;
+  if(d.border)css+=`border:1px solid ${d.border};`;
+  if(d.shadow)css+=`box-shadow:${d.shadow};`;
+  if(extra)css+=extra;
+  return css;
+}
+
+/* ── COMPONENT OVERVIEW ───────────────────────────────────────────── */
+H+=`<div class="section" id="comp-overview"><div class="s-head">
+<h2>Components — Phase 1</h2>
+<p>9 core UI components built entirely from the semantic token layer. Zero raw hex. Each component ships with variants, sizes, a full state matrix, token mapping, and accessibility notes. Hover for micro-interactions.</p>
+<span class="s-path">components/*.json</span>
+</div>`;
+
+const compList=[
+  {name:"Button",id:"comp-button",key:"button",variants:5,sizes:3,states:6,desc:"Interactive CTAs and actions",
+    icon:'<rect x="4" y="7" width="16" height="10" rx="3" stroke-width="1.8" fill="none" stroke="var(--a500)"/>'},
+  {name:"Input",id:"comp-input",key:"input",variants:4,sizes:3,states:4,desc:"Text fields, selects, textareas",
+    icon:'<rect x="3" y="7" width="18" height="10" rx="2" stroke-width="1.8" fill="none" stroke="var(--a500)"/><line class="ci-caret" x1="7" y1="9" x2="7" y2="15" stroke-width="1.8" stroke="var(--a500)"/>'},
+  {name:"Card",id:"comp-card",key:"card",variants:5,sizes:3,states:4,desc:"Content containers and panels",
+    icon:'<rect x="3" y="3" width="18" height="18" rx="3" stroke-width="1.8" fill="none" stroke="var(--a500)"/><line x1="3" y1="9" x2="21" y2="9" stroke-width="1.5" stroke="var(--a500)" opacity=".5"/>'},
+  {name:"Badge",id:"comp-badge",key:"badge",variants:7,sizes:2,states:2,desc:"Status indicators and counts",
+    icon:'<rect x="5" y="8" width="14" height="8" rx="4" stroke-width="1.8" fill="none" stroke="var(--a500)"/>'},
+  {name:"Alert",id:"comp-alert",key:"alert",variants:5,sizes:3,states:1,desc:"Contextual feedback messages",
+    icon:'<path d="M12 9v4m0 4h.01M5.07 19h13.86c1.54 0 2.5-1.67 1.73-3L13.73 4c-.77-1.33-2.69-1.33-3.46 0L3.34 16c-.77 1.33.19 3 1.73 3z" stroke-width="1.8" fill="none" stroke="var(--a500)"/>'},
+  {name:"Checkbox",id:"comp-checkbox",key:"checkbox",variants:2,sizes:3,states:7,desc:"Binary selection controls",
+    icon:'<rect x="4" y="4" width="16" height="16" rx="3" stroke-width="1.8" fill="none" stroke="var(--a500)"/><path d="M8 12l3 3 5-5" stroke-width="2" stroke="var(--a500)" fill="none"/>'},
+  {name:"Toggle",id:"comp-toggle",key:"toggle",variants:1,sizes:3,states:6,desc:"On/off switch controls",
+    icon:'<rect x="2" y="8" width="20" height="8" rx="4" stroke-width="1.8" fill="none" stroke="var(--a500)"/><circle class="ci-thumb" cx="8" cy="12" r="2.5" stroke-width="1.5" fill="none" stroke="var(--a500)"/>'},
+  {name:"Tabs",id:"comp-tabs",key:"tabs",variants:2,sizes:3,states:5,desc:"Content panel navigation",
+    icon:'<line x1="4" y1="17" x2="20" y2="17" stroke-width="1.5" stroke="var(--a500)" opacity=".3"/><line class="ci-indicator" x1="4" y1="17" x2="10" y2="17" stroke-width="2.5" stroke="var(--a500)" stroke-linecap="round"/>'},
+  {name:"Modal",id:"comp-modal",key:"modal",variants:3,sizes:3,states:1,desc:"Dialog overlays and sheets",
+    icon:'<rect x="5" y="5" width="14" height="14" rx="2" stroke-width="1.8" fill="none" stroke="var(--a500)" opacity=".3"/><rect class="ci-panel" x="6" y="7" width="12" height="10" rx="2" stroke-width="1.8" fill="none" stroke="var(--a500)"/>'},
+];
+
+H+=`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin:20px 0">`;
+compList.forEach(c=>{
+  H+=`<a href="#${c.id}" class="comp-icon-card" data-comp="${c.key}">
+    <div class="ci-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">${c.icon}</svg></div>
+    <div class="ci-body"><div class="ci-name">${c.name}</div><div class="ci-meta">${c.desc} · ${c.variants}v ${c.sizes}s ${c.states}st</div></div>
+    <svg class="ci-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 4l4 4-4 4"/></svg>
+  </a>`;
+});
+H+=`</div>`;
+
+// Phase 2 preview
+H+=`<div class="sub-section"><h3>Phase 2 — Composite <span class="coming">Planned</span></h3>
+<div style="display:flex;flex-wrap:wrap;gap:6px;margin:8px 0">`;
+["Dropdown","Tooltip","Toast","Table","Form","Sidebar","Navbar"].forEach(c=>{
+  H+=`<span style="font-size:.65rem;font-weight:600;padding:4px 12px;border-radius:6px;background:var(--bg-card);border:1px solid var(--border-subtle);color:var(--fg-4)">${c}</span>`;
+});
+H+=`</div></div></div>`;
+
+/* ── helper: a11y note renderer ─────────────────────────────────── */
+function a11yBlock(notes){
+  let h='<div style="display:flex;flex-direction:column;gap:5px">';
+  notes.forEach(n=>{
+    const color=n.t==='ok'?'var(--suc500,#16a34a)':n.t==='warn'?'var(--war500,#f59e0b)':'var(--inf500,#2563eb)';
+    const bg=n.t==='ok'?'rgba(22,163,74,.1)':n.t==='warn'?'rgba(245,158,11,.1)':'rgba(37,99,235,.1)';
+    const ic=n.t==='ok'?'✓':n.t==='warn'?'!':'i';
+    h+=`<div class="guideline" style="display:flex;align-items:flex-start;gap:10px;padding:8px 14px">
+      <span style="flex-shrink:0;width:18px;height:18px;border-radius:50%;background:${bg};color:${color};display:flex;align-items:center;justify-content:center;font-size:.55rem;font-weight:700">${ic}</span>
+      <span style="font-size:.72rem;line-height:1.5">${n.x}</span></div>`;
+  });
+  return h+'</div>';
+}
+
+/* ── helper: token map table renderer ───────────────────────────── */
+function tokenMapTable(id,rows){
+  let h=`<div class="token-table-wrap"><table class="token-table" id="${id}"><thead><tr><th style="width:32px"></th><th>Property</th><th>Semantic Token</th><th>Resolves To</th></tr></thead><tbody>`;
+  rows.forEach(r=>{
+    const hex=r.ref&&r.ref!=="—"&&r.ref!=="transparent"?res(r.ref):r.hex||"transparent";
+    h+=`<tr><td><span class="tok-sw" style="background:${hex}"></span></td><td class="tok-desc">${r.prop}</td><td class="tok-ref">${r.token}</td><td class="tok-hex">${hex}</td></tr>`;
+  });
+  return h+'</tbody></table></div>';
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   BUTTON
+   ═══════════════════════════════════════════════════════════════════ */
+const variants=["primary","secondaryBrand","secondary","ghost","destructive"];
+const varLabels={primary:"Primary",secondaryBrand:"Secondary Brand",secondary:"Secondary",ghost:"Ghost",destructive:"Destructive"};
+
+H+=`<div class="section" id="comp-button"><div class="comp-header">
+<div class="ch-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--a500)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="10" rx="3"/></svg></div>
+<div class="ch-body"><h2>Button</h2>
+<p>Interactive action triggers with branded elevation. 5 variants &times; 3 sizes &times; 6 states. 12px radius, semibold weight, 150ms transitions, scale(0.98) active press.</p>
+<div class="ch-badges"><span class="ch-badge ch-badge-stable">Stable</span><span class="ch-badge ch-badge-version">v1.0.0</span><span class="ch-badge ch-badge-tokens">interactive · surface · text · border · status</span></div>
+<span class="s-path" style="margin-top:8px">components/button.json</span>
+</div></div>`;
+
+// Variant preview
+H+=`<div class="sub-section"><h3>Variants</h3><div style="display:flex;flex-wrap:wrap;gap:14px;margin:12px 0">`;
+variants.forEach(v=>{
+  const d=BV[v];
+  H+=`<div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;min-width:130px">
+    <span style="font-size:.55rem;text-transform:uppercase;font-weight:700;color:var(--fg-4);letter-spacing:.04em">${varLabels[v]}</span>
+    <button style="${btnStyle(v,'md')}" onmouseover="this.style.background='${d.hover}'" onmouseout="this.style.background='${d.bg}'">${varLabels[v]}</button>
+    <button style="${btnStyle(v,'md')}opacity:0.5;cursor:not-allowed;" disabled>Disabled</button></div>`;
+});
+H+=`</div></div>`;
+
+// Sizes
+H+=`<div class="sub-section"><h3>Sizes</h3><div style="display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;margin:12px 0">`;
+["sm","md","lg"].forEach(sz=>{
+  H+=`<div style="display:flex;flex-direction:column;gap:5px;align-items:flex-start">
+    <span style="font-size:.55rem;text-transform:uppercase;font-weight:700;color:var(--fg-4);letter-spacing:.04em">${sz}</span>
+    <button style="${btnStyle('primary',sz)}">Button ${sz.toUpperCase()}</button>
+    <button style="${btnStyle('secondaryBrand',sz)}">Button ${sz.toUpperCase()}</button>
+    <button style="${btnStyle('secondary',sz)}">Button ${sz.toUpperCase()}</button></div>`;
+});
+H+=`</div></div>`;
+
+// State matrix
+H+=`<div class="sub-section"><h3>State Matrix</h3>`;
+const states=["default","hover","active","focus","disabled","loading"];
+H+=`<div class="token-table-wrap"><table class="token-table" id="t-btn-states"><thead><tr><th>Variant</th>`;
+states.forEach(s=>H+=`<th>${s.charAt(0).toUpperCase()+s.slice(1)}</th>`);
+H+=`</tr></thead><tbody>`;
+variants.forEach(v=>{
+  const d=BV[v];
+  H+=`<tr><td class="tok-name">${varLabels[v]}</td>`;
+  H+=`<td><button style="${btnStyle(v,'sm')}">Def</button></td>`;
+  H+=`<td><button style="${btnStyle(v,'sm')}background:${d.hover};">Hov</button></td>`;
+  H+=`<td><button style="${btnStyle(v,'sm')}background:${d.active||d.hover};transform:scale(.98);box-shadow:none;">Act</button></td>`;
+  H+=`<td><button style="${btnStyle(v,'sm')}outline:2px solid ${d.ring};outline-offset:2px;">Foc</button></td>`;
+  H+=`<td><button style="${btnStyle(v,'sm')}opacity:.5;cursor:not-allowed;" disabled>Dis</button></td>`;
+  H+=`<td><div style="position:relative;display:inline-flex"><button style="${btnStyle(v,'sm')}opacity:.7;cursor:wait;">Load</button><span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 16 16" style="animation:spin 1s linear infinite"><circle cx="8" cy="8" r="6" fill="none" stroke="${d.text}" stroke-width="2" stroke-dasharray="28" stroke-dashoffset="8" stroke-linecap="round"/></svg></span></div></td>`;
+  H+=`</tr>`;
+});
+H+=`</tbody></table></div></div>`;
+
+// Token map
+H+=`<div class="sub-section"><h3>Token Mapping</h3>`;
+H+=tokenMapTable('t-btn-tok',[
+  {prop:"primary.bg",token:"interactive.primary.bg",ref:S.interactive.primary.bg},
+  {prop:"primary.hover",token:"interactive.primary.hover",ref:S.interactive.primary.hover},
+  {prop:"primary.text",token:"interactive.primary.text",ref:S.interactive.primary.text},
+  {prop:"secondaryBrand.bg",token:"interactive.secondaryBrand.bg",ref:S.interactive.secondaryBrand.bg},
+  {prop:"secondaryBrand.text",token:"interactive.secondaryBrand.text",ref:S.interactive.secondaryBrand.text},
+  {prop:"secondary.bg",token:"surface.card",ref:S.surface.card},
+  {prop:"secondary.border",token:"border.default",ref:S.border.default},
+  {prop:"ghost.hover",token:"surface.raised",ref:S.surface.raised},
+  {prop:"destructive.bg",token:"status.error.bg.bold",ref:S.status.error.bg.bold},
+  {prop:"focus ring",token:"border.focus",ref:S.border.focus},
+]);
+H+=`</div>`;
+
+// Accessibility
+H+=`<div class="sub-section"><h3>Accessibility</h3>`;
+H+=a11yBlock([
+  {t:"ok",x:"<strong>Focus ring</strong> — 2px offset outline via <code>border.focus</code>. Keyboard-only (<code>:focus-visible</code>)."},
+  {t:"ok",x:"<strong>Contrast</strong> — Primary AA (4.5:1+), SecondaryBrand AAA (7:1+), Destructive AA."},
+  {t:"ok",x:"<strong>Touch targets</strong> — sm=32px (WCAG min), md=40px, lg=48px."},
+  {t:"warn",x:"<strong>Icon-only</strong> — Requires <code>aria-label</code>. Destructive needs confirmation dialog."},
+]);
+H+=`</div>`;
+
+// Usage guidelines
+H+=`<div class="sub-section"><h3>Usage Guidelines</h3>
+<div class="usage-grid">
+<div class="usage-do">Use <strong>Primary</strong> for the single most important action on screen. Use <strong>Secondary</strong> for supporting actions. Use clear, verb-first labels like "Save changes".</div>
+<div class="usage-dont">Don't use more than one Primary button per section. Don't use color alone to convey meaning. Don't use vague labels like "Click here" or "Submit".</div>
+</div></div></div>`;
+
+/* ═══════════════════════════════════════════════════════════════════
+   INPUT
+   ═══════════════════════════════════════════════════════════════════ */
+const inpBorder=res(S.border.default),inpBorderStrong=res(S.border.strong),inpBg=res(S.surface.card),inpText=res(S.text.primary),inpMuted=res(S.text.muted),inpFocus=res(S.border.focus),inpSunken=res(S.surface.sunken),inpDisText=res(S.text.disabled),inpErrBorder=res(S.status.error.border.default),inpErrText=res(S.status.error.text.default),inpSucBorder=res(S.status.success.border.default),inpSucText=res(S.status.success.text.default);
+
+H+=`<div class="section" id="comp-input"><div class="comp-header">
+<div class="ch-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--a500)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="10" rx="2"/><line x1="7" y1="10" x2="7" y2="14"/></svg></div>
+<div class="ch-body"><h2>Input</h2>
+<p>Text fields, textareas, and selects. 4 variants (default, error, success, disabled) &times; 3 sizes. 10px radius, 1px border, 150ms transitions.</p>
+<div class="ch-badges"><span class="ch-badge ch-badge-stable">Stable</span><span class="ch-badge ch-badge-version">v1.0.0</span><span class="ch-badge ch-badge-tokens">surface · text · border · status</span></div>
+<span class="s-path" style="margin-top:8px">components/input.json</span>
+</div></div>`;
+
+// Preview
+H+=`<div class="sub-section"><h3>Variants</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:12px 0">`;
+const inpBase=`width:100%;font-family:inherit;font-size:14px;padding:8px 12px;border-radius:10px;background:${inpBg};color:${inpText};outline:none;transition:border-color 150ms ease,box-shadow 150ms ease;`;
+H+=`<div><span style="font-size:.55rem;text-transform:uppercase;font-weight:700;color:var(--fg-4);letter-spacing:.04em;display:block;margin-bottom:4px">Default</span>
+<input style="${inpBase}border:1px solid ${inpBorder};" value="john@example.com" onfocus="this.style.borderColor='${inpFocus}';this.style.boxShadow='0 0 0 2px ${inpFocus}33'" onblur="this.style.borderColor='${inpBorder}';this.style.boxShadow='none'">
+<span style="font-size:.6rem;color:var(--fg-4);margin-top:3px;display:block">Enter your email</span></div>`;
+H+=`<div><span style="font-size:.55rem;text-transform:uppercase;font-weight:700;color:var(--fg-4);letter-spacing:.04em;display:block;margin-bottom:4px">Error</span>
+<input style="${inpBase}border:1px solid ${inpErrBorder};" value="invalid-email">
+<span style="font-size:.6rem;color:${inpErrText};margin-top:3px;display:block">✕ Please enter a valid email</span></div>`;
+H+=`<div><span style="font-size:.55rem;text-transform:uppercase;font-weight:700;color:var(--fg-4);letter-spacing:.04em;display:block;margin-bottom:4px">Success</span>
+<input style="${inpBase}border:1px solid ${inpSucBorder};" value="john@brainsmingle.com">
+<span style="font-size:.6rem;color:${inpSucText};margin-top:3px;display:block">✓ Email verified</span></div>`;
+H+=`<div><span style="font-size:.55rem;text-transform:uppercase;font-weight:700;color:var(--fg-4);letter-spacing:.04em;display:block;margin-bottom:4px">Disabled</span>
+<input style="${inpBase}border:1px solid ${res(S.border.subtle)};opacity:.5;cursor:not-allowed;background:${inpSunken};" value="Locked" disabled></div>`;
+H+=`</div></div>`;
+
+// Sizes
+H+=`<div class="sub-section"><h3>Sizes</h3><div style="display:flex;flex-direction:column;gap:8px;max-width:320px;margin:12px 0">`;
+[{sz:"sm",fs:"12px",py:"6px",px:"10px",h:"32px"},{sz:"md",fs:"14px",py:"8px",px:"12px",h:"40px"},{sz:"lg",fs:"16px",py:"10px",px:"14px",h:"48px"}].forEach(s=>{
+  H+=`<div style="display:flex;align-items:center;gap:10px"><span style="font-size:.55rem;text-transform:uppercase;font-weight:700;color:var(--fg-4);letter-spacing:.04em;width:24px">${s.sz}</span>
+  <input style="${inpBase}border:1px solid ${inpBorder};font-size:${s.fs};padding:${s.py} ${s.px};min-height:${s.h};" value="Input ${s.sz}" readonly></div>`;
+});
+H+=`</div></div>`;
+
+// Token map
+H+=`<div class="sub-section"><h3>Token Mapping</h3>`;
+H+=tokenMapTable('t-inp-tok',[
+  {prop:"bg",token:"surface.card",ref:S.surface.card},
+  {prop:"text",token:"text.primary",ref:S.text.primary},
+  {prop:"placeholder",token:"text.muted",ref:S.text.muted},
+  {prop:"border",token:"border.default",ref:S.border.default},
+  {prop:"border hover",token:"border.strong",ref:S.border.strong},
+  {prop:"focus ring",token:"border.focus",ref:S.border.focus},
+  {prop:"error border",token:"status.error.border.default",ref:S.status.error.border.default},
+  {prop:"error text",token:"status.error.text.default",ref:S.status.error.text.default},
+  {prop:"success border",token:"status.success.border.default",ref:S.status.success.border.default},
+  {prop:"disabled bg",token:"surface.sunken",ref:S.surface.sunken},
+]);
+H+=`</div>`;
+
+// A11y
+H+=`<div class="sub-section"><h3>Accessibility</h3>`;
+H+=a11yBlock([
+  {t:"ok",x:"<strong>Labels</strong> — Every input must have a visible <code>&lt;label&gt;</code> with <code>for/id</code> pairing."},
+  {t:"ok",x:"<strong>Error messages</strong> — Use <code>aria-describedby</code> + <code>aria-invalid=true</code> on error state."},
+  {t:"ok",x:"<strong>Focus ring</strong> — 2px flush ring via <code>border.focus</code>."},
+  {t:"warn",x:"<strong>Required fields</strong> — Use <code>aria-required=true</code> and visible asterisk."},
+]);
+H+=`</div></div>`;
+
+/* ═══════════════════════════════════════════════════════════════════
+   CARD
+   ═══════════════════════════════════════════════════════════════════ */
+H+=`<div class="section" id="comp-card"><div class="comp-header">
+<div class="ch-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--a500)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="3" y1="9" x2="21" y2="9"/></svg></div>
+<div class="ch-body"><h2>Card</h2>
+<p>Content containers with 5 variants (default, elevated, outlined, interactive, ghost) &times; 3 sizes. Border-radius scales per size.</p>
+<div class="ch-badges"><span class="ch-badge ch-badge-stable">Stable</span><span class="ch-badge ch-badge-version">v1.0.0</span><span class="ch-badge ch-badge-tokens">surface · border · text</span></div>
+<span class="s-path" style="margin-top:8px">components/card.json</span>
+</div></div>`;
+
+const cardBg=res(S.surface.card),cardRaised=res(S.surface.raised),cardBorder=res(S.border.subtle),cardBorderD=res(S.border.default);
+H+=`<div class="sub-section"><h3>Variants</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:12px 0">`;
+[{n:"Default",bg:cardBg,bd:cardBorder,sh:"none"},{n:"Elevated",bg:cardBg,bd:cardBorder,sh:"0 2px 8px rgba(0,0,0,.25)"},{n:"Outlined",bg:"transparent",bd:cardBorderD,sh:"none"},{n:"Interactive",bg:cardBg,bd:cardBorder,sh:"none",hover:true},{n:"Ghost",bg:"transparent",bd:"transparent",sh:"none"}].forEach(c=>{
+  const hov=c.hover?` onmouseover="this.style.background='${cardRaised}';this.style.borderColor='${cardBorderD}';this.style.boxShadow='0 2px 8px rgba(0,0,0,.2)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='${c.bg}';this.style.borderColor='${c.bd}';this.style.boxShadow='none';this.style.transform='none'"`:'';
+  H+=`<div style="background:${c.bg};border:1px solid ${c.bd};border-radius:14px;padding:20px;box-shadow:${c.sh};transition:all 150ms ease;cursor:${c.hover?'pointer':'default'}"${hov}>
+    <div style="font-size:.55rem;text-transform:uppercase;font-weight:700;color:var(--accent,#00ffc6);letter-spacing:.04em;margin-bottom:8px">${c.n}</div>
+    <div style="font-size:.82rem;font-weight:600;color:${inpText};margin-bottom:4px">Card Title</div>
+    <div style="font-size:.72rem;color:var(--fg-3,#a4a8ad);line-height:1.5">Content preview text for the ${c.n.toLowerCase()} card variant.</div></div>`;
+});
+H+=`</div></div>`;
+
+// Token map
+H+=`<div class="sub-section"><h3>Token Mapping</h3>`;
+H+=tokenMapTable('t-card-tok',[
+  {prop:"bg",token:"surface.card",ref:S.surface.card},
+  {prop:"hover bg",token:"surface.raised",ref:S.surface.raised},
+  {prop:"border",token:"border.subtle",ref:S.border.subtle},
+  {prop:"header text",token:"text.primary",ref:S.text.primary},
+  {prop:"body text",token:"text.secondary",ref:S.text.secondary},
+  {prop:"meta text",token:"text.muted",ref:S.text.muted},
+  {prop:"divider",token:"border.divider",ref:S.border.divider},
+  {prop:"focus ring",token:"border.focus",ref:S.border.focus},
+]);
+H+=`</div>`;
+
+H+=`<div class="sub-section"><h3>Accessibility</h3>`;
+H+=a11yBlock([
+  {t:"ok",x:"<strong>Interactive cards</strong> — Use <code>&lt;a&gt;</code> or <code>&lt;button&gt;</code> root with <code>tabindex=0</code>."},
+  {t:"ok",x:"<strong>Heading hierarchy</strong> — Card titles use semantic headings (h3/h4) respecting page order."},
+  {t:"info",x:"<strong>Reduced motion</strong> — Hover translate respects <code>prefers-reduced-motion</code>."},
+]);
+H+=`</div></div>`;
+
+/* ═══════════════════════════════════════════════════════════════════
+   BADGE
+   ═══════════════════════════════════════════════════════════════════ */
+H+=`<div class="section" id="comp-badge"><div class="comp-header">
+<div class="ch-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--a500)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="8" rx="4"/></svg></div>
+<div class="ch-body"><h2>Badge</h2>
+<p>Compact status labels with 7 color variants &times; 2 sizes. Bold and subtle modes for each status. 6px radius, semibold, uppercase tracking.</p>
+<div class="ch-badges"><span class="ch-badge ch-badge-stable">Stable</span><span class="ch-badge ch-badge-version">v1.0.0</span><span class="ch-badge ch-badge-tokens">interactive · status · surface</span></div>
+<span class="s-path" style="margin-top:8px">components/badge.json</span>
+</div></div>`;
+
+const badgeBase=`display:inline-flex;align-items:center;gap:4px;font-weight:600;letter-spacing:.02em;text-transform:uppercase;border-radius:6px;`;
+const badges=[
+  {n:"Default",bg:res(S.surface.raised),text:res(S.text.secondary),bd:res(S.border.subtle)},
+  {n:"Brand",bg:res(S.interactive.primary.bg),text:res(S.interactive.primary.text),bd:"transparent"},
+  {n:"Accent",bg:res(S.interactive.secondaryBrand.bg),text:res(S.interactive.secondaryBrand.text),bd:"transparent"},
+  {n:"Success",bg:res(S.status.success.bg.bold),text:res(S.status.success.text.onBold),bd:"transparent"},
+  {n:"Error",bg:res(S.status.error.bg.bold),text:res(S.status.error.text.onBold),bd:"transparent"},
+  {n:"Warning",bg:res(S.status.warning.bg.bold),text:res(S.status.warning.text.onBold),bd:"transparent"},
+  {n:"Info",bg:res(S.status.info.bg.bold),text:res(S.status.info.text.onBold),bd:"transparent"},
+];
+
+H+=`<div class="sub-section"><h3>Variants</h3><div style="display:flex;flex-wrap:wrap;gap:8px;margin:12px 0">`;
+badges.forEach(b=>{
+  H+=`<span style="${badgeBase}font-size:12px;padding:2px 8px;background:${b.bg};color:${b.text};border:1px solid ${b.bd}">${b.n}</span>`;
+});
+H+=`</div>`;
+
+// Subtle variants
+const subtles=[
+  {n:"Success",bg:res(S.status.success.bg.subtle),text:res(S.status.success.text.default)},
+  {n:"Error",bg:res(S.status.error.bg.subtle),text:res(S.status.error.text.default)},
+  {n:"Warning",bg:res(S.status.warning.bg.subtle),text:res(S.status.warning.text.default)},
+  {n:"Info",bg:res(S.status.info.bg.subtle),text:res(S.status.info.text.default)},
+];
+H+=`<div style="display:flex;flex-wrap:wrap;gap:8px;margin:8px 0">`;
+subtles.forEach(b=>{
+  H+=`<span style="${badgeBase}font-size:12px;padding:2px 8px;background:${b.bg}18;color:${b.text}">${b.n} Subtle</span>`;
+});
+H+=`</div></div>`;
+
+// Token map
+H+=`<div class="sub-section"><h3>Token Mapping</h3>`;
+H+=tokenMapTable('t-badge-tok',[
+  {prop:"default.bg",token:"surface.raised",ref:S.surface.raised},
+  {prop:"brand.bg",token:"interactive.primary.bg",ref:S.interactive.primary.bg},
+  {prop:"accent.bg",token:"interactive.secondaryBrand.bg",ref:S.interactive.secondaryBrand.bg},
+  {prop:"success.bg",token:"status.success.bg.bold",ref:S.status.success.bg.bold},
+  {prop:"error.bg",token:"status.error.bg.bold",ref:S.status.error.bg.bold},
+  {prop:"warning.bg",token:"status.warning.bg.bold",ref:S.status.warning.bg.bold},
+  {prop:"info.bg",token:"status.info.bg.bold",ref:S.status.info.bg.bold},
+]);
+H+=`</div>`;
+
+H+=`<div class="sub-section"><h3>Accessibility</h3>`;
+H+=a11yBlock([
+  {t:"ok",x:"<strong>Color + text</strong> — Never rely on color alone. Always include text or icon with the badge."},
+  {t:"info",x:"<strong>Dynamic counts</strong> — Use <code>aria-live=polite</code> for notification count badges."},
+]);
+H+=`</div></div>`;
+
+/* ═══════════════════════════════════════════════════════════════════
+   ALERT
+   ═══════════════════════════════════════════════════════════════════ */
+H+=`<div class="section" id="comp-alert"><div class="comp-header">
+<div class="ch-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--a500)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4m0 4h.01M5.07 19h13.86c1.54 0 2.5-1.67 1.73-3L13.73 4c-.77-1.33-2.69-1.33-3.46 0L3.34 16c-.77 1.33.19 3 1.73 3z"/></svg></div>
+<div class="ch-body"><h2>Alert</h2>
+<p>Contextual feedback messages. 5 variants (info, success, warning, error, neutral) &times; 3 sizes. Left-border accent, 12px radius, optional dismiss.</p>
+<div class="ch-badges"><span class="ch-badge ch-badge-stable">Stable</span><span class="ch-badge ch-badge-version">v1.0.0</span><span class="ch-badge ch-badge-tokens">status · surface · text</span></div>
+<span class="s-path" style="margin-top:8px">components/alert.json</span>
+</div></div>`;
+
+const alerts=[
+  {n:"Info",bg:res(S.status.info.bg.subtle),text:res(S.status.info.text.default),bd:res(S.status.info.border.default),icon:'<circle cx="12" cy="12" r="9" stroke-width="2" fill="none"/><path d="M12 8h0M12 12v4" stroke-width="2"/>',msg:"A new version is available. Please refresh to update."},
+  {n:"Success",bg:res(S.status.success.bg.subtle),text:res(S.status.success.text.default),bd:res(S.status.success.border.default),icon:'<circle cx="12" cy="12" r="9" stroke-width="2" fill="none"/><path d="M9 12l2 2 4-4" stroke-width="2"/>',msg:"Your profile has been updated successfully."},
+  {n:"Warning",bg:res(S.status.warning.bg.subtle),text:res(S.status.warning.text.default),bd:res(S.status.warning.border.default),icon:'<path d="M12 9v4m0 4h.01M5.07 19h13.86c1.54 0 2.5-1.67 1.73-3L13.73 4c-.77-1.33-2.69-1.33-3.46 0L3.34 16c-.77 1.33.19 3 1.73 3z" stroke-width="2" fill="none"/>',msg:"Your session will expire in 5 minutes."},
+  {n:"Error",bg:res(S.status.error.bg.subtle),text:res(S.status.error.text.default),bd:res(S.status.error.border.default),icon:'<circle cx="12" cy="12" r="9" stroke-width="2" fill="none"/><path d="M15 9l-6 6M9 9l6 6" stroke-width="2"/>',msg:"Payment failed. Please check your card details."},
+  {n:"Neutral",bg:res(S.surface.raised),text:res(S.text.secondary),bd:res(S.border.default),icon:'<circle cx="12" cy="12" r="9" stroke-width="2" fill="none"/><path d="M12 8h0M12 12v4" stroke-width="2"/>',msg:"Maintenance is scheduled for Saturday 2am UTC."},
+];
+
+H+=`<div class="sub-section"><h3>Variants</h3><div style="display:flex;flex-direction:column;gap:8px;margin:12px 0">`;
+alerts.forEach(a=>{
+  H+=`<div style="display:flex;align-items:flex-start;gap:10px;padding:14px;background:${a.bg}18;border-left:3px solid ${a.bd};border-radius:0 12px 12px 0">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="${a.text}" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px">${a.icon}</svg>
+    <div><div style="font-size:.65rem;font-weight:700;color:${a.text};text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px">${a.n}</div>
+    <div style="font-size:.78rem;color:${a.text};line-height:1.5">${a.msg}</div></div></div>`;
+});
+H+=`</div></div>`;
+
+H+=`<div class="sub-section"><h3>Token Mapping</h3>`;
+H+=tokenMapTable('t-alert-tok',[
+  {prop:"info.bg",token:"status.info.bg.subtle",ref:S.status.info.bg.subtle},
+  {prop:"info.text",token:"status.info.text.default",ref:S.status.info.text.default},
+  {prop:"info.border",token:"status.info.border.default",ref:S.status.info.border.default},
+  {prop:"success.bg",token:"status.success.bg.subtle",ref:S.status.success.bg.subtle},
+  {prop:"error.bg",token:"status.error.bg.subtle",ref:S.status.error.bg.subtle},
+  {prop:"warning.bg",token:"status.warning.bg.subtle",ref:S.status.warning.bg.subtle},
+  {prop:"neutral.bg",token:"surface.raised",ref:S.surface.raised},
+  {prop:"dismiss icon",token:"text.muted",ref:S.text.muted},
+]);
+H+=`</div>`;
+
+H+=`<div class="sub-section"><h3>Accessibility</h3>`;
+H+=a11yBlock([
+  {t:"ok",x:"<strong>Role</strong> — Errors use <code>role=alert</code> + <code>aria-live=assertive</code>. Others use <code>role=status</code>."},
+  {t:"ok",x:"<strong>Dismiss</strong> — Close button has <code>aria-label='Dismiss'</code>. Focus returns to trigger on close."},
+  {t:"warn",x:"<strong>Auto-close</strong> — If auto-dismissing, allow minimum 5s reading time and manual dismiss."},
+]);
+H+=`</div></div>`;
+
+/* ═══════════════════════════════════════════════════════════════════
+   CHECKBOX
+   ═══════════════════════════════════════════════════════════════════ */
+const ckBrand=res(S.interactive.primary.bg),ckBrandHov=res(S.interactive.primary.hover),ckText=res(S.interactive.primary.text);
+
+H+=`<div class="section" id="comp-checkbox"><div class="comp-header">
+<div class="ch-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--a500)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12l3 3 5-5"/></svg></div>
+<div class="ch-body"><h2>Checkbox</h2>
+<p>Binary selection control. 2 variants (default, error) &times; 3 sizes. 7 states including indeterminate. 4px radius, 2px border.</p>
+<div class="ch-badges"><span class="ch-badge ch-badge-stable">Stable</span><span class="ch-badge ch-badge-version">v1.0.0</span><span class="ch-badge ch-badge-tokens">interactive · border · status</span></div>
+<span class="s-path" style="margin-top:8px">components/checkbox.json</span>
+</div></div>`;
+
+H+=`<div class="sub-section"><h3>States</h3><div style="display:flex;flex-wrap:wrap;gap:20px;margin:12px 0">`;
+const ckStates=[
+  {n:"Unchecked",bg:"transparent",bd:inpBorder,check:"none"},
+  {n:"Hover",bg:cardRaised,bd:inpBorderStrong,check:"none"},
+  {n:"Checked",bg:ckBrand,bd:ckBrand,check:"block"},
+  {n:"Indeterminate",bg:ckBrand,bd:ckBrand,check:"inde"},
+  {n:"Focus",bg:"transparent",bd:inpBorder,check:"none",ring:true},
+  {n:"Disabled",bg:inpSunken,bd:res(S.border.subtle),check:"none",dis:true},
+  {n:"Error",bg:"transparent",bd:inpErrBorder,check:"none"},
+];
+ckStates.forEach(c=>{
+  const checkSvg=c.check==='block'?`<svg width="12" height="12" viewBox="0 0 12 12" style="position:absolute;inset:0;margin:auto"><path d="M3 6l2.5 2.5L9 4" stroke="${ckText}" stroke-width="2" fill="none" stroke-linecap="round"/></svg>`:c.check==='inde'?`<svg width="12" height="12" viewBox="0 0 12 12" style="position:absolute;inset:0;margin:auto"><path d="M3 6h6" stroke="${ckText}" stroke-width="2" stroke-linecap="round"/></svg>`:'';
+  const ring=c.ring?`outline:2px solid ${inpFocus};outline-offset:2px;`:'';
+  H+=`<div style="display:flex;flex-direction:column;align-items:center;gap:6px${c.dis?';opacity:.5':''}">
+    <div style="position:relative;width:20px;height:20px;border:2px solid ${c.bd};border-radius:4px;background:${c.bg};${ring}">${checkSvg}</div>
+    <span style="font-size:.55rem;font-weight:700;color:var(--fg-4);text-transform:uppercase;letter-spacing:.04em">${c.n}</span></div>`;
+});
+H+=`</div></div>`;
+
+H+=`<div class="sub-section"><h3>Token Mapping</h3>`;
+H+=tokenMapTable('t-ck-tok',[
+  {prop:"unchecked border",token:"border.default",ref:S.border.default},
+  {prop:"checked bg",token:"interactive.primary.bg",ref:S.interactive.primary.bg},
+  {prop:"checkmark",token:"interactive.primary.text",ref:S.interactive.primary.text},
+  {prop:"hover bg",token:"surface.raised",ref:S.surface.raised},
+  {prop:"error border",token:"status.error.border.default",ref:S.status.error.border.default},
+  {prop:"disabled bg",token:"surface.sunken",ref:S.surface.sunken},
+  {prop:"focus ring",token:"border.focus",ref:S.border.focus},
+]);
+H+=`</div>`;
+
+H+=`<div class="sub-section"><h3>Accessibility</h3>`;
+H+=a11yBlock([
+  {t:"ok",x:"<strong>Native input</strong> — Use hidden <code>&lt;input type=checkbox&gt;</code> with custom visual overlay."},
+  {t:"ok",x:"<strong>Indeterminate</strong> — Set <code>aria-checked=mixed</code> via JavaScript."},
+  {t:"warn",x:"<strong>Groups</strong> — Use <code>&lt;fieldset&gt;</code> / <code>&lt;legend&gt;</code> for checkbox groups."},
+]);
+H+=`</div></div>`;
+
+/* ═══════════════════════════════════════════════════════════════════
+   TOGGLE
+   ═══════════════════════════════════════════════════════════════════ */
+H+=`<div class="section" id="comp-toggle"><div class="comp-header">
+<div class="ch-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--a500)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="20" height="8" rx="4"/><circle cx="16" cy="12" r="2.5"/></svg></div>
+<div class="ch-body"><h2>Toggle</h2>
+<p>On/off switch for binary settings. 1 variant &times; 3 sizes. 6 states with smooth thumb transition. Pill track, 200ms ease.</p>
+<div class="ch-badges"><span class="ch-badge ch-badge-stable">Stable</span><span class="ch-badge ch-badge-version">v1.0.0</span><span class="ch-badge ch-badge-tokens">interactive · surface · border</span></div>
+<span class="s-path" style="margin-top:8px">components/toggle.json</span>
+</div></div>`;
+
+H+=`<div class="sub-section"><h3>States</h3><div style="display:flex;flex-wrap:wrap;gap:20px;margin:12px 0">`;
+const togStates=[
+  {n:"Off",trackBg:cardRaised,trackBd:inpBorder,thumbBg:inpMuted,thumbX:2},
+  {n:"Off Hover",trackBg:cardRaised,trackBd:inpBorderStrong,thumbBg:res(S.text.secondary),thumbX:2},
+  {n:"On",trackBg:ckBrand,trackBd:ckBrand,thumbBg:ckText,thumbX:20},
+  {n:"On Hover",trackBg:ckBrandHov,trackBd:ckBrandHov,thumbBg:ckText,thumbX:20},
+  {n:"Focus",trackBg:cardRaised,trackBd:inpBorder,thumbBg:inpMuted,thumbX:2,ring:true},
+  {n:"Disabled",trackBg:inpSunken,trackBd:res(S.border.subtle),thumbBg:inpDisText,thumbX:2,dis:true},
+];
+togStates.forEach(t=>{
+  const ring=t.ring?`outline:2px solid ${inpFocus};outline-offset:2px;`:'';
+  H+=`<div style="display:flex;flex-direction:column;align-items:center;gap:6px${t.dis?';opacity:.5':''}">
+    <div style="position:relative;width:40px;height:22px;border-radius:11px;background:${t.trackBg};border:1px solid ${t.trackBd};${ring}">
+      <div style="position:absolute;top:2px;left:${t.thumbX}px;width:16px;height:16px;border-radius:50%;background:${t.thumbBg};transition:left .2s ease"></div></div>
+    <span style="font-size:.55rem;font-weight:700;color:var(--fg-4);text-transform:uppercase;letter-spacing:.04em">${t.n}</span></div>`;
+});
+H+=`</div></div>`;
+
+H+=`<div class="sub-section"><h3>Token Mapping</h3>`;
+H+=tokenMapTable('t-tog-tok',[
+  {prop:"track off",token:"surface.raised",ref:S.surface.raised},
+  {prop:"track on",token:"interactive.primary.bg",ref:S.interactive.primary.bg},
+  {prop:"thumb off",token:"text.muted",ref:S.text.muted},
+  {prop:"thumb on",token:"interactive.primary.text",ref:S.interactive.primary.text},
+  {prop:"border",token:"border.default",ref:S.border.default},
+  {prop:"focus ring",token:"border.focus",ref:S.border.focus},
+  {prop:"disabled bg",token:"surface.sunken",ref:S.surface.sunken},
+]);
+H+=`</div>`;
+
+H+=`<div class="sub-section"><h3>Accessibility</h3>`;
+H+=a11yBlock([
+  {t:"ok",x:"<strong>Role</strong> — Use <code>role=switch</code> with <code>aria-checked=true/false</code>."},
+  {t:"ok",x:"<strong>Keyboard</strong> — Space and Enter to toggle. Visible label required."},
+  {t:"warn",x:"<strong>Disabled</strong> — Use <code>aria-disabled=true</code>. Keep in tab order for discoverability."},
+]);
+H+=`</div></div>`;
+
+/* ═══════════════════════════════════════════════════════════════════
+   TABS
+   ═══════════════════════════════════════════════════════════════════ */
+H+=`<div class="section" id="comp-tabs"><div class="comp-header">
+<div class="ch-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--a500)" stroke-width="1.8" stroke-linecap="round"><line x1="4" y1="17" x2="20" y2="17" opacity=".3"/><line x1="4" y1="17" x2="10" y2="17" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+<div class="ch-body"><h2>Tabs</h2>
+<p>Content panel navigation. 2 styles (underline, pill) &times; 3 sizes. 5 states with animated active indicator.</p>
+<div class="ch-badges"><span class="ch-badge ch-badge-stable">Stable</span><span class="ch-badge ch-badge-version">v1.0.0</span><span class="ch-badge ch-badge-tokens">interactive · surface · text · border</span></div>
+<span class="s-path" style="margin-top:8px">components/tabs.json</span>
+</div></div>`;
+
+// Underline preview
+const tabItems=["Overview","Tokens","Components","Settings"];
+H+=`<div class="sub-section"><h3>Underline</h3>
+<div style="display:flex;border-bottom:1px solid ${res(S.border.divider)};gap:0;margin:12px 0">`;
+tabItems.forEach((t,i)=>{
+  const isActive=i===0;
+  H+=`<div style="padding:8px 14px;font-size:14px;font-weight:${isActive?600:500};color:${isActive?inpText:inpMuted};border-bottom:2px solid ${isActive?ckBrand:'transparent'};cursor:pointer;transition:all 150ms ease" onmouseover="if(${!isActive})this.style.color='${inpText}';this.style.borderBottomColor='${res(S.border.subtle)}'" onmouseout="if(${!isActive}){this.style.color='${inpMuted}';this.style.borderBottomColor='transparent'}">${t}</div>`;
+});
+H+=`</div></div>`;
+
+// Pill preview
+H+=`<div class="sub-section"><h3>Pill</h3>
+<div style="display:inline-flex;background:${inpSunken};border-radius:10px;padding:3px;gap:2px;margin:12px 0">`;
+tabItems.forEach((t,i)=>{
+  const isActive=i===0;
+  H+=`<div style="padding:6px 14px;font-size:14px;font-weight:${isActive?600:500};color:${isActive?inpText:inpMuted};background:${isActive?cardBg:'transparent'};border-radius:8px;cursor:pointer;transition:all 150ms ease;${isActive?'box-shadow:0 1px 3px rgba(0,0,0,.15)':''}" onmouseover="if(${!isActive})this.style.background='${cardRaised}';this.style.color='${inpText}'" onmouseout="if(${!isActive}){this.style.background='transparent';this.style.color='${inpMuted}'}">${t}</div>`;
+});
+H+=`</div></div>`;
+
+H+=`<div class="sub-section"><h3>Token Mapping</h3>`;
+H+=tokenMapTable('t-tab-tok',[
+  {prop:"inactive text",token:"text.muted",ref:S.text.muted},
+  {prop:"active text",token:"text.primary",ref:S.text.primary},
+  {prop:"underline indicator",token:"interactive.primary.bg",ref:S.interactive.primary.bg},
+  {prop:"pill active bg",token:"surface.card",ref:S.surface.card},
+  {prop:"pill container",token:"surface.sunken",ref:S.surface.sunken},
+  {prop:"list border",token:"border.divider",ref:S.border.divider},
+  {prop:"focus ring",token:"border.focus",ref:S.border.focus},
+]);
+H+=`</div>`;
+
+H+=`<div class="sub-section"><h3>Accessibility</h3>`;
+H+=a11yBlock([
+  {t:"ok",x:"<strong>ARIA roles</strong> — <code>role=tablist</code> on container, <code>role=tab</code> per tab, <code>role=tabpanel</code> per panel."},
+  {t:"ok",x:"<strong>Keyboard</strong> — Arrow Left/Right to navigate, Home/End for first/last, Tab exits tablist."},
+  {t:"info",x:"<strong>Focus management</strong> — Active tab <code>tabindex=0</code>, inactive tabs <code>tabindex=-1</code>."},
+]);
+H+=`</div></div>`;
+
+/* ═══════════════════════════════════════════════════════════════════
+   MODAL
+   ═══════════════════════════════════════════════════════════════════ */
+H+=`<div class="section" id="comp-modal"><div class="comp-header">
+<div class="ch-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--a500)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="14" height="14" rx="2"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div>
+<div class="ch-body"><h2>Modal</h2>
+<p>Dialog overlays with 3 variants (default, fullscreen, sheet) &times; 3 sizes. Scrim backdrop, focus trapping, 16px radius, 250ms ease transition.</p>
+<div class="ch-badges"><span class="ch-badge ch-badge-stable">Stable</span><span class="ch-badge ch-badge-version">v1.0.0</span><span class="ch-badge ch-badge-tokens">overlay · surface · border · text</span></div>
+<span class="s-path" style="margin-top:8px">components/modal.json</span>
+</div></div>`;
+
+const scrimBg=res("{color.neutral.950}"),modalBg=res(S.surface.card),modalBorderC=res(S.border.subtle),modalDivider=res(S.border.divider),modalTitle=inpText,modalBody=res(S.text.secondary);
+
+// Preview
+H+=`<div class="sub-section"><h3>Variants</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:12px 0">`;
+
+// Default modal
+H+=`<div style="position:relative;background:${scrimBg}99;border-radius:12px;padding:40px 20px;display:flex;justify-content:center;align-items:center;min-height:200px">
+  <div style="background:${modalBg};border:1px solid ${modalBorderC};border-radius:16px;padding:20px;width:100%;max-width:280px;box-shadow:0 8px 32px rgba(0,0,0,.5)">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+      <div style="font-size:.82rem;font-weight:600;color:${modalTitle}">Confirm Action</div>
+      <div style="width:18px;height:18px;display:flex;align-items:center;justify-content:center;color:${inpMuted};cursor:pointer;font-size:14px">✕</div></div>
+    <div style="font-size:.72rem;color:${modalBody};line-height:1.5;margin-bottom:16px">Are you sure you want to proceed? This action cannot be undone.</div>
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <button style="${btnStyle('secondary','sm')}">Cancel</button>
+      <button style="${btnStyle('primary','sm')}">Confirm</button></div></div>
+  <div style="position:absolute;top:6px;left:10px;font-size:.55rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--accent,#00ffc6)">Default</div></div>`;
+
+// Sheet
+H+=`<div style="position:relative;background:${scrimBg}99;border-radius:12px;padding:20px 20px 0;display:flex;flex-direction:column;justify-content:flex-end;min-height:200px;overflow:hidden">
+  <div style="background:${modalBg};border:1px solid ${modalBorderC};border-radius:16px 16px 0 0;padding:16px 20px 20px">
+    <div style="width:36px;height:4px;border-radius:2px;background:${res(S.border.default)};margin:0 auto 12px"></div>
+    <div style="font-size:.82rem;font-weight:600;color:${modalTitle};margin-bottom:6px">Select Option</div>
+    <div style="font-size:.72rem;color:${modalBody};line-height:1.5">Choose from the available options below.</div></div>
+  <div style="position:absolute;top:6px;left:10px;font-size:.55rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--accent,#00ffc6)">Sheet</div></div>`;
+
+H+=`</div></div>`;
+
+H+=`<div class="sub-section"><h3>Token Mapping</h3>`;
+H+=tokenMapTable('t-modal-tok',[
+  {prop:"scrim",token:"overlay.scrim",hex:scrimBg+"99"},
+  {prop:"content bg",token:"surface.card",ref:S.surface.card},
+  {prop:"content border",token:"border.subtle",ref:S.border.subtle},
+  {prop:"header text",token:"text.primary",ref:S.text.primary},
+  {prop:"body text",token:"text.secondary",ref:S.text.secondary},
+  {prop:"divider",token:"border.divider",ref:S.border.divider},
+  {prop:"close icon",token:"text.muted",ref:S.text.muted},
+  {prop:"handle bar",token:"border.default",ref:S.border.default},
+]);
+H+=`</div>`;
+
+H+=`<div class="sub-section"><h3>Accessibility</h3>`;
+H+=a11yBlock([
+  {t:"ok",x:"<strong>Focus trap</strong> — Focus trapped inside modal. First focusable element receives focus on open."},
+  {t:"ok",x:"<strong>Escape</strong> — Escape key closes modal. Scrim click closes (unless critical)."},
+  {t:"ok",x:"<strong>Return focus</strong> — On close, focus returns to the trigger element."},
+  {t:"warn",x:"<strong>Scroll lock</strong> — Page scroll locked. Apply <code>aria-hidden=true</code> to background."},
+  {t:"info",x:"<strong>ARIA</strong> — Use <code>role=dialog</code> + <code>aria-modal=true</code> + <code>aria-labelledby</code>."},
+]);
+H+=`</div></div>`;
+
+/* ── SPACING (placeholder) ────────────────────────────────────────── */
+H+=`<div class="section" id="spacing"><div class="s-head">
+<h2>Spacing</h2>
+<p>A unified spacing scale based on an 8pt grid. Defines consistent padding, margin, and gap values across all components and layouts.</p>
+<span class="s-path">foundations/spacing.json</span>
 </div>
-<div class="guideline" style="text-align:center;padding:32px;color:var(--fg-4)"><strong>Coming soon</strong><br>Component tokens will map semantic values to specific UI elements — buttons, badges, alerts, form controls, and more.</div>
+<div class="guideline" style="text-align:center;padding:40px 20px;color:var(--fg-4)">
+<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:.4;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><polyline points="16,6 12,2 8,6"/><polyline points="6,16 2,12 6,8"/><polyline points="18,8 22,12 18,16"/><polyline points="8,18 12,22 16,18"/></svg>
+<strong style="display:block;margin-bottom:4px">Coming in Phase 2</strong>
+4px base unit &middot; 8pt grid &middot; Scale: 0 / 1 / 2 / 3 / 4 / 5 / 6 / 8 / 10 / 12 / 16 / 20 / 24
+</div></div>`;
+
+/* ── ELEVATION (placeholder) ─────────────────────────────────────── */
+H+=`<div class="section" id="elevation"><div class="s-head">
+<h2>Elevation</h2>
+<p>Shadow and layering tokens that create depth hierarchy. Maps to surface stacking: sunken → base → card → raised → overlay.</p>
+<span class="s-path">foundations/elevation.json</span>
+</div>
+<div class="guideline" style="text-align:center;padding:40px 20px;color:var(--fg-4)">
+<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:.4;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto"><rect x="3" y="3" width="18" height="18" rx="2"/><rect x="6" y="6" width="18" height="18" rx="2" opacity=".5"/></svg>
+<strong style="display:block;margin-bottom:4px">Coming in Phase 2</strong>
+5 elevation levels &middot; Box-shadow scale &middot; Maps to surface token layers
+</div></div>`;
+
+/* ── MOTION (placeholder) ────────────────────────────────────────── */
+H+=`<div class="section" id="motion"><div class="s-head">
+<h2>Motion</h2>
+<p>Duration, easing, and animation tokens for consistent micro-interactions and transitions across all components.</p>
+<span class="s-path">foundations/motion.json</span>
+</div>
+<div class="guideline" style="text-align:center;padding:40px 20px;color:var(--fg-4)">
+<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:.4;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto"><path d="M5 12h14"/><polyline points="12,5 19,12 12,19"/></svg>
+<strong style="display:block;margin-bottom:4px">Coming in Phase 2</strong>
+Durations: fast (150ms) / normal (250ms) / slow (400ms) &middot; Easings: ease-out / ease-in-out / spring
+</div></div>`;
+
+/* ── HANDOFF ─────────────────────────────────────────────────────── */
+H+=`<div class="section" id="handoff"><div class="s-head">
+<h2>Handoff</h2>
+<p>Everything developers need to consume the design system: token files, Figma variable mappings, naming conventions, and versioning strategy.</p>
+</div>
+
+<div class="sub-section" id="handoff-json"><h3>Token JSON <span class="badge">Export Ready</span></h3>
+<div class="guideline"><strong>File structure:</strong> <code>primitives/</code> → raw scales (color, typography). <code>semantic/</code> → role-based tokens. <code>components/</code> → component-level tokens. All files use DTCG format (<code>$value</code>, <code>$type</code>).</div>
+<div class="guideline"><strong>Import path:</strong> <code>styles/sr-tokens/final-tokens/</code> for bundled output. Individual layers under <code>primitives/</code>, <code>semantic/</code>, <code>components/</code>.</div>
+<div class="guideline"><strong>Format:</strong> Tokens Studio compatible. Valid JSON. No comments. No trailing commas.</div>
+</div>
+
+<div class="sub-section" id="handoff-figma"><h3>Figma Variables</h3>
+<div class="guideline"><strong>Import via Tokens Studio.</strong> The token JSON files can be imported directly into Figma using the Tokens Studio plugin. Primitives map to Figma Variables collections. Semantic tokens reference primitives and support dark/light modes via <code>$extensions.studio.tokens.mode</code>.</div>
+<div class="guideline"><strong>Multi-mode support:</strong> Each semantic token file includes <code>$extensions</code> with <code>dark</code> and <code>light</code> mode definitions. Figma will create Variable modes automatically.</div>
+</div>
+
+<div class="sub-section" id="handoff-naming"><h3>Naming Convention</h3>
+<div class="guideline"><strong>Primitives:</strong> <code>color.{family}.{step}</code> — e.g. <code>color.neutral.900</code>, <code>color.brand.500</code></div>
+<div class="guideline"><strong>Semantic:</strong> <code>{role}.{variant}</code> — e.g. <code>surface.base</code>, <code>text.primary</code>, <code>border.focus</code></div>
+<div class="guideline"><strong>Components:</strong> <code>{component}.{variant}.{state}.{property}</code> — e.g. <code>button.primary.hover.bg</code></div>
+<div class="guideline"><strong>Typography:</strong> <code>font.{property}.{scale}</code> — e.g. <code>font.size.md</code>, <code>font.weight.semibold</code></div>
+</div>
+
+<div class="sub-section" id="handoff-versioning"><h3>Versioning Strategy</h3>
+<div class="guideline"><strong>Semantic versioning.</strong> <code>MAJOR.MINOR.PATCH</code>. Breaking token renames = major. New tokens = minor. Value adjustments = patch.</div>
+<div class="guideline"><strong>Current version:</strong> <code>v1.0.0</code> — Phase 1 Core (9 components, full semantic + primitive layers).</div>
+<div class="guideline"><strong>Deprecation:</strong> Tokens are never removed in a minor version. Deprecated tokens are marked with <code>"$deprecated": true</code> and a migration note before removal in the next major.</div>
+</div>
 </div>`;
 
 document.getElementById("mainContent").innerHTML=H;
+
+/* ── Reorder sections to match master IA ─────────────────────────── */
+(function(){
+  const c=document.getElementById("mainContent");
+  const order=[
+    "introduction","guidelines","changelog",
+    "neutral","brand","accent","status-foundations",
+    "type-scale","type-preview","type-migration","type-summary",
+    "spacing","elevation","motion",
+    "surface","text","border","icon","interactive","highlight","status-semantic","overlay",
+    "comp-overview","comp-button","comp-input","comp-card","comp-badge","comp-alert","comp-checkbox","comp-toggle","comp-tabs","comp-modal",
+    "accessibility",
+    "handoff"
+  ];
+  const map={};
+  c.querySelectorAll(".section").forEach(el=>{if(el.id)map[el.id]=el;});
+  order.forEach(id=>{if(map[id])c.appendChild(map[id]);});
+})();
 
 /* ================================================================
    INTERACTIONS
@@ -799,29 +1846,75 @@ themeBtn.addEventListener("click",()=>{
 });
 try{const saved=localStorage.getItem("bm-ds-theme");if(saved)setTheme(saved)}catch(e){}
 
-/* ── Sidebar collapse ─────────────────────────────────────────────── */
+/* ── Sidebar collapse (animated max-height) ──────────────────────── */
 document.querySelectorAll(".nav-group-title").forEach(el=>{
-  el.addEventListener("click",()=>el.parentElement.classList.toggle("collapsed"));
+  const items=el.nextElementSibling;
+  if(items&&items.classList.contains("nav-items")){
+    items.style.maxHeight=items.scrollHeight+'px';
+  }
+  el.addEventListener("click",()=>{
+    const group=el.parentElement;
+    const navItemsEl=group.querySelector(".nav-items");
+    if(!navItemsEl)return;
+    if(group.classList.contains("collapsed")){
+      group.classList.remove("collapsed");
+      navItemsEl.style.maxHeight=navItemsEl.scrollHeight+'px';
+    }else{
+      navItemsEl.style.maxHeight=navItemsEl.scrollHeight+'px';
+      requestAnimationFrame(()=>{
+        navItemsEl.style.maxHeight='0px';
+        group.classList.add("collapsed");
+      });
+    }
+  });
 });
 
 /* ── Sidebar active tracking ──────────────────────────────────────── */
 const sections=document.querySelectorAll(".section");
 const navItems=document.querySelectorAll(".nav-item");
+const subSections=document.querySelectorAll(".sub-section[id]");
 const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
       navItems.forEach(n=>n.classList.remove("active"));
-      const link=document.querySelector(`.nav-item[href="#${e.target.id}"]`);
-      if(link)link.classList.add("active");
+      let target=e.target;
+      let link=document.querySelector(`.nav-item[href="#${target.id}"]`);
+      if(!link&&target.closest('.section')){
+        link=document.querySelector(`.nav-item[href="#${target.closest('.section').id}"]`);
+      }
+      if(link){
+        link.classList.add("active");
+        const group=link.closest('.nav-group');
+        if(group&&group.classList.contains('collapsed')){
+          group.classList.remove('collapsed');
+          const ni=group.querySelector('.nav-items');
+          if(ni)ni.style.maxHeight=ni.scrollHeight+'px';
+        }
+        link.scrollIntoView({block:'nearest',behavior:'smooth'});
+      }
     }
   });
 },{rootMargin:"-80px 0px -70% 0px",threshold:0});
 sections.forEach(s=>obs.observe(s));
+subSections.forEach(s=>obs.observe(s));
 
-/* ── Mobile sidebar ───────────────────────────────────────────────── */
+/* ── Mobile sidebar + smooth scroll ──────────────────────────────── */
 const sidebar=document.getElementById("sidebar");
 document.getElementById("menuBtn").addEventListener("click",()=>sidebar.classList.toggle("open"));
-navItems.forEach(el=>el.addEventListener("click",()=>sidebar.classList.remove("open")));
+navItems.forEach(el=>{
+  el.addEventListener("click",ev=>{
+    sidebar.classList.remove("open");
+    const hash=el.getAttribute("href");
+    if(hash&&hash.startsWith("#")){
+      ev.preventDefault();
+      const target=document.getElementById(hash.slice(1));
+      if(target){
+        target.scrollIntoView({behavior:"smooth",block:"start"});
+        history.replaceState(null,null,hash);
+      }
+    }
+  });
+});
 
 /* ── Search ───────────────────────────────────────────────────────── */
 const searchInput=document.getElementById("searchInput");
