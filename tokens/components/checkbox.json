@@ -1,0 +1,34 @@
+{
+  "checkbox": {
+    "default": {
+      "bg":          { "$value": "{surface.card}",    "$type": "color" },
+      "border":      { "$value": "{border.default}",  "$type": "color" },
+      "border-hover":{ "$value": "{border.strong}",   "$type": "color" }
+    },
+    "checked": {
+      "bg":          { "$value": "{interactive.primary.bg}",   "$type": "color" },
+      "border":      { "$value": "{interactive.primary.bg}",   "$type": "color" },
+      "checkmark":   { "$value": "{interactive.primary.text}", "$type": "color" }
+    },
+    "indeterminate": {
+      "bg":          { "$value": "{interactive.primary.bg}",   "$type": "color" },
+      "border":      { "$value": "{interactive.primary.bg}",   "$type": "color" },
+      "mark":        { "$value": "{interactive.primary.text}", "$type": "color" }
+    },
+    "disabled": {
+      "bg":          { "$value": "{surface.sunken}",  "$type": "color" },
+      "border":      { "$value": "{border.subtle}",   "$type": "color" },
+      "checkmark":   { "$value": "{text.disabled}",   "$type": "color" }
+    },
+    "focus-ring":    { "$value": "{border.focus}",    "$type": "color" },
+    "label":         { "$value": "{text.primary}",    "$type": "color" },
+    "label-disabled":{ "$value": "{text.disabled}",   "$type": "color" },
+    "size": {
+      "sm": { "size": { "$value": "14px", "$type": "dimension" }, "border-radius": { "$value": "3px", "$type": "dimension" } },
+      "md": { "size": { "$value": "18px", "$type": "dimension" }, "border-radius": { "$value": "4px", "$type": "dimension" } },
+      "lg": { "size": { "$value": "22px", "$type": "dimension" }, "border-radius": { "$value": "5px", "$type": "dimension" } }
+    },
+    "border-width":        { "$value": "2px",  "$type": "dimension" },
+    "transition-duration": { "$value": "100ms","$type": "duration" }
+  }
+}

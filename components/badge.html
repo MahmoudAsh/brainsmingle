@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Badge — BrainsMingle DS</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font-primary);
+  background: var(--surface-base);
+  color: var(--text-primary);
+  padding: 40px;
+  line-height: 1.6;
+}
+.page-title { font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); margin-bottom: 8px; }
+.page-meta  { font-size: var(--font-size-sm); color: var(--text-muted); margin-bottom: 40px; }
+.section { margin-bottom: 40px; }
+.section-title { font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: 16px; border-bottom: 1px solid var(--border-divider); padding-bottom: 8px; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 16px; }
+.col { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+.label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); }
+.token-tag { font-size: 11px; font-family: var(--font-mono); background: var(--surface-raised); color: var(--text-muted); padding: 2px 6px; border-radius: 4px; }
+
+/* ── Badge base ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: var(--letter-spacing-wide);
+  border-radius: 20px;
+  padding: 3px 10px;
+  line-height: 1;
+  white-space: nowrap;
+}
+.badge-sm { font-size: 11px; padding: 2px 8px; }
+
+/* Variants */
+.badge-primary   { background: var(--interactive-primary-bg);    color: var(--interactive-primary-text); }
+.badge-accent    { background: var(--interactive-accent-bg);     color: var(--interactive-accent-text); }
+.badge-neutral   { background: var(--surface-raised);            color: var(--text-secondary); }
+.badge-error     { background: var(--status-error-bg-subtle);    color: var(--status-error-text); }
+.badge-success   { background: var(--status-success-bg-subtle);  color: var(--status-success-text); }
+.badge-warning   { background: var(--status-warning-bg-subtle);  color: var(--status-warning-text); }
+.badge-info      { background: var(--status-info-bg-subtle);     color: var(--status-info-text); }
+
+/* With dot */
+.badge-dot::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+<div class="page-title">Badge</div>
+<div class="page-meta">
+  Status indicators and counts · 7 variants · 2 sizes · tokens: <span class="token-tag">status.*</span> <span class="token-tag">interactive.primary.*</span> <span class="token-tag">surface.raised</span>
+</div>
+
+<div class="section">
+  <div class="section-title">Status Variants</div>
+  <div class="row">
+    <div class="col"><div class="label">Error</div><span class="badge badge-error">Error</span></div>
+    <div class="col"><div class="label">Success</div><span class="badge badge-success">Success</span></div>
+    <div class="col"><div class="label">Warning</div><span class="badge badge-warning">Warning</span></div>
+    <div class="col"><div class="label">Info</div><span class="badge badge-info">Info</span></div>
+    <div class="col"><div class="label">Neutral</div><span class="badge badge-neutral">Draft</span></div>
+    <div class="col"><div class="label">Primary</div><span class="badge badge-primary">New</span></div>
+    <div class="col"><div class="label">Accent</div><span class="badge badge-accent">Featured</span></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">With Status Dot</div>
+  <div class="row">
+    <span class="badge badge-success badge-dot">Active</span>
+    <span class="badge badge-error badge-dot">Critical</span>
+    <span class="badge badge-warning badge-dot">Degraded</span>
+    <span class="badge badge-info badge-dot">Syncing</span>
+    <span class="badge badge-neutral badge-dot">Offline</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Sizes</div>
+  <div class="row">
+    <div class="col"><div class="label">Small</div><span class="badge badge-sm badge-success">Completed</span></div>
+    <div class="col"><div class="label">Medium (default)</div><span class="badge badge-success">Completed</span></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">In Context — User Card</div>
+  <div style="background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 16px; max-width: 360px;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+      <div>
+        <div style="font-size: 16px; font-weight: 600; color: var(--text-primary);">Ahmad Karimi</div>
+        <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Product Designer</div>
+      </div>
+      <span class="badge badge-success badge-dot">Active</span>
+    </div>
+    <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+      <span class="badge badge-sm badge-primary">Pro Plan</span>
+      <span class="badge badge-sm badge-accent">Verified</span>
+      <span class="badge badge-sm badge-neutral">5 sessions</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

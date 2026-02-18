@@ -1,0 +1,68 @@
+{
+  "status": {
+    "error": {
+      "bg": {
+        "subtle": { "$value": "{color.error.100}", "$type": "color", "$description": "Error subtle background — inline messages" },
+        "bold":   { "$value": "{color.error.500}", "$type": "color", "$description": "Error bold background — critical alerts" }
+      },
+      "text": {
+        "default": { "$value": "{color.error.300}", "$type": "color", "$description": "Error text on dark surface" },
+        "onBold":  { "$value": "{color.neutral.50}", "$type": "color", "$description": "Text on error bold background" }
+      },
+      "border": {
+        "default": { "$value": "{color.error.400}", "$type": "color", "$description": "Error border" }
+      },
+      "icon": {
+        "default": { "$value": "{color.error.500}", "$type": "color", "$description": "Error icon color" }
+      }
+    },
+    "success": {
+      "bg": {
+        "subtle": { "$value": "{color.success.100}", "$type": "color", "$description": "Success subtle background" },
+        "bold":   { "$value": "{color.success.500}", "$type": "color", "$description": "Success bold background" }
+      },
+      "text": {
+        "default": { "$value": "{color.success.300}", "$type": "color", "$description": "Success text on dark surface" },
+        "onBold":  { "$value": "{color.neutral.50}", "$type": "color", "$description": "Text on success bold background" }
+      },
+      "border": {
+        "default": { "$value": "{color.success.400}", "$type": "color", "$description": "Success border" }
+      },
+      "icon": {
+        "default": { "$value": "{color.success.500}", "$type": "color", "$description": "Success icon color" }
+      }
+    },
+    "warning": {
+      "bg": {
+        "subtle": { "$value": "{color.warning.100}", "$type": "color", "$description": "Warning subtle background" },
+        "bold":   { "$value": "{color.warning.500}", "$type": "color", "$description": "Warning bold background" }
+      },
+      "text": {
+        "default": { "$value": "{color.warning.300}", "$type": "color", "$description": "Warning text on dark surface" },
+        "onBold":  { "$value": "{color.neutral.950}", "$type": "color", "$description": "Text on warning bold background (dark text)" }
+      },
+      "border": {
+        "default": { "$value": "{color.warning.400}", "$type": "color", "$description": "Warning border" }
+      },
+      "icon": {
+        "default": { "$value": "{color.warning.500}", "$type": "color", "$description": "Warning icon color" }
+      }
+    },
+    "info": {
+      "bg": {
+        "subtle": { "$value": "{color.info.100}", "$type": "color", "$description": "Info subtle background" },
+        "bold":   { "$value": "{color.info.500}", "$type": "color", "$description": "Info bold background" }
+      },
+      "text": {
+        "default": { "$value": "{color.info.300}", "$type": "color", "$description": "Info text on dark surface" },
+        "onBold":  { "$value": "{color.neutral.50}", "$type": "color", "$description": "Text on info bold background" }
+      },
+      "border": {
+        "default": { "$value": "{color.info.400}", "$type": "color", "$description": "Info border" }
+      },
+      "icon": {
+        "default": { "$value": "{color.info.500}", "$type": "color", "$description": "Info icon color" }
+      }
+    }
+  }
+}

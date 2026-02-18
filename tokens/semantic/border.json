@@ -1,0 +1,34 @@
+{
+  "border": {
+    "subtle": {
+      "$value": "{color.neutral.875}",
+      "$type": "color",
+      "$description": "Subtle, low-contrast separator",
+      "$extensions": { "modes": { "dark": "{color.neutral.875}", "light": "{color.neutral.200}" } }
+    },
+    "default": {
+      "$value": "{color.neutral.800}",
+      "$type": "color",
+      "$description": "Default border — cards, inputs",
+      "$extensions": { "modes": { "dark": "{color.neutral.800}", "light": "{color.neutral.300}" } }
+    },
+    "strong": {
+      "$value": "{color.neutral.700}",
+      "$type": "color",
+      "$description": "High-contrast border — active fields",
+      "$extensions": { "modes": { "dark": "{color.neutral.700}", "light": "{color.neutral.400}" } }
+    },
+    "divider": {
+      "$value": "{color.neutral.825}",
+      "$type": "color",
+      "$description": "Section dividers",
+      "$extensions": { "modes": { "dark": "{color.neutral.825}", "light": "{color.neutral.200}" } }
+    },
+    "focus": {
+      "$value": "{color.brand.400}",
+      "$type": "color",
+      "$description": "Focus ring — brand-colored 2px outline",
+      "$extensions": { "modes": { "dark": "{color.brand.400}", "light": "{color.brand.500}" } }
+    }
+  }
+}

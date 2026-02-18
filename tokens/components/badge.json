@@ -1,0 +1,50 @@
+{
+  "badge": {
+    "primary": {
+      "bg":   { "$value": "{interactive.primary.bg}",   "$type": "color" },
+      "text": { "$value": "{interactive.primary.text}", "$type": "color" }
+    },
+    "secondary-brand": {
+      "bg":   { "$value": "{badge.secondaryBrand.bg}",   "$type": "color" },
+      "text": { "$value": "{badge.secondaryBrand.text}", "$type": "color" }
+    },
+    "secondary-brand-subtle": {
+      "bg":   { "$value": "{badge.secondaryBrand.subtleBg}", "$type": "color" },
+      "text": { "$value": "{color.accent.700}",              "$type": "color" }
+    },
+    "neutral": {
+      "bg":   { "$value": "{surface.raised}",  "$type": "color" },
+      "text": { "$value": "{text.secondary}",  "$type": "color" }
+    },
+    "error": {
+      "bg":   { "$value": "{status.error.bg.subtle}",    "$type": "color" },
+      "text": { "$value": "{status.error.text.default}",  "$type": "color" }
+    },
+    "success": {
+      "bg":   { "$value": "{status.success.bg.subtle}",   "$type": "color" },
+      "text": { "$value": "{status.success.text.default}", "$type": "color" }
+    },
+    "warning": {
+      "bg":   { "$value": "{status.warning.bg.subtle}",   "$type": "color" },
+      "text": { "$value": "{status.warning.text.default}", "$type": "color" }
+    },
+    "info": {
+      "bg":   { "$value": "{status.info.bg.subtle}",   "$type": "color" },
+      "text": { "$value": "{status.info.text.default}", "$type": "color" }
+    },
+    "size": {
+      "sm": {
+        "font-size": { "$value": "11px", "$type": "dimension" },
+        "padding-x": { "$value": "8px",  "$type": "dimension" },
+        "padding-y": { "$value": "2px",  "$type": "dimension" }
+      },
+      "md": {
+        "font-size": { "$value": "12px", "$type": "dimension" },
+        "padding-x": { "$value": "10px", "$type": "dimension" },
+        "padding-y": { "$value": "3px",  "$type": "dimension" }
+      }
+    },
+    "border-radius": { "$value": "20px", "$type": "dimension" },
+    "font-weight":   { "$value": "700",  "$type": "fontWeight" }
+  }
+}

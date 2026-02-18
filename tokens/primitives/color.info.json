@@ -1,0 +1,17 @@
+{
+  "color": {
+    "info": {
+      "50":  { "$value": "#e9f2ff", "$type": "color" },
+      "100": { "$value": "#d2e4ff", "$type": "color" },
+      "200": { "$value": "#a8c9ff", "$type": "color" },
+      "300": { "$value": "#73a5ff", "$type": "color" },
+      "400": { "$value": "#407bf6", "$type": "color", "$description": "Info border" },
+      "500": { "$value": "#2563eb", "$type": "color", "$description": "Info primary" },
+      "600": { "$value": "#1242aa", "$type": "color" },
+      "700": { "$value": "#0e3282", "$type": "color" },
+      "800": { "$value": "#0a245b", "$type": "color" },
+      "900": { "$value": "#07173a", "$type": "color" },
+      "950": { "$value": "#050d22", "$type": "color" }
+    }
+  }
+}

@@ -1,0 +1,292 @@
+/* ================================================================
+   BrainsMingle Design System — CSS Custom Properties
+   Source of truth: tokens/ directory (DTCG JSON format)
+   Auto-applied via data-theme="dark" | data-theme="light"
+   ================================================================ */
+
+/* ── Primitive Colors ─────────────────────────────────────────── */
+:root {
+  /* Neutral */
+  --color-neutral-0:   #ffffff;
+  --color-neutral-50:  #f2f4f6;
+  --color-neutral-100: #dde0e3;
+  --color-neutral-200: #c1c4c9;
+  --color-neutral-250: #b2b6bb;
+  --color-neutral-300: #a4a8ad;
+  --color-neutral-350: #94989e;
+  --color-neutral-400: #85898f;
+  --color-neutral-500: #676c73;
+  --color-neutral-600: #4c5158;
+  --color-neutral-700: #374151;
+  --color-neutral-800: #1f2937;
+  --color-neutral-825: #1d2431;
+  --color-neutral-850: #1a202b;
+  --color-neutral-875: #181b25;
+  --color-neutral-900: #15171f;
+  --color-neutral-925: #0f1117;
+  --color-neutral-950: #0a0b0f;
+
+  /* Brand (primary) */
+  --color-brand-50:  #edeeff;
+  --color-brand-100: #ddddff;
+  --color-brand-200: #c0bfff;
+  --color-brand-300: #9b94ff;
+  --color-brand-400: #6a41f6;
+  --color-brand-500: #6723ff;
+  --color-brand-600: #4200b5;
+  --color-brand-700: #32008e;
+  --color-brand-800: #220066;
+  --color-brand-900: #150243;
+  --color-brand-950: #0b032a;
+
+  /* Accent (secondary brand) */
+  --color-accent-50:  #e6fef7;
+  --color-accent-100: #b5fce6;
+  --color-accent-200: #76f0ce;
+  --color-accent-300: #40e4b4;
+  --color-accent-400: #1aeebb;
+  --color-accent-500: #00ffc6;
+  --color-accent-600: #00c79a;
+  --color-accent-700: #009373;
+  --color-accent-800: #006550;
+  --color-accent-900: #003a2e;
+  --color-accent-950: #00201a;
+
+  /* Error */
+  --color-error-50:  #ffeae7;
+  --color-error-100: #fed4ce;
+  --color-error-200: #fcada3;
+  --color-error-300: #f3776b;
+  --color-error-400: #d93c35;
+  --color-error-500: #dc2626;
+  --color-error-600: #960007;
+  --color-error-700: #720308;
+
+  /* Success */
+  --color-success-50:  #e6f7e8;
+  --color-success-100: #ccedd1;
+  --color-success-200: #9ddda8;
+  --color-success-300: #5ec476;
+  --color-success-400: #2caa53;
+  --color-success-500: #16a34a;
+  --color-success-600: #00712f;
+
+  /* Warning */
+  --color-warning-50:  #fff3e4;
+  --color-warning-100: #ffe4c6;
+  --color-warning-200: #ffcc8e;
+  --color-warning-300: #ffb657;
+  --color-warning-400: #ffac33;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #ba7400;
+
+  /* Info */
+  --color-info-50:  #e9f2ff;
+  --color-info-100: #d2e4ff;
+  --color-info-200: #a8c9ff;
+  --color-info-300: #73a5ff;
+  --color-info-400: #407bf6;
+  --color-info-500: #2563eb;
+  --color-info-600: #1242aa;
+
+  /* Typography primitives */
+  --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:    'SF Mono', Monaco, Consolas, 'Liberation Mono', monospace;
+
+  --font-size-xs:  12px;
+  --font-size-sm:  14px;
+  --font-size-md:  16px;
+  --font-size-lg:  18px;
+  --font-size-xl:  20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 30px;
+  --font-size-4xl: 36px;
+  --font-size-5xl: 48px;
+
+  --font-weight-regular:  400;
+  --font-weight-medium:   500;
+  --font-weight-semibold: 600;
+  --font-weight-bold:     700;
+
+  --line-height-xs:  16px;
+  --line-height-sm:  20px;
+  --line-height-md:  24px;
+  --line-height-lg:  28px;
+  --line-height-xl:  28px;
+  --line-height-2xl: 32px;
+  --line-height-3xl: 36px;
+  --line-height-4xl: 44px;
+  --line-height-5xl: 56px;
+
+  --letter-spacing-tight:  -0.02em;
+  --letter-spacing-normal:  0em;
+  --letter-spacing-wide:    0.02em;
+  --letter-spacing-wider:   0.06em;
+
+  /* Motion */
+  --motion-fast:     150ms;
+  --motion-normal:   250ms;
+  --motion-slow:     400ms;
+  --motion-ease:     cubic-bezier(0.2, 0.8, 0.2, 1);
+  --motion-ease-in:  cubic-bezier(0.4, 0, 1, 1);
+  --motion-ease-out: cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* ── Semantic Tokens: Dark Mode (default) ─────────────────────── */
+:root,
+[data-theme="dark"] {
+  /* Surface */
+  --surface-base:    var(--color-neutral-950);
+  --surface-card:    var(--color-neutral-900);
+  --surface-raised:  var(--color-neutral-875);
+  --surface-overlay: var(--color-neutral-850);
+  --surface-sunken:  var(--color-neutral-925);
+  --surface-inverse: var(--color-neutral-50);
+
+  /* Text */
+  --text-primary:    var(--color-neutral-100);
+  --text-secondary:  var(--color-neutral-250);
+  --text-muted:      var(--color-neutral-350);
+  --text-disabled:   var(--color-neutral-500);
+  --text-inverse:    var(--color-neutral-950);
+  --text-on-brand:   var(--color-neutral-50);
+  --text-on-status:  var(--color-neutral-50);
+
+  /* Border */
+  --border-subtle:   var(--color-neutral-875);
+  --border-default:  var(--color-neutral-800);
+  --border-strong:   var(--color-neutral-700);
+  --border-divider:  var(--color-neutral-825);
+  --border-focus:    var(--color-brand-400);
+
+  /* Icon */
+  --icon-primary:    var(--color-neutral-100);
+  --icon-secondary:  var(--color-neutral-250);
+  --icon-muted:      var(--color-neutral-350);
+  --icon-disabled:   var(--color-neutral-500);
+  --icon-inverse:    var(--color-neutral-950);
+
+  /* Interactive — Primary */
+  --interactive-primary-bg:     var(--color-brand-500);
+  --interactive-primary-hover:  var(--color-brand-400);
+  --interactive-primary-active: var(--color-brand-600);
+  --interactive-primary-text:   var(--color-neutral-50);
+  --interactive-primary-border: var(--color-brand-500);
+
+  /* Interactive — Secondary Brand */
+  --interactive-accent-bg:      var(--color-accent-500);
+  --interactive-accent-hover:   var(--color-accent-400);
+  --interactive-accent-active:  var(--color-accent-600);
+  --interactive-accent-text:    var(--color-neutral-950);
+  --interactive-accent-border:  var(--color-accent-500);
+
+  /* Interactive — Secondary (neutral) */
+  --interactive-secondary-bg:     var(--color-neutral-900);
+  --interactive-secondary-hover:  var(--color-neutral-875);
+  --interactive-secondary-active: var(--color-neutral-850);
+  --interactive-secondary-text:   var(--color-neutral-100);
+
+  /* Interactive — Ghost */
+  --interactive-ghost-hover:  var(--color-neutral-875);
+  --interactive-ghost-active: var(--color-neutral-850);
+  --interactive-ghost-text:   var(--color-neutral-250);
+
+  /* Interactive — Link */
+  --interactive-link-default: var(--color-brand-400);
+  --interactive-link-hover:   var(--color-brand-300);
+  --interactive-link-visited: var(--color-brand-500);
+
+  /* Highlight */
+  --highlight-default: var(--color-accent-500);
+  --highlight-subtle:  var(--color-accent-100);
+  --highlight-border:  var(--color-accent-400);
+
+  /* Status — Error */
+  --status-error-bg-subtle:  var(--color-error-100);
+  --status-error-bg-bold:    var(--color-error-500);
+  --status-error-text:       var(--color-error-300);
+  --status-error-text-bold:  var(--color-neutral-50);
+  --status-error-border:     var(--color-error-400);
+  --status-error-icon:       var(--color-error-500);
+
+  /* Status — Success */
+  --status-success-bg-subtle: var(--color-success-100);
+  --status-success-bg-bold:   var(--color-success-500);
+  --status-success-text:      var(--color-success-300);
+  --status-success-text-bold: var(--color-neutral-50);
+  --status-success-border:    var(--color-success-400);
+  --status-success-icon:      var(--color-success-500);
+
+  /* Status — Warning */
+  --status-warning-bg-subtle: var(--color-warning-100);
+  --status-warning-bg-bold:   var(--color-warning-500);
+  --status-warning-text:      var(--color-warning-300);
+  --status-warning-text-bold: var(--color-neutral-950);
+  --status-warning-border:    var(--color-warning-400);
+  --status-warning-icon:      var(--color-warning-500);
+
+  /* Status — Info */
+  --status-info-bg-subtle:    var(--color-info-100);
+  --status-info-bg-bold:      var(--color-info-500);
+  --status-info-text:         var(--color-info-300);
+  --status-info-text-bold:    var(--color-neutral-50);
+  --status-info-border:       var(--color-info-400);
+  --status-info-icon:         var(--color-info-500);
+
+  /* Overlay */
+  --overlay-scrim:       rgba(10, 11, 15, 0.6);
+  --overlay-scrim-heavy: rgba(10, 11, 15, 0.8);
+}
+
+/* ── Semantic Tokens: Light Mode ──────────────────────────────── */
+[data-theme="light"] {
+  /* Surface */
+  --surface-base:    var(--color-neutral-50);
+  --surface-card:    var(--color-neutral-0);
+  --surface-raised:  var(--color-neutral-100);
+  --surface-overlay: var(--color-neutral-200);
+  --surface-sunken:  var(--color-neutral-0);
+  --surface-inverse: var(--color-neutral-950);
+
+  /* Text */
+  --text-primary:    var(--color-neutral-950);
+  --text-secondary:  var(--color-neutral-700);
+  --text-muted:      var(--color-neutral-500);
+  --text-disabled:   var(--color-neutral-400);
+  --text-inverse:    var(--color-neutral-50);
+  --text-on-brand:   var(--color-neutral-50);
+  --text-on-status:  var(--color-neutral-50);
+
+  /* Border */
+  --border-subtle:   var(--color-neutral-200);
+  --border-default:  var(--color-neutral-300);
+  --border-strong:   var(--color-neutral-400);
+  --border-divider:  var(--color-neutral-200);
+  --border-focus:    var(--color-brand-500);
+
+  /* Icon */
+  --icon-primary:    var(--color-neutral-950);
+  --icon-secondary:  var(--color-neutral-700);
+  --icon-muted:      var(--color-neutral-500);
+  --icon-disabled:   var(--color-neutral-400);
+  --icon-inverse:    var(--color-neutral-50);
+
+  /* Interactive — Secondary (neutral) light overrides */
+  --interactive-secondary-bg:     var(--color-neutral-0);
+  --interactive-secondary-hover:  var(--color-neutral-100);
+  --interactive-secondary-active: var(--color-neutral-200);
+  --interactive-secondary-text:   var(--color-neutral-950);
+
+  /* Overlay */
+  --overlay-scrim:       rgba(10, 11, 15, 0.5);
+  --overlay-scrim-heavy: rgba(10, 11, 15, 0.75);
+}
+
+/* ── Reduced Motion ───────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast:   0ms;
+    --motion-normal: 0ms;
+    --motion-slow:   0ms;
+  }
+}

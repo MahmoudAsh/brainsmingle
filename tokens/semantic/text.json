@@ -1,0 +1,46 @@
+{
+  "text": {
+    "primary": {
+      "$value": "{color.neutral.100}",
+      "$type": "color",
+      "$description": "High-emphasis text — headings, body",
+      "$extensions": { "modes": { "dark": "{color.neutral.100}", "light": "{color.neutral.950}" } }
+    },
+    "secondary": {
+      "$value": "{color.neutral.250}",
+      "$type": "color",
+      "$description": "Medium-emphasis text — supporting",
+      "$extensions": { "modes": { "dark": "{color.neutral.250}", "light": "{color.neutral.700}" } }
+    },
+    "muted": {
+      "$value": "{color.neutral.350}",
+      "$type": "color",
+      "$description": "Low-emphasis text — captions, labels",
+      "$extensions": { "modes": { "dark": "{color.neutral.350}", "light": "{color.neutral.500}" } }
+    },
+    "disabled": {
+      "$value": "{color.neutral.500}",
+      "$type": "color",
+      "$description": "Disabled / inactive text",
+      "$extensions": { "modes": { "dark": "{color.neutral.500}", "light": "{color.neutral.400}" } }
+    },
+    "inverse": {
+      "$value": "{color.neutral.950}",
+      "$type": "color",
+      "$description": "Text on light / inverted surfaces",
+      "$extensions": { "modes": { "dark": "{color.neutral.950}", "light": "{color.neutral.50}" } }
+    },
+    "on-brand": {
+      "$value": "{color.neutral.50}",
+      "$type": "color",
+      "$description": "Text on brand.500 (primary CTA bg)",
+      "$extensions": { "modes": { "dark": "{color.neutral.50}", "light": "{color.neutral.50}" } }
+    },
+    "on-status": {
+      "$value": "{color.neutral.50}",
+      "$type": "color",
+      "$description": "Text on bold status backgrounds",
+      "$extensions": { "modes": { "dark": "{color.neutral.50}", "light": "{color.neutral.50}" } }
+    }
+  }
+}

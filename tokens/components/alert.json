@@ -1,0 +1,44 @@
+{
+  "alert": {
+    "error": {
+      "bg":     { "$value": "{status.error.bg.subtle}",    "$type": "color" },
+      "border": { "$value": "{status.error.border.default}","$type": "color" },
+      "title":  { "$value": "{status.error.text.default}",  "$type": "color" },
+      "body":   { "$value": "{text.secondary}",             "$type": "color" },
+      "icon":   { "$value": "{status.error.icon.default}",  "$type": "color" }
+    },
+    "success": {
+      "bg":     { "$value": "{status.success.bg.subtle}",    "$type": "color" },
+      "border": { "$value": "{status.success.border.default}","$type": "color" },
+      "title":  { "$value": "{status.success.text.default}",  "$type": "color" },
+      "body":   { "$value": "{text.secondary}",               "$type": "color" },
+      "icon":   { "$value": "{status.success.icon.default}",  "$type": "color" }
+    },
+    "warning": {
+      "bg":     { "$value": "{status.warning.bg.subtle}",    "$type": "color" },
+      "border": { "$value": "{status.warning.border.default}","$type": "color" },
+      "title":  { "$value": "{status.warning.text.default}",  "$type": "color" },
+      "body":   { "$value": "{text.secondary}",               "$type": "color" },
+      "icon":   { "$value": "{status.warning.icon.default}",  "$type": "color" }
+    },
+    "info": {
+      "bg":     { "$value": "{status.info.bg.subtle}",    "$type": "color" },
+      "border": { "$value": "{status.info.border.default}","$type": "color" },
+      "title":  { "$value": "{status.info.text.default}",  "$type": "color" },
+      "body":   { "$value": "{text.secondary}",             "$type": "color" },
+      "icon":   { "$value": "{status.info.icon.default}",  "$type": "color" }
+    },
+    "neutral": {
+      "bg":     { "$value": "{surface.raised}",   "$type": "color" },
+      "border": { "$value": "{border.default}",   "$type": "color" },
+      "title":  { "$value": "{text.primary}",     "$type": "color" },
+      "body":   { "$value": "{text.secondary}",   "$type": "color" },
+      "icon":   { "$value": "{icon.secondary}",   "$type": "color" }
+    },
+    "border-radius":   { "$value": "10px", "$type": "dimension" },
+    "border-width":    { "$value": "1px",  "$type": "dimension" },
+    "border-position": { "$value": "left", "$type": "other", "$description": "4px left border accent" },
+    "padding":         { "$value": "14px", "$type": "dimension" },
+    "icon-size":       { "$value": "20px", "$type": "dimension" }
+  }
+}

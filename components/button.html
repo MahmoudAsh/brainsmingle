@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Button — BrainsMingle DS</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font-primary);
+  background: var(--surface-base);
+  color: var(--text-primary);
+  padding: 40px;
+  line-height: 1.6;
+}
+.page-title { font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); margin-bottom: 8px; }
+.page-meta  { font-size: var(--font-size-sm); color: var(--text-muted); margin-bottom: 40px; }
+.section { margin-bottom: 40px; }
+.section-title { font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: 16px; border-bottom: 1px solid var(--border-divider); padding-bottom: 8px; }
+.token-tag { font-size: 11px; font-family: var(--font-mono); background: var(--surface-raised); color: var(--text-muted); padding: 2px 6px; border-radius: 4px; }
+.row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 20px; }
+.col { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+.label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); }
+
+/* ── Button base ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-semibold);
+  border-radius: 12px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--motion-fast) var(--motion-ease),
+              border-color var(--motion-fast) var(--motion-ease),
+              transform var(--motion-fast) var(--motion-ease),
+              box-shadow var(--motion-fast) var(--motion-ease);
+}
+.btn:active { transform: scale(0.98); }
+.btn:focus-visible { outline: 2px solid var(--border-focus); outline-offset: 2px; }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn:disabled:active { transform: none; }
+
+/* Sizes */
+.btn-sm { font-size: var(--font-size-xs); line-height: var(--line-height-xs); padding: 6px 14px;  min-height: 32px; }
+.btn-md { font-size: var(--font-size-sm); line-height: var(--line-height-sm); padding: 8px 20px;  min-height: 40px; }
+.btn-lg { font-size: var(--font-size-md); line-height: var(--line-height-md); padding: 12px 28px; min-height: 48px; }
+
+/* Primary */
+.btn-primary {
+  background: var(--interactive-primary-bg);
+  color: var(--interactive-primary-text);
+  border-color: var(--interactive-primary-bg);
+  box-shadow: 0 1px 3px rgba(103, 35, 255, 0.24);
+}
+.btn-primary:hover:not(:disabled) {
+  background: var(--interactive-primary-hover);
+  border-color: var(--interactive-primary-hover);
+  box-shadow: 0 2px 8px rgba(103, 35, 255, 0.32);
+}
+.btn-primary:active:not(:disabled) { background: var(--interactive-primary-active); }
+
+/* Secondary Brand */
+.btn-accent {
+  background: var(--interactive-accent-bg);
+  color: var(--interactive-accent-text);
+  border-color: var(--interactive-accent-bg);
+  box-shadow: 0 1px 3px rgba(0, 255, 198, 0.18);
+}
+.btn-accent:hover:not(:disabled) {
+  background: var(--interactive-accent-hover);
+  border-color: var(--interactive-accent-hover);
+  box-shadow: 0 2px 8px rgba(0, 255, 198, 0.26);
+}
+.btn-accent:active:not(:disabled) { background: var(--interactive-accent-active); }
+
+/* Secondary */
+.btn-secondary {
+  background: var(--interactive-secondary-bg);
+  color: var(--interactive-secondary-text);
+  border-color: var(--border-default);
+}
+.btn-secondary:hover:not(:disabled) { background: var(--interactive-secondary-hover); }
+.btn-secondary:active:not(:disabled) { background: var(--interactive-secondary-active); }
+
+/* Ghost */
+.btn-ghost {
+  background: transparent;
+  color: var(--text-primary);
+  border-color: transparent;
+}
+.btn-ghost:hover:not(:disabled) { background: var(--interactive-ghost-hover); }
+.btn-ghost:active:not(:disabled) { background: var(--interactive-ghost-active); }
+
+/* Destructive */
+.btn-destructive {
+  background: var(--status-error-bg-bold);
+  color: var(--status-error-text-bold);
+  border-color: var(--status-error-bg-bold);
+}
+.btn-destructive:hover:not(:disabled) { background: var(--color-error-600); }
+.btn-destructive:active:not(:disabled) { background: var(--color-error-700); }
+</style>
+</head>
+<body>
+<div class="page-title">Button</div>
+<div class="page-meta">
+  Interactive action triggers · 5 variants · 3 sizes · tokens: <span class="token-tag">interactive.*</span> <span class="token-tag">surface.*</span> <span class="token-tag">border.focus</span>
+</div>
+
+<div class="section">
+  <div class="section-title">Variants</div>
+  <div class="row">
+    <div class="col"><div class="label">Primary</div><button class="btn btn-md btn-primary">Save changes</button></div>
+    <div class="col"><div class="label">Secondary Brand</div><button class="btn btn-md btn-accent">Get started</button></div>
+    <div class="col"><div class="label">Secondary</div><button class="btn btn-md btn-secondary">Cancel</button></div>
+    <div class="col"><div class="label">Ghost</div><button class="btn btn-md btn-ghost">Learn more</button></div>
+    <div class="col"><div class="label">Destructive</div><button class="btn btn-md btn-destructive">Delete account</button></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Sizes</div>
+  <div class="row" style="align-items: flex-end;">
+    <div class="col"><div class="label">Small</div><button class="btn btn-sm btn-primary">Small</button></div>
+    <div class="col"><div class="label">Medium</div><button class="btn btn-md btn-primary">Medium</button></div>
+    <div class="col"><div class="label">Large</div><button class="btn btn-lg btn-primary">Large</button></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">States</div>
+  <div class="row">
+    <div class="col"><div class="label">Default</div><button class="btn btn-md btn-primary">Default</button></div>
+    <div class="col"><div class="label">Disabled</div><button class="btn btn-md btn-primary" disabled>Disabled</button></div>
+    <div class="col"><div class="label">Focus (tab to see)</div><button class="btn btn-md btn-primary">Focus me</button></div>
+  </div>
+  <div class="row">
+    <div class="col"><div class="label">Secondary disabled</div><button class="btn btn-md btn-secondary" disabled>Disabled</button></div>
+    <div class="col"><div class="label">Ghost disabled</div><button class="btn btn-md btn-ghost" disabled>Disabled</button></div>
+    <div class="col"><div class="label">Destructive disabled</div><button class="btn btn-md btn-destructive" disabled>Disabled</button></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">With Icons</div>
+  <div class="row">
+    <button class="btn btn-md btn-primary">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 2v12M2 8h12"/></svg>
+      New item
+    </button>
+    <button class="btn btn-md btn-secondary">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 2"/></svg>
+      Schedule
+    </button>
+    <button class="btn btn-md btn-ghost">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      Continue
+    </button>
+  </div>
+</div>
+</body>
+</html>

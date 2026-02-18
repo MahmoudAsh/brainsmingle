@@ -1,0 +1,24 @@
+{
+  "color": {
+    "neutral": {
+      "0":   { "$value": "#ffffff", "$type": "color", "$description": "Pure white — used in light mode surfaces" },
+      "50":  { "$value": "#f2f4f6", "$type": "color", "$description": "Lightest neutral — inverse light surface" },
+      "100": { "$value": "#dde0e3", "$type": "color", "$description": "High-emphasis text on dark" },
+      "200": { "$value": "#c1c4c9", "$type": "color" },
+      "250": { "$value": "#b2b6bb", "$type": "color", "$description": "Secondary text on dark" },
+      "300": { "$value": "#a4a8ad", "$type": "color" },
+      "350": { "$value": "#94989e", "$type": "color", "$description": "Muted text on dark" },
+      "400": { "$value": "#85898f", "$type": "color", "$description": "Disabled / muted icons" },
+      "500": { "$value": "#676c73", "$type": "color", "$description": "Disabled text" },
+      "600": { "$value": "#4c5158", "$type": "color" },
+      "700": { "$value": "#374151", "$type": "color", "$description": "Strong border" },
+      "800": { "$value": "#1f2937", "$type": "color", "$description": "Default border" },
+      "825": { "$value": "#1d2431", "$type": "color", "$description": "Divider border" },
+      "850": { "$value": "#1a202b", "$type": "color", "$description": "Overlay / modal background" },
+      "875": { "$value": "#181b25", "$type": "color", "$description": "Raised / elevated surface" },
+      "900": { "$value": "#15171f", "$type": "color", "$description": "Card background" },
+      "925": { "$value": "#0f1117", "$type": "color", "$description": "Sunken / sidebar background" },
+      "950": { "$value": "#0a0b0f", "$type": "color", "$description": "Page background (darkest)" }
+    }
+  }
+}

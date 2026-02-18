@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toggle — BrainsMingle DS</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font-primary);
+  background: var(--surface-base);
+  color: var(--text-primary);
+  padding: 40px;
+  line-height: 1.6;
+}
+.page-title { font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); margin-bottom: 8px; }
+.page-meta  { font-size: var(--font-size-sm); color: var(--text-muted); margin-bottom: 40px; }
+.section { margin-bottom: 40px; }
+.section-title { font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: 16px; border-bottom: 1px solid var(--border-divider); padding-bottom: 8px; }
+.stack { display: flex; flex-direction: column; gap: 16px; }
+.row { display: flex; gap: 32px; flex-wrap: wrap; align-items: center; }
+.col { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.size-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); }
+.token-tag { font-size: 11px; font-family: var(--font-mono); background: var(--surface-raised); color: var(--text-muted); padding: 2px 6px; border-radius: 4px; }
+
+/* ── Toggle base ── */
+.toggle-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+.toggle-wrap:has(input:disabled) { cursor: not-allowed; opacity: 0.5; }
+
+.toggle-wrap input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Track */
+.toggle-track {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  border-radius: 12px;
+  background: var(--surface-raised);
+  border: 1px solid var(--border-default);
+  flex-shrink: 0;
+  transition: background var(--motion-normal) var(--motion-ease),
+              border-color var(--motion-normal) var(--motion-ease);
+}
+
+/* Thumb */
+.toggle-track::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  transition: transform var(--motion-normal) var(--motion-ease),
+              background var(--motion-normal) var(--motion-ease);
+}
+
+/* Checked */
+.toggle-wrap input:checked ~ .toggle-track {
+  background: var(--interactive-primary-bg);
+  border-color: var(--interactive-primary-bg);
+}
+.toggle-wrap input:checked ~ .toggle-track::after {
+  transform: translateX(20px);
+  background: var(--color-neutral-0);
+}
+
+/* Focus */
+.toggle-wrap input:focus-visible ~ .toggle-track {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+.toggle-label {
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+}
+.toggle-desc {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+}
+
+/* Size: small */
+.toggle-sm .toggle-track { width: 32px; height: 18px; }
+.toggle-sm .toggle-track::after { width: 12px; height: 12px; top: 2px; left: 2px; }
+.toggle-sm input:checked ~ .toggle-track::after { transform: translateX(14px); }
+
+/* Size: large */
+.toggle-lg .toggle-track { width: 56px; height: 30px; }
+.toggle-lg .toggle-track::after { width: 22px; height: 22px; top: 3px; left: 3px; }
+.toggle-lg input:checked ~ .toggle-track::after { transform: translateX(26px); }
+</style>
+</head>
+<body>
+<div class="page-title">Toggle</div>
+<div class="page-meta">
+  On/off switch controls · 3 sizes · 6 states · tokens: <span class="token-tag">interactive.primary.*</span> <span class="token-tag">surface.raised</span> <span class="token-tag">border.*</span>
+</div>
+
+<div class="section">
+  <div class="section-title">States</div>
+  <div class="stack">
+    <label class="toggle-wrap">
+      <input type="checkbox">
+      <span class="toggle-track"></span>
+      <span class="toggle-label">Notifications — Off</span>
+    </label>
+    <label class="toggle-wrap">
+      <input type="checkbox" checked>
+      <span class="toggle-track"></span>
+      <span class="toggle-label">Dark mode — On</span>
+    </label>
+    <label class="toggle-wrap">
+      <input type="checkbox" disabled>
+      <span class="toggle-track"></span>
+      <span class="toggle-label">Feature flag (disabled off)</span>
+    </label>
+    <label class="toggle-wrap">
+      <input type="checkbox" checked disabled>
+      <span class="toggle-track"></span>
+      <span class="toggle-label">Auto-save (disabled on)</span>
+    </label>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Sizes</div>
+  <div class="row">
+    <div class="col">
+      <div class="size-label">Small</div>
+      <label class="toggle-wrap toggle-sm">
+        <input type="checkbox" checked>
+        <span class="toggle-track"></span>
+      </label>
+    </div>
+    <div class="col">
+      <div class="size-label">Medium</div>
+      <label class="toggle-wrap">
+        <input type="checkbox" checked>
+        <span class="toggle-track"></span>
+      </label>
+    </div>
+    <div class="col">
+      <div class="size-label">Large</div>
+      <label class="toggle-wrap toggle-lg">
+        <input type="checkbox" checked>
+        <span class="toggle-track"></span>
+      </label>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">In Context — Settings List</div>
+  <div style="background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: 12px; overflow: hidden; max-width: 440px;">
+    <div style="padding: 14px 18px; border-bottom: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between;">
+      <div>
+        <div style="font-size: 14px; font-weight: 500; color: var(--text-primary);">Email notifications</div>
+        <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Receive alerts for new bookings</div>
+      </div>
+      <label class="toggle-wrap">
+        <input type="checkbox" checked>
+        <span class="toggle-track"></span>
+      </label>
+    </div>
+    <div style="padding: 14px 18px; border-bottom: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between;">
+      <div>
+        <div style="font-size: 14px; font-weight: 500; color: var(--text-primary);">Auto-record sessions</div>
+        <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Save recordings automatically</div>
+      </div>
+      <label class="toggle-wrap">
+        <input type="checkbox">
+        <span class="toggle-track"></span>
+      </label>
+    </div>
+    <div style="padding: 14px 18px; display: flex; align-items: center; justify-content: space-between;">
+      <div>
+        <div style="font-size: 14px; font-weight: 500; color: var(--text-primary);">Two-factor auth</div>
+        <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Required by plan</div>
+      </div>
+      <label class="toggle-wrap">
+        <input type="checkbox" checked disabled>
+        <span class="toggle-track"></span>
+      </label>
+    </div>
+  </div>
+</div>
+</body>
+</html>

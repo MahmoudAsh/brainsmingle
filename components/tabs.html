@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tabs — BrainsMingle DS</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font-primary);
+  background: var(--surface-base);
+  color: var(--text-primary);
+  padding: 40px;
+  line-height: 1.6;
+}
+.page-title { font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); margin-bottom: 8px; }
+.page-meta  { font-size: var(--font-size-sm); color: var(--text-muted); margin-bottom: 40px; }
+.section { margin-bottom: 48px; max-width: 640px; }
+.section-title { font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: 20px; border-bottom: 1px solid var(--border-divider); padding-bottom: 8px; }
+.token-tag { font-size: 11px; font-family: var(--font-mono); background: var(--surface-raised); color: var(--text-muted); padding: 2px 6px; border-radius: 4px; }
+.panel-content { background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: 0 0 10px 10px; padding: 20px; font-size: 14px; color: var(--text-secondary); border-top: none; }
+
+/* ── Underline Tabs ── */
+.tabs-underline {
+  display: flex;
+  border-bottom: 1px solid var(--border-subtle);
+  position: relative;
+}
+.tab-underline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: color var(--motion-fast) var(--motion-ease);
+}
+.tab-underline:hover { color: var(--text-secondary); }
+.tab-underline:focus-visible { outline: 2px solid var(--border-focus); outline-offset: 2px; }
+.tab-underline[aria-selected="true"] {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-semibold);
+}
+.tab-underline[aria-selected="true"]::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--border-focus);
+  border-radius: 1px 1px 0 0;
+}
+
+/* ── Pill Tabs ── */
+.tabs-pill-wrap {
+  background: var(--surface-card);
+  border-radius: 10px 10px 0 0;
+  border: 1px solid var(--border-subtle);
+  border-bottom: none;
+  padding: 6px 6px 0;
+}
+.tabs-pill {
+  display: flex;
+  gap: 2px;
+  padding: 4px;
+  background: var(--surface-base);
+  border-radius: 8px;
+}
+.tab-pill {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 14px;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color var(--motion-fast) var(--motion-ease),
+              background var(--motion-fast) var(--motion-ease);
+  white-space: nowrap;
+}
+.tab-pill:hover { color: var(--text-secondary); background: var(--surface-card); }
+.tab-pill:focus-visible { outline: 2px solid var(--border-focus); outline-offset: 2px; }
+.tab-pill[aria-selected="true"] {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-semibold);
+  background: var(--surface-raised);
+}
+
+/* Badge count in tabs */
+.tab-count {
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--surface-raised);
+  color: var(--text-muted);
+  padding: 1px 6px;
+  border-radius: 10px;
+}
+.tab-underline[aria-selected="true"] .tab-count,
+.tab-pill[aria-selected="true"] .tab-count {
+  background: var(--interactive-primary-bg);
+  color: var(--interactive-primary-text);
+}
+</style>
+</head>
+<body>
+<div class="page-title">Tabs</div>
+<div class="page-meta">
+  Content panel navigation · 2 styles · 3 sizes · tokens: <span class="token-tag">text.*</span> <span class="token-tag">border.focus</span> <span class="token-tag">surface.*</span>
+</div>
+
+<div class="section">
+  <div class="section-title">Underline Style</div>
+  <div role="tablist" class="tabs-underline" aria-label="Account sections">
+    <button role="tab" class="tab-underline" aria-selected="true" aria-controls="tab-overview">Overview</button>
+    <button role="tab" class="tab-underline" aria-selected="false" aria-controls="tab-sessions">Sessions <span class="tab-count">12</span></button>
+    <button role="tab" class="tab-underline" aria-selected="false" aria-controls="tab-clients">Clients <span class="tab-count">48</span></button>
+    <button role="tab" class="tab-underline" aria-selected="false" aria-controls="tab-settings">Settings</button>
+  </div>
+  <div class="panel-content" id="tab-overview" role="tabpanel">
+    Overview content — analytics summary, recent activity, and quick actions for this account.
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Pill Style</div>
+  <div class="tabs-pill-wrap">
+    <div role="tablist" class="tabs-pill" aria-label="View mode">
+      <button role="tab" class="tab-pill" aria-selected="true">List</button>
+      <button role="tab" class="tab-pill" aria-selected="false">Grid</button>
+      <button role="tab" class="tab-pill" aria-selected="false">Calendar</button>
+    </div>
+  </div>
+  <div class="panel-content">
+    List view of all sessions — sortable by date, client, duration, and status.
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">With Icons</div>
+  <div role="tablist" class="tabs-underline" aria-label="Content type">
+    <button role="tab" class="tab-underline" aria-selected="true">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8h6M5 11h4"/></svg>
+      Notes
+    </button>
+    <button role="tab" class="tab-underline" aria-selected="false">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 2"/></svg>
+      Recordings
+    </button>
+    <button role="tab" class="tab-underline" aria-selected="false">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 4h12M2 8h8M2 12h6"/></svg>
+      Files
+    </button>
+  </div>
+  <div class="panel-content">
+    Notes from all sessions — filtered, searchable, and exportable as PDF.
+  </div>
+</div>
+</body>
+</html>

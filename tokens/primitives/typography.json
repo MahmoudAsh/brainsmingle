@@ -1,0 +1,50 @@
+{
+  "font": {
+    "family": {
+      "primary": {
+        "$value": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+        "$type": "fontFamily",
+        "$description": "Primary UI font stack. Swap for Inter when available."
+      },
+      "mono": {
+        "$value": "'SF Mono', Monaco, Consolas, 'Liberation Mono', monospace",
+        "$type": "fontFamily",
+        "$description": "Monospace stack for code, token names, paths"
+      }
+    },
+    "size": {
+      "xs":  { "$value": "12px", "$type": "dimension", "$description": "Captions, badges, small labels, overlines" },
+      "sm":  { "$value": "14px", "$type": "dimension", "$description": "Body default, buttons, form labels, code" },
+      "md":  { "$value": "16px", "$type": "dimension", "$description": "Body large, paragraphs" },
+      "lg":  { "$value": "18px", "$type": "dimension", "$description": "Small headings (h5), card titles" },
+      "xl":  { "$value": "20px", "$type": "dimension", "$description": "Sub-headings (h4)" },
+      "2xl": { "$value": "24px", "$type": "dimension", "$description": "Section headings (h3)" },
+      "3xl": { "$value": "30px", "$type": "dimension", "$description": "Page headings (h2)" },
+      "4xl": { "$value": "36px", "$type": "dimension", "$description": "Hero headings (h1)" },
+      "5xl": { "$value": "48px", "$type": "dimension", "$description": "Display / marketing" }
+    },
+    "weight": {
+      "regular":  { "$value": "400", "$type": "fontWeight" },
+      "medium":   { "$value": "500", "$type": "fontWeight" },
+      "semibold": { "$value": "600", "$type": "fontWeight" },
+      "bold":     { "$value": "700", "$type": "fontWeight" }
+    },
+    "lineHeight": {
+      "xs":  { "$value": "16px", "$type": "dimension" },
+      "sm":  { "$value": "20px", "$type": "dimension" },
+      "md":  { "$value": "24px", "$type": "dimension" },
+      "lg":  { "$value": "28px", "$type": "dimension" },
+      "xl":  { "$value": "28px", "$type": "dimension" },
+      "2xl": { "$value": "32px", "$type": "dimension" },
+      "3xl": { "$value": "36px", "$type": "dimension" },
+      "4xl": { "$value": "44px", "$type": "dimension" },
+      "5xl": { "$value": "56px", "$type": "dimension" }
+    },
+    "letterSpacing": {
+      "tight":  { "$value": "-0.02em", "$type": "dimension", "$description": "Headings h1–h2" },
+      "normal": { "$value": "0em",     "$type": "dimension", "$description": "Default — body, labels, buttons" },
+      "wide":   { "$value": "0.02em",  "$type": "dimension", "$description": "Badges" },
+      "wider":  { "$value": "0.06em",  "$type": "dimension", "$description": "Overlines, table headers" }
+    }
+  }
+}

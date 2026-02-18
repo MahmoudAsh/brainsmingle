@@ -1,0 +1,17 @@
+{
+  "color": {
+    "error": {
+      "50":  { "$value": "#ffeae7", "$type": "color" },
+      "100": { "$value": "#fed4ce", "$type": "color" },
+      "200": { "$value": "#fcada3", "$type": "color" },
+      "300": { "$value": "#f3776b", "$type": "color" },
+      "400": { "$value": "#d93c35", "$type": "color", "$description": "Error border" },
+      "500": { "$value": "#dc2626", "$type": "color", "$description": "Error primary — icons, bold backgrounds" },
+      "600": { "$value": "#960007", "$type": "color", "$description": "Error hover" },
+      "700": { "$value": "#720308", "$type": "color", "$description": "Error active" },
+      "800": { "$value": "#510707", "$type": "color" },
+      "900": { "$value": "#330806", "$type": "color" },
+      "950": { "$value": "#1e0604", "$type": "color" }
+    }
+  }
+}

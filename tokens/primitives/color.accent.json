@@ -1,0 +1,17 @@
+{
+  "color": {
+    "accent": {
+      "50":  { "$value": "#e6fef7", "$type": "color", "$description": "Subtle accent tint background" },
+      "100": { "$value": "#b5fce6", "$type": "color" },
+      "200": { "$value": "#76f0ce", "$type": "color" },
+      "300": { "$value": "#40e4b4", "$type": "color" },
+      "400": { "$value": "#1aeebb", "$type": "color", "$description": "Hover state" },
+      "500": { "$value": "#00ffc6", "$type": "color", "$description": "Secondary brand — supporting CTAs, highlights" },
+      "600": { "$value": "#00c79a", "$type": "color", "$description": "Pressed / active state" },
+      "700": { "$value": "#009373", "$type": "color" },
+      "800": { "$value": "#006550", "$type": "color" },
+      "900": { "$value": "#003a2e", "$type": "color" },
+      "950": { "$value": "#00201a", "$type": "color", "$description": "Deepest accent tint" }
+    }
+  }
+}

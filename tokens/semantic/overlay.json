@@ -1,0 +1,16 @@
+{
+  "overlay": {
+    "scrim": {
+      "$value": "{color.neutral.950}",
+      "$type": "color",
+      "$description": "Modal backdrop scrim — apply at 60% opacity",
+      "$extensions": { "alpha": 0.6 }
+    },
+    "scrim-heavy": {
+      "$value": "{color.neutral.950}",
+      "$type": "color",
+      "$description": "Heavy scrim — fullscreen modal, lightbox — apply at 80% opacity",
+      "$extensions": { "alpha": 0.8 }
+    }
+  }
+}

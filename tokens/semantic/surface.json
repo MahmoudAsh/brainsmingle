@@ -1,0 +1,40 @@
+{
+  "surface": {
+    "base": {
+      "$value": "{color.neutral.950}",
+      "$type": "color",
+      "$description": "Main page background — darkest layer",
+      "$extensions": { "modes": { "dark": "{color.neutral.950}", "light": "{color.neutral.50}" } }
+    },
+    "card": {
+      "$value": "{color.neutral.900}",
+      "$type": "color",
+      "$description": "Card and panel backgrounds",
+      "$extensions": { "modes": { "dark": "{color.neutral.900}", "light": "{color.neutral.0}" } }
+    },
+    "raised": {
+      "$value": "{color.neutral.875}",
+      "$type": "color",
+      "$description": "Elevated surface — popovers, dropdowns",
+      "$extensions": { "modes": { "dark": "{color.neutral.875}", "light": "{color.neutral.100}" } }
+    },
+    "overlay": {
+      "$value": "{color.neutral.850}",
+      "$type": "color",
+      "$description": "Modal and overlay backgrounds",
+      "$extensions": { "modes": { "dark": "{color.neutral.850}", "light": "{color.neutral.200}" } }
+    },
+    "sunken": {
+      "$value": "{color.neutral.925}",
+      "$type": "color",
+      "$description": "Recessed areas — wells, sidebar",
+      "$extensions": { "modes": { "dark": "{color.neutral.925}", "light": "{color.neutral.0}" } }
+    },
+    "inverse": {
+      "$value": "{color.neutral.50}",
+      "$type": "color",
+      "$description": "Light surface for inverted contexts",
+      "$extensions": { "modes": { "dark": "{color.neutral.50}", "light": "{color.neutral.950}" } }
+    }
+  }
+}

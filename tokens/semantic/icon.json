@@ -1,0 +1,34 @@
+{
+  "icon": {
+    "primary": {
+      "$value": "{color.neutral.100}",
+      "$type": "color",
+      "$description": "High-emphasis icons",
+      "$extensions": { "modes": { "dark": "{color.neutral.100}", "light": "{color.neutral.950}" } }
+    },
+    "secondary": {
+      "$value": "{color.neutral.250}",
+      "$type": "color",
+      "$description": "Medium-emphasis icons",
+      "$extensions": { "modes": { "dark": "{color.neutral.250}", "light": "{color.neutral.700}" } }
+    },
+    "muted": {
+      "$value": "{color.neutral.350}",
+      "$type": "color",
+      "$description": "Low-emphasis icons",
+      "$extensions": { "modes": { "dark": "{color.neutral.350}", "light": "{color.neutral.500}" } }
+    },
+    "disabled": {
+      "$value": "{color.neutral.500}",
+      "$type": "color",
+      "$description": "Disabled icons",
+      "$extensions": { "modes": { "dark": "{color.neutral.500}", "light": "{color.neutral.400}" } }
+    },
+    "inverse": {
+      "$value": "{color.neutral.950}",
+      "$type": "color",
+      "$description": "Icons on light surfaces",
+      "$extensions": { "modes": { "dark": "{color.neutral.950}", "light": "{color.neutral.50}" } }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "brainsmingle-design-system",
+  "version": "1.0.0",
+  "description": "BrainsMingle Design System — tokens, components, and Figma Variables export",
+  "type": "module",
+  "scripts": {
+    "figma:export": "node scripts/figma-export.js",
+    "figma:push": "FIGMA_PUSH=true node scripts/figma-export.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "color": {
+    "brand": {
+      "50":  { "$value": "#edeeff", "$type": "color", "$description": "Subtle brand tint background" },
+      "100": { "$value": "#ddddff", "$type": "color" },
+      "200": { "$value": "#c0bfff", "$type": "color" },
+      "300": { "$value": "#9b94ff", "$type": "color", "$description": "Link hover on light" },
+      "400": { "$value": "#6a41f6", "$type": "color", "$description": "Hover state, links" },
+      "500": { "$value": "#6723ff", "$type": "color", "$description": "Primary brand — CTAs, active states" },
+      "600": { "$value": "#4200b5", "$type": "color", "$description": "Pressed / active state" },
+      "700": { "$value": "#32008e", "$type": "color" },
+      "800": { "$value": "#220066", "$type": "color" },
+      "900": { "$value": "#150243", "$type": "color" },
+      "950": { "$value": "#0b032a", "$type": "color", "$description": "Deepest brand tint" }
+    }
+  }
+}

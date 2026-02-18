@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkbox — BrainsMingle DS</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font-primary);
+  background: var(--surface-base);
+  color: var(--text-primary);
+  padding: 40px;
+  line-height: 1.6;
+}
+.page-title { font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); margin-bottom: 8px; }
+.page-meta  { font-size: var(--font-size-sm); color: var(--text-muted); margin-bottom: 40px; }
+.section { margin-bottom: 40px; }
+.section-title { font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: 16px; border-bottom: 1px solid var(--border-divider); padding-bottom: 8px; }
+.stack { display: flex; flex-direction: column; gap: 12px; }
+.row { display: flex; gap: 24px; flex-wrap: wrap; }
+.token-tag { font-size: 11px; font-family: var(--font-mono); background: var(--surface-raised); color: var(--text-muted); padding: 2px 6px; border-radius: 4px; }
+
+/* ── Checkbox ── */
+.checkbox-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+.checkbox-wrap:has(input:disabled) { cursor: not-allowed; opacity: 0.5; }
+
+/* Hide native input */
+.checkbox-wrap input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Custom box */
+.checkbox-box {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  border: 2px solid var(--border-default);
+  background: var(--surface-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--motion-fast) var(--motion-ease),
+              border-color var(--motion-fast) var(--motion-ease);
+}
+.checkbox-box svg { opacity: 0; transition: opacity var(--motion-fast) var(--motion-ease); }
+
+/* Checked */
+.checkbox-wrap input:checked ~ .checkbox-box {
+  background: var(--interactive-primary-bg);
+  border-color: var(--interactive-primary-bg);
+}
+.checkbox-wrap input:checked ~ .checkbox-box svg { opacity: 1; }
+
+/* Hover */
+.checkbox-wrap:not(:has(input:disabled)):hover .checkbox-box {
+  border-color: var(--border-strong);
+}
+.checkbox-wrap:not(:has(input:disabled)):hover input:checked ~ .checkbox-box {
+  background: var(--interactive-primary-hover);
+  border-color: var(--interactive-primary-hover);
+}
+
+/* Focus */
+.checkbox-wrap input:focus-visible ~ .checkbox-box {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* Label */
+.checkbox-label {
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+}
+
+/* Sizes */
+.checkbox-sm .checkbox-box { width: 14px; height: 14px; border-radius: 3px; }
+.checkbox-sm .checkbox-label { font-size: var(--font-size-xs); }
+.checkbox-lg .checkbox-box { width: 22px; height: 22px; border-radius: 5px; }
+.checkbox-lg .checkbox-label { font-size: var(--font-size-md); }
+</style>
+</head>
+<body>
+<div class="page-title">Checkbox</div>
+<div class="page-meta">
+  Binary selection controls · 2 variants · 3 sizes · tokens: <span class="token-tag">interactive.primary.*</span> <span class="token-tag">surface.card</span> <span class="token-tag">border.*</span>
+</div>
+
+<div class="section">
+  <div class="section-title">States</div>
+  <div class="stack">
+    <label class="checkbox-wrap">
+      <input type="checkbox">
+      <span class="checkbox-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4l3 3 5-5"/></svg></span>
+      <span class="checkbox-label">Unchecked</span>
+    </label>
+
+    <label class="checkbox-wrap">
+      <input type="checkbox" checked>
+      <span class="checkbox-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4l3 3 5-5"/></svg></span>
+      <span class="checkbox-label">Checked</span>
+    </label>
+
+    <label class="checkbox-wrap">
+      <input type="checkbox" disabled>
+      <span class="checkbox-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4l3 3 5-5"/></svg></span>
+      <span class="checkbox-label">Disabled unchecked</span>
+    </label>
+
+    <label class="checkbox-wrap">
+      <input type="checkbox" checked disabled>
+      <span class="checkbox-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4l3 3 5-5"/></svg></span>
+      <span class="checkbox-label">Disabled checked</span>
+    </label>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Sizes</div>
+  <div class="row">
+    <label class="checkbox-wrap checkbox-sm">
+      <input type="checkbox" checked>
+      <span class="checkbox-box"><svg width="8" height="6" viewBox="0 0 10 8" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4l3 3 5-5"/></svg></span>
+      <span class="checkbox-label">Small</span>
+    </label>
+    <label class="checkbox-wrap">
+      <input type="checkbox" checked>
+      <span class="checkbox-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4l3 3 5-5"/></svg></span>
+      <span class="checkbox-label">Medium</span>
+    </label>
+    <label class="checkbox-wrap checkbox-lg">
+      <input type="checkbox" checked>
+      <span class="checkbox-box"><svg width="12" height="10" viewBox="0 0 10 8" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4l3 3 5-5"/></svg></span>
+      <span class="checkbox-label">Large</span>
+    </label>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">In Context — Permissions List</div>
+  <div style="background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 16px; max-width: 360px;">
+    <div style="font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 14px;">Notification preferences</div>
+    <div class="stack">
+      <label class="checkbox-wrap">
+        <input type="checkbox" checked>
+        <span class="checkbox-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4l3 3 5-5"/></svg></span>
+        <span class="checkbox-label">New session bookings</span>
+      </label>
+      <label class="checkbox-wrap">
+        <input type="checkbox" checked>
+        <span class="checkbox-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4l3 3 5-5"/></svg></span>
+        <span class="checkbox-label">Payment received</span>
+      </label>
+      <label class="checkbox-wrap">
+        <input type="checkbox">
+        <span class="checkbox-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4l3 3 5-5"/></svg></span>
+        <span class="checkbox-label">Marketing emails</span>
+      </label>
+      <label class="checkbox-wrap">
+        <input type="checkbox">
+        <span class="checkbox-box"><svg width="10" height="8" viewBox="0 0 10 8" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4l3 3 5-5"/></svg></span>
+        <span class="checkbox-label">Weekly digest</span>
+      </label>
+    </div>
+  </div>
+</div>
+</body>
+</html>

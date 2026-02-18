@@ -1,0 +1,17 @@
+{
+  "color": {
+    "success": {
+      "50":  { "$value": "#e6f7e8", "$type": "color" },
+      "100": { "$value": "#ccedd1", "$type": "color" },
+      "200": { "$value": "#9ddda8", "$type": "color" },
+      "300": { "$value": "#5ec476", "$type": "color" },
+      "400": { "$value": "#2caa53", "$type": "color", "$description": "Success border" },
+      "500": { "$value": "#16a34a", "$type": "color", "$description": "Success primary" },
+      "600": { "$value": "#00712f", "$type": "color" },
+      "700": { "$value": "#025622", "$type": "color" },
+      "800": { "$value": "#023b16", "$type": "color" },
+      "900": { "$value": "#04260d", "$type": "color" },
+      "950": { "$value": "#041507", "$type": "color" }
+    }
+  }
+}

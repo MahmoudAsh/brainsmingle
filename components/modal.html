@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modal — BrainsMingle DS</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font-primary);
+  background: var(--surface-base);
+  color: var(--text-primary);
+  padding: 40px;
+  line-height: 1.6;
+}
+.page-title { font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); margin-bottom: 8px; }
+.page-meta  { font-size: var(--font-size-sm); color: var(--text-muted); margin-bottom: 40px; }
+.section { margin-bottom: 48px; }
+.section-title { font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: 16px; border-bottom: 1px solid var(--border-divider); padding-bottom: 8px; }
+.token-tag { font-size: 11px; font-family: var(--font-mono); background: var(--surface-raised); color: var(--text-muted); padding: 2px 6px; border-radius: 4px; }
+.trigger-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--interactive-primary-bg);
+  color: var(--interactive-primary-text);
+  border: none; border-radius: 10px;
+  padding: 8px 18px; font-size: 14px; font-weight: 600;
+  cursor: pointer; font-family: inherit;
+  transition: background var(--motion-fast) var(--motion-ease);
+}
+.trigger-btn:hover { background: var(--interactive-primary-hover); }
+.row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* ── Modal overlay ── */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay-scrim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--motion-normal) var(--motion-ease);
+}
+.modal-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── Modal container ── */
+.modal {
+  background: var(--surface-overlay);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(8px) scale(0.98);
+  transition: transform var(--motion-normal) var(--motion-ease);
+}
+.modal-backdrop.is-open .modal {
+  transform: translateY(0) scale(1);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 0;
+}
+.modal-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+.modal-close {
+  width: 32px; height: 32px;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--icon-muted);
+  transition: background var(--motion-fast) var(--motion-ease),
+              color var(--motion-fast) var(--motion-ease);
+}
+.modal-close:hover { background: var(--surface-card); color: var(--icon-primary); }
+.modal-close:focus-visible { outline: 2px solid var(--border-focus); outline-offset: 2px; }
+
+.modal-body {
+  padding: 16px 24px 24px;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  overflow-y: auto;
+}
+.modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  background: var(--surface-raised);
+}
+
+/* Static previews (for doc) */
+.modal-static {
+  background: var(--surface-overlay);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  max-width: 480px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+</style>
+</head>
+<body>
+<div class="page-title">Modal</div>
+<div class="page-meta">
+  Dialog overlays and sheets · 3 variants · tokens: <span class="token-tag">surface.overlay</span> <span class="token-tag">overlay.scrim</span> <span class="token-tag">border.*</span>
+</div>
+
+<div class="section">
+  <div class="section-title">Live Demos</div>
+  <div class="row">
+    <button class="trigger-btn" onclick="document.getElementById('modal-default').classList.add('is-open')">Open Default Modal</button>
+    <button class="trigger-btn" style="background: var(--status-error-bg-bold);" onclick="document.getElementById('modal-destructive').classList.add('is-open')">Open Destructive</button>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Static Preview</div>
+  <div class="modal-static">
+    <div class="modal-header" style="padding: 20px 24px 0;">
+      <div class="modal-title">Book a session</div>
+      <button class="modal-close" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p style="margin-bottom: 16px;">Schedule a 1-on-1 consultation with your selected expert. Choose a time that works for both of you.</p>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div>
+          <label style="font-size: 12px; font-weight: 500; color: var(--text-secondary); display: block; margin-bottom: 6px;">Date</label>
+          <input style="width: 100%; background: var(--surface-card); color: var(--text-primary); border: 1px solid var(--border-default); border-radius: 8px; padding: 8px 12px; font-size: 14px; font-family: inherit; outline: none;" type="date" value="2026-03-20">
+        </div>
+        <div>
+          <label style="font-size: 12px; font-weight: 500; color: var(--text-secondary); display: block; margin-bottom: 6px;">Duration</label>
+          <select style="width: 100%; background: var(--surface-card); color: var(--text-primary); border: 1px solid var(--border-default); border-radius: 8px; padding: 8px 12px; font-size: 14px; font-family: inherit; outline: none;">
+            <option>30 minutes</option>
+            <option selected>60 minutes</option>
+            <option>90 minutes</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button style="background: transparent; color: var(--text-secondary); border: 1px solid var(--border-default); border-radius: 8px; padding: 8px 18px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit;">Cancel</button>
+      <button style="background: var(--interactive-primary-bg); color: var(--interactive-primary-text); border: none; border-radius: 8px; padding: 8px 20px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit;">Confirm booking</button>
+    </div>
+  </div>
+</div>
+
+<!-- Default modal -->
+<div class="modal-backdrop" id="modal-default" role="dialog" aria-modal="true" aria-labelledby="modal-title-1">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="modal-title-1">Update payment method</div>
+      <button class="modal-close" aria-label="Close" onclick="document.getElementById('modal-default').classList.remove('is-open')">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Enter your new card details. Your old card will be removed and all future payments will be charged to the new card.</p>
+    </div>
+    <div class="modal-footer">
+      <button style="background: transparent; color: var(--text-secondary); border: 1px solid var(--border-default); border-radius: 8px; padding: 8px 18px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit;" onclick="document.getElementById('modal-default').classList.remove('is-open')">Cancel</button>
+      <button style="background: var(--interactive-primary-bg); color: var(--interactive-primary-text); border: none; border-radius: 8px; padding: 8px 20px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit;">Save card</button>
+    </div>
+  </div>
+</div>
+
+<!-- Destructive modal -->
+<div class="modal-backdrop" id="modal-destructive" role="dialog" aria-modal="true" aria-labelledby="modal-title-2">
+  <div class="modal" style="max-width: 440px;">
+    <div class="modal-header">
+      <div class="modal-title" id="modal-title-2" style="color: var(--status-error-text);">Delete account</div>
+      <button class="modal-close" aria-label="Close" onclick="document.getElementById('modal-destructive').classList.remove('is-open')">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p style="margin-bottom: 12px;">This action is permanent and cannot be undone. All your sessions, recordings, and client data will be erased.</p>
+      <div style="background: var(--status-error-bg-subtle); border: 1px solid var(--status-error-border); border-radius: 8px; padding: 12px 14px; font-size: 13px; color: var(--status-error-text);">
+        You will lose access to 48 client records and 136 session recordings.
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button style="background: transparent; color: var(--text-secondary); border: 1px solid var(--border-default); border-radius: 8px; padding: 8px 18px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit;" onclick="document.getElementById('modal-destructive').classList.remove('is-open')">Keep account</button>
+      <button style="background: var(--status-error-bg-bold); color: var(--status-error-text-bold); border: none; border-radius: 8px; padding: 8px 20px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit;">Delete permanently</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Close on backdrop click
+document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+  backdrop.addEventListener('click', e => {
+    if (e.target === backdrop) backdrop.classList.remove('is-open');
+  });
+});
+// Close on Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.querySelectorAll('.modal-backdrop.is-open').forEach(b => b.classList.remove('is-open'));
+});
+</script>
+</body>
+</html>

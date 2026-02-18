@@ -1,0 +1,26 @@
+{
+  "highlight": {
+    "default": {
+      "$value": "{color.accent.500}",
+      "$type": "color",
+      "$description": "Accent highlight — metric emphasis, inline marks"
+    },
+    "subtle": {
+      "$value": "{color.accent.100}",
+      "$type": "color",
+      "$description": "Subtle accent tint background"
+    },
+    "border": {
+      "$value": "{color.accent.400}",
+      "$type": "color",
+      "$description": "Accent border — callouts, highlighted sections"
+    }
+  },
+  "badge": {
+    "secondaryBrand": {
+      "bg":       { "$value": "{color.accent.500}", "$type": "color", "$description": "Accent badge background" },
+      "text":     { "$value": "{color.neutral.950}", "$type": "color", "$description": "Accent badge text (dark on cyan)" },
+      "subtleBg": { "$value": "{color.accent.50}", "$type": "color", "$description": "Subtle accent badge background" }
+    }
+  }
+}

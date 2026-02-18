@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Input — BrainsMingle DS</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font-primary);
+  background: var(--surface-base);
+  color: var(--text-primary);
+  padding: 40px;
+  line-height: 1.6;
+}
+.page-title { font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); margin-bottom: 8px; }
+.page-meta  { font-size: var(--font-size-sm); color: var(--text-muted); margin-bottom: 40px; }
+.section { margin-bottom: 40px; }
+.section-title { font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: 16px; border-bottom: 1px solid var(--border-divider); padding-bottom: 8px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+.token-tag { font-size: 11px; font-family: var(--font-mono); background: var(--surface-raised); color: var(--text-muted); padding: 2px 6px; border-radius: 4px; }
+
+/* ── Field wrapper ── */
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field-label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+}
+.field-hint {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+}
+.field-error-hint {
+  font-size: var(--font-size-xs);
+  color: var(--status-error-text);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ── Input base ── */
+.input {
+  width: 100%;
+  background: var(--surface-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  padding: 8px 12px;
+  height: 40px;
+  transition: border-color var(--motion-fast) var(--motion-ease);
+  outline: none;
+}
+.input::placeholder { color: var(--text-disabled); }
+.input:hover { border-color: var(--border-strong); }
+.input:focus-visible { border-color: var(--border-focus); box-shadow: 0 0 0 3px rgba(106, 65, 246, 0.16); }
+.input.input-sm { font-size: var(--font-size-xs); height: 32px; padding: 6px 10px; }
+.input.input-lg { font-size: var(--font-size-md); height: 48px; padding: 12px 16px; }
+
+/* Error state */
+.input.is-error { border-color: var(--status-error-border); }
+.input.is-error:focus-visible { box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.16); }
+
+/* Success state */
+.input.is-success { border-color: var(--status-success-border); }
+
+/* Disabled */
+.input:disabled {
+  background: var(--surface-sunken);
+  color: var(--text-disabled);
+  border-color: var(--border-subtle);
+  cursor: not-allowed;
+}
+
+/* Input with icon */
+.input-wrap { position: relative; }
+.input-wrap .input { padding-left: 36px; }
+.input-wrap .input-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--icon-muted);
+  pointer-events: none;
+}
+
+/* Textarea */
+.textarea {
+  width: 100%;
+  background: var(--surface-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  padding: 10px 12px;
+  resize: vertical;
+  min-height: 100px;
+  transition: border-color var(--motion-fast) var(--motion-ease);
+  outline: none;
+}
+.textarea::placeholder { color: var(--text-disabled); }
+.textarea:hover { border-color: var(--border-strong); }
+.textarea:focus-visible { border-color: var(--border-focus); box-shadow: 0 0 0 3px rgba(106, 65, 246, 0.16); }
+</style>
+</head>
+<body>
+<div class="page-title">Input</div>
+<div class="page-meta">
+  Text fields, selects, textareas · 4 states · 3 sizes · tokens: <span class="token-tag">surface.card</span> <span class="token-tag">border.*</span> <span class="token-tag">text.*</span>
+</div>
+
+<div class="section">
+  <div class="section-title">States</div>
+  <div class="grid">
+    <div class="field">
+      <label class="field-label">Default</label>
+      <input class="input" type="text" placeholder="Enter your name…">
+      <span class="field-hint">Hint text for additional guidance</span>
+    </div>
+    <div class="field">
+      <label class="field-label">Focused (click to see)</label>
+      <input class="input" type="text" placeholder="Click to focus…">
+    </div>
+    <div class="field">
+      <label class="field-label">Error <span style="color: var(--status-error-text)">*</span></label>
+      <input class="input is-error" type="email" value="invalid-email">
+      <span class="field-error-hint">
+        <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="M8 5v3M8 11h.01"/></svg>
+        Please enter a valid email address
+      </span>
+    </div>
+    <div class="field">
+      <label class="field-label">Success</label>
+      <input class="input is-success" type="text" value="john.doe">
+    </div>
+    <div class="field">
+      <label class="field-label">Disabled</label>
+      <input class="input" type="text" value="Cannot edit this" disabled>
+      <span class="field-hint">This field is read-only</span>
+    </div>
+    <div class="field">
+      <label class="field-label">With icon</label>
+      <div class="input-wrap">
+        <svg class="input-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6.5" cy="6.5" r="5"/><line x1="10" y1="10" x2="14.5" y2="14.5"/></svg>
+        <input class="input" type="text" placeholder="Search…">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Sizes</div>
+  <div style="display: flex; flex-direction: column; gap: 14px; max-width: 320px;">
+    <div class="field">
+      <label class="field-label">Small (32px)</label>
+      <input class="input input-sm" type="text" placeholder="Small input…">
+    </div>
+    <div class="field">
+      <label class="field-label">Medium (40px)</label>
+      <input class="input" type="text" placeholder="Medium input…">
+    </div>
+    <div class="field">
+      <label class="field-label">Large (48px)</label>
+      <input class="input input-lg" type="text" placeholder="Large input…">
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Textarea</div>
+  <div style="max-width: 480px;">
+    <div class="field">
+      <label class="field-label">Message</label>
+      <textarea class="textarea" placeholder="Write your message here…"></textarea>
+      <span class="field-hint">Max 500 characters</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

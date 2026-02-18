@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Card — BrainsMingle DS</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font-primary);
+  background: var(--surface-base);
+  color: var(--text-primary);
+  padding: 40px;
+  line-height: 1.6;
+}
+.page-title { font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); margin-bottom: 8px; }
+.page-meta  { font-size: var(--font-size-sm); color: var(--text-muted); margin-bottom: 40px; }
+.section { margin-bottom: 40px; }
+.section-title { font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: 16px; border-bottom: 1px solid var(--border-divider); padding-bottom: 8px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.token-tag { font-size: 11px; font-family: var(--font-mono); background: var(--surface-raised); color: var(--text-muted); padding: 2px 6px; border-radius: 4px; }
+
+/* ── Card base ── */
+.card {
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 16px;
+  transition: border-color var(--motion-fast) var(--motion-ease),
+              background var(--motion-fast) var(--motion-ease);
+}
+.card:hover { border-color: var(--border-default); }
+
+/* Sizes */
+.card-sm { padding: 12px; }
+.card-lg { padding: 24px; }
+
+/* Raised */
+.card-raised {
+  background: var(--surface-raised);
+  border-color: var(--border-default);
+}
+
+/* Interactive */
+.card-interactive { cursor: pointer; }
+.card-interactive:hover {
+  background: var(--surface-raised);
+  border-color: var(--border-strong);
+}
+
+/* Brand accent */
+.card-brand {
+  border-color: var(--highlight-border);
+}
+.card-brand:hover { border-color: var(--highlight-default); }
+
+/* Card parts */
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.card-title {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+.card-subtitle {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+.card-body {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.card-meta {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  margin-top: 12px;
+}
+.card-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-subtle);
+}
+.card-divider {
+  height: 1px;
+  background: var(--border-divider);
+  margin: 14px 0;
+}
+
+/* Stat card */
+.stat-value {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--text-primary);
+}
+.stat-label { font-size: var(--font-size-xs); color: var(--text-muted); margin-top: 4px; }
+.stat-change {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--status-success-text);
+  margin-top: 6px;
+}
+</style>
+</head>
+<body>
+<div class="page-title">Card</div>
+<div class="page-meta">
+  Content containers and panels · 5 variants · 3 sizes · tokens: <span class="token-tag">surface.*</span> <span class="token-tag">border.*</span> <span class="token-tag">text.*</span>
+</div>
+
+<div class="section">
+  <div class="section-title">Variants</div>
+  <div class="grid">
+    <!-- Default -->
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Default Card</div>
+          <div class="card-subtitle">surface.card + border.subtle</div>
+        </div>
+      </div>
+      <div class="card-body">Content rests on the card surface. Use for panels, list items, and grouped information.</div>
+    </div>
+
+    <!-- Raised -->
+    <div class="card card-raised">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Raised Card</div>
+          <div class="card-subtitle">surface.raised + border.default</div>
+        </div>
+      </div>
+      <div class="card-body">Elevated surface for popovers, dropdown panels, and secondary content layers.</div>
+    </div>
+
+    <!-- Interactive -->
+    <div class="card card-interactive">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Interactive Card</div>
+          <div class="card-subtitle">Hover to see state change</div>
+        </div>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--icon-muted)" stroke-width="1.8" stroke-linecap="round"><path d="M6 4l4 4-4 4"/></svg>
+      </div>
+      <div class="card-body">Clickable card with hover states. Used for navigable list items and selection UI.</div>
+    </div>
+
+    <!-- Brand accent -->
+    <div class="card card-brand">
+      <div class="card-header">
+        <div>
+          <div class="card-title" style="color: var(--highlight-default)">Brand Accent Card</div>
+          <div class="card-subtitle">highlight.border on border</div>
+        </div>
+      </div>
+      <div class="card-body">Highlighted card with accent border for promoted content, featured items, or active selection.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Stat Cards</div>
+  <div class="grid">
+    <div class="card">
+      <div class="stat-label">Monthly Revenue</div>
+      <div class="stat-value">$12,480</div>
+      <div class="stat-change">+18.4% vs last month</div>
+    </div>
+    <div class="card">
+      <div class="stat-label">Active Users</div>
+      <div class="stat-value">2,847</div>
+      <div class="stat-change">+6.2% this week</div>
+    </div>
+    <div class="card card-brand">
+      <div class="stat-label">Consultations</div>
+      <div class="stat-value" style="color: var(--highlight-default)">136</div>
+      <div class="stat-change">+24 today</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Card with Footer</div>
+  <div class="grid">
+    <div class="card card-lg">
+      <div class="card-title">Session Recording</div>
+      <div class="card-meta">March 14, 2026 · 45 min</div>
+      <div class="card-divider"></div>
+      <div class="card-body">Product roadmap discussion covering Q2 priorities, token system updates, and component library expansion plans.</div>
+      <div class="card-footer">
+        <button style="background: var(--interactive-primary-bg); color: var(--interactive-primary-text); border: none; border-radius: 8px; padding: 6px 14px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit;">Watch</button>
+        <button style="background: transparent; color: var(--text-secondary); border: 1px solid var(--border-default); border-radius: 8px; padding: 6px 14px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit;">Share</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

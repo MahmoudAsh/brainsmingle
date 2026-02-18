@@ -1,0 +1,27 @@
+{
+  "tabs": {
+    "underline": {
+      "tab-text":         { "$value": "{text.muted}",           "$type": "color" },
+      "tab-text-hover":   { "$value": "{text.secondary}",       "$type": "color" },
+      "tab-text-active":  { "$value": "{text.primary}",         "$type": "color" },
+      "indicator":        { "$value": "{border.focus}",         "$type": "color" },
+      "border-bottom":    { "$value": "{border.subtle}",        "$type": "color" }
+    },
+    "pill": {
+      "tab-text":         { "$value": "{text.muted}",           "$type": "color" },
+      "tab-text-hover":   { "$value": "{text.secondary}",       "$type": "color" },
+      "tab-text-active":  { "$value": "{text.primary}",         "$type": "color" },
+      "tab-bg-active":    { "$value": "{surface.raised}",       "$type": "color" },
+      "container-bg":     { "$value": "{surface.card}",         "$type": "color" }
+    },
+    "size": {
+      "sm": { "font-size": { "$value": "12px", "$type": "dimension" }, "padding": { "$value": "6px 12px",  "$type": "other" } },
+      "md": { "font-size": { "$value": "14px", "$type": "dimension" }, "padding": { "$value": "8px 16px",  "$type": "other" } },
+      "lg": { "font-size": { "$value": "16px", "$type": "dimension" }, "padding": { "$value": "10px 20px", "$type": "other" } }
+    },
+    "indicator-height":    { "$value": "2px",  "$type": "dimension" },
+    "pill-border-radius":  { "$value": "8px",  "$type": "dimension" },
+    "font-weight-active":  { "$value": "600",  "$type": "fontWeight" },
+    "transition-duration": { "$value": "200ms","$type": "duration" }
+  }
+}

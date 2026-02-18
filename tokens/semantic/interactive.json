@@ -1,0 +1,34 @@
+{
+  "interactive": {
+    "primary": {
+      "bg":     { "$value": "{color.brand.500}", "$type": "color", "$description": "Primary button background" },
+      "hover":  { "$value": "{color.brand.400}", "$type": "color", "$description": "Primary button hover" },
+      "active": { "$value": "{color.brand.600}", "$type": "color", "$description": "Primary button pressed" },
+      "text":   { "$value": "{color.neutral.50}", "$type": "color", "$description": "Text on primary button" },
+      "border": { "$value": "{color.brand.500}", "$type": "color", "$description": "Primary button border (outline variant)" }
+    },
+    "secondaryBrand": {
+      "bg":     { "$value": "{color.accent.500}", "$type": "color", "$description": "Secondary brand button background" },
+      "hover":  { "$value": "{color.accent.400}", "$type": "color", "$description": "Secondary brand hover" },
+      "active": { "$value": "{color.accent.600}", "$type": "color", "$description": "Secondary brand pressed" },
+      "text":   { "$value": "{color.neutral.950}", "$type": "color", "$description": "Text on accent background (dark on cyan)" },
+      "border": { "$value": "{color.accent.500}", "$type": "color", "$description": "Secondary brand border" }
+    },
+    "secondary": {
+      "bg":     { "$value": "{color.neutral.900}", "$type": "color", "$description": "Secondary button background" },
+      "hover":  { "$value": "{color.neutral.875}", "$type": "color", "$description": "Secondary button hover" },
+      "active": { "$value": "{color.neutral.850}", "$type": "color", "$description": "Secondary button pressed" },
+      "text":   { "$value": "{color.neutral.100}", "$type": "color", "$description": "Secondary button text" }
+    },
+    "ghost": {
+      "hover":  { "$value": "{color.neutral.900}", "$type": "color", "$description": "Ghost button hover background" },
+      "active": { "$value": "{color.neutral.875}", "$type": "color", "$description": "Ghost button pressed background" },
+      "text":   { "$value": "{color.neutral.250}", "$type": "color", "$description": "Ghost button text" }
+    },
+    "link": {
+      "default": { "$value": "{color.brand.400}", "$type": "color", "$description": "Link default color" },
+      "hover":   { "$value": "{color.brand.300}", "$type": "color", "$description": "Link hover color" },
+      "visited": { "$value": "{color.brand.500}", "$type": "color", "$description": "Link visited color" }
+    }
+  }
+}

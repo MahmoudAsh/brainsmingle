@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alert — BrainsMingle DS</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font-primary);
+  background: var(--surface-base);
+  color: var(--text-primary);
+  padding: 40px;
+  line-height: 1.6;
+}
+.page-title { font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); margin-bottom: 8px; }
+.page-meta  { font-size: var(--font-size-sm); color: var(--text-muted); margin-bottom: 40px; }
+.section { margin-bottom: 40px; max-width: 600px; }
+.section-title { font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); margin-bottom: 16px; border-bottom: 1px solid var(--border-divider); padding-bottom: 8px; }
+.token-tag { font-size: 11px; font-family: var(--font-mono); background: var(--surface-raised); color: var(--text-muted); padding: 2px 6px; border-radius: 4px; }
+
+/* ── Alert base ── */
+.alert {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  border-radius: 10px;
+  border: 1px solid;
+  border-left-width: 4px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+.alert-icon {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.alert-content { flex: 1; }
+.alert-title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: 2px;
+}
+.alert-body {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+.alert-close {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--icon-muted);
+  padding: 2px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  transition: color var(--motion-fast) var(--motion-ease);
+}
+.alert-close:hover { color: var(--icon-primary); }
+
+/* Variants */
+.alert-error   { background: var(--status-error-bg-subtle);   border-color: var(--status-error-border);   }
+.alert-success { background: var(--status-success-bg-subtle); border-color: var(--status-success-border); }
+.alert-warning { background: var(--status-warning-bg-subtle); border-color: var(--status-warning-border); }
+.alert-info    { background: var(--status-info-bg-subtle);    border-color: var(--status-info-border);    }
+.alert-neutral { background: var(--surface-raised);           border-color: var(--border-default);        }
+
+.alert-error   .alert-icon { color: var(--status-error-icon);   }
+.alert-success .alert-icon { color: var(--status-success-icon); }
+.alert-warning .alert-icon { color: var(--status-warning-icon); }
+.alert-info    .alert-icon { color: var(--status-info-icon);    }
+.alert-neutral .alert-icon { color: var(--icon-secondary);      }
+
+.alert-error   .alert-title { color: var(--status-error-text);   }
+.alert-success .alert-title { color: var(--status-success-text); }
+.alert-warning .alert-title { color: var(--status-warning-text); }
+.alert-info    .alert-title { color: var(--status-info-text);    }
+.alert-neutral .alert-title { color: var(--text-primary);        }
+</style>
+</head>
+<body>
+<div class="page-title">Alert</div>
+<div class="page-meta">
+  Contextual feedback messages · 5 variants · tokens: <span class="token-tag">status.*</span> <span class="token-tag">text.*</span> <span class="token-tag">icon.*</span>
+</div>
+
+<div class="section">
+  <div class="section-title">Variants</div>
+
+  <div class="alert alert-error" role="alert">
+    <svg class="alert-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10" cy="10" r="8"/><path d="M10 7v4M10 13h.01"/></svg>
+    <div class="alert-content">
+      <div class="alert-title">Payment failed</div>
+      <div class="alert-body">Your card ending in 4242 was declined. Please update your payment method and try again.</div>
+    </div>
+    <button class="alert-close" aria-label="Dismiss"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>
+  </div>
+
+  <div class="alert alert-success" role="status">
+    <svg class="alert-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10" cy="10" r="8"/><path d="M6 10l3 3 5-5"/></svg>
+    <div class="alert-content">
+      <div class="alert-title">Profile updated</div>
+      <div class="alert-body">Your profile information has been saved successfully. Changes are now visible to clients.</div>
+    </div>
+    <button class="alert-close" aria-label="Dismiss"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>
+  </div>
+
+  <div class="alert alert-warning" role="alert">
+    <svg class="alert-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M10 3L2 17h16L10 3z"/><path d="M10 9v4M10 15h.01"/></svg>
+    <div class="alert-content">
+      <div class="alert-title">Storage almost full</div>
+      <div class="alert-body">You have used 92% of your 5 GB storage. Upgrade your plan to continue recording sessions.</div>
+    </div>
+    <button class="alert-close" aria-label="Dismiss"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>
+  </div>
+
+  <div class="alert alert-info" role="status">
+    <svg class="alert-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10" cy="10" r="8"/><path d="M10 14v-5M10 7h.01"/></svg>
+    <div class="alert-content">
+      <div class="alert-title">Maintenance scheduled</div>
+      <div class="alert-body">BrainsMingle will undergo maintenance on March 20 from 2–4 AM UTC. All data is safe and backed up.</div>
+    </div>
+    <button class="alert-close" aria-label="Dismiss"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>
+  </div>
+
+  <div class="alert alert-neutral" role="status">
+    <svg class="alert-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10" cy="10" r="8"/><path d="M10 6v5l3 3"/></svg>
+    <div class="alert-content">
+      <div class="alert-title">Session saved as draft</div>
+      <div class="alert-body">Your changes have been saved locally. Publish when you're ready to share with clients.</div>
+    </div>
+    <button class="alert-close" aria-label="Dismiss"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>
+  </div>
+</div>
+</body>
+</html>
