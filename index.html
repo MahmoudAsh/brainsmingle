@@ -249,6 +249,26 @@ a:hover{text-decoration:underline}
 /* Modal icon fade */
 @keyframes fadeSlideUp{from{opacity:.3;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
 .comp-icon-card[data-comp="modal"]:hover .ci-panel{animation:fadeSlideUp .3s var(--motion-ease)}
+/* Dropdown icon bounce */
+@keyframes dropBounce{0%{transform:translateY(0)}40%{transform:translateY(2px)}80%{transform:translateY(-1px)}100%{transform:translateY(0)}}
+.comp-icon-card[data-comp="dropdown"]:hover .ci-icon svg{animation:dropBounce .35s var(--motion-ease)}
+/* Tooltip icon pop */
+@keyframes tooltipPop{0%{transform:scale(.8);opacity:.4}60%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
+.comp-icon-card[data-comp="tooltip"]:hover .ci-icon svg{animation:tooltipPop .3s var(--motion-ease)}
+/* Toast icon slide-in */
+@keyframes toastSlide{from{transform:translateX(4px);opacity:.3}to{transform:translateX(0);opacity:1}}
+.comp-icon-card[data-comp="toast"]:hover .ci-icon svg{animation:toastSlide .3s var(--motion-ease)}
+/* Table icon grid flash */
+.comp-icon-card[data-comp="table"]:hover .ci-icon svg{filter:drop-shadow(0 0 3px var(--a500))}
+/* Navigation icon stagger */
+@keyframes navStagger{0%{transform:scaleX(.6)}100%{transform:scaleX(1)}}
+.comp-icon-card[data-comp="navigation"]:hover .ci-icon svg{animation:navStagger .3s var(--motion-ease)}
+/* Form icon pulse */
+.comp-icon-card[data-comp="form-layout"]:hover .ci-icon{box-shadow:0 0 14px color-mix(in srgb,var(--accent) 25%,transparent)}
+/* Advanced modal icon */
+.comp-icon-card[data-comp="advanced-modal"]:hover .ci-icon svg{filter:drop-shadow(0 0 4px var(--b400))}
+/* Tabs advanced icon */
+.comp-icon-card[data-comp="tabs-advanced"]:hover .ci-icon svg circle{fill:var(--a500);transition:fill .2s}
 
 /* Component page section headers */
 .comp-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px}
@@ -268,7 +288,7 @@ a:hover{text-decoration:underline}
 .usage-do{background:rgba(22,163,74,.06);border:1px solid rgba(22,163,74,.15);color:var(--fg-2)}
 .usage-do::before{content:'✓ Do';display:block;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#5ec476;margin-bottom:6px}
 .usage-dont{background:rgba(220,38,38,.06);border:1px solid rgba(220,38,38,.15);color:var(--fg-2)}
-.usage-dont::before{content:'✕ Don\\'t';display:block;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#f3776b;margin-bottom:6px}
+.usage-dont::before{content:"✕ Don\2019t";display:block;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#f3776b;margin-bottom:6px}
 
 /* ================================================================
    RESPONSIVE
@@ -302,6 +322,10 @@ a:hover{text-decoration:underline}
     <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6.5" cy="6.5" r="5"/><line x1="10" y1="10" x2="14.5" y2="14.5"/></svg>
     <input id="searchInput" type="text" placeholder="Search tokens...  &#8984;K" autocomplete="off">
   </div>
+  <a href="components.html" style="display:flex;align-items:center;gap:6px;font-size:.75rem;font-weight:600;color:var(--fg-3);background:var(--bg-card);border:1px solid var(--border-default);padding:0 12px;height:32px;border-radius:8px;text-decoration:none;transition:all .15s;white-space:nowrap;flex-shrink:0" onmouseover="this.style.color='var(--fg-1)';this.style.borderColor='var(--accent)'" onmouseout="this.style.color='var(--fg-3)';this.style.borderColor='var(--border-default)'">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+    Components
+  </a>
   <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
     <svg id="themeIcon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="3.5"/><line x1="8" y1="1" x2="8" y2="3"/><line x1="8" y1="13" x2="8" y2="15"/><line x1="1" y1="8" x2="3" y2="8"/><line x1="13" y1="8" x2="15" y2="8"/><line x1="3.05" y1="3.05" x2="4.46" y2="4.46"/><line x1="11.54" y1="11.54" x2="12.95" y2="12.95"/><line x1="3.05" y1="12.95" x2="4.46" y2="11.54"/><line x1="11.54" y1="4.46" x2="12.95" y2="3.05"/></svg>
   </button>
@@ -337,9 +361,9 @@ a:hover{text-decoration:underline}
       <a class="nav-item" href="#type-migration">Migration Map</a>
       <a class="nav-item" href="#type-summary">Audit Summary</a>
       <div class="nav-label">Layout</div>
-      <a class="nav-item" href="#spacing">Spacing <span class="coming">Soon</span></a>
-      <a class="nav-item" href="#elevation">Elevation <span class="coming">Soon</span></a>
-      <a class="nav-item" href="#motion">Motion <span class="coming">Soon</span></a>
+      <a class="nav-item" href="#spacing">Spacing</a>
+      <a class="nav-item" href="#elevation">Elevation</a>
+      <a class="nav-item" href="#motion">Motion</a>
     </div>
   </div>
 
@@ -358,34 +382,7 @@ a:hover{text-decoration:underline}
     </div>
   </div>
 
-  <!-- 4. COMPONENTS -->
-  <div class="nav-group">
-    <div class="nav-group-title" data-group="components">Components<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,2 7,5 3,8"/></svg></div>
-    <div class="nav-items">
-      <div class="nav-label">Phase 1 — Core</div>
-      <a class="nav-item" href="#comp-overview">Overview</a>
-      <a class="nav-item" href="#comp-button"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="10" rx="3"/></svg>Button</a>
-      <a class="nav-item" href="#comp-input"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="10" rx="2"/><line x1="7" y1="10" x2="7" y2="14"/></svg>Input</a>
-      <a class="nav-item" href="#comp-card"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="3" y1="9" x2="21" y2="9"/></svg>Card</a>
-      <a class="nav-item" href="#comp-badge"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="8" rx="4"/></svg>Badge</a>
-      <a class="nav-item" href="#comp-alert"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4m0 4h.01M5.07 19h13.86c1.54 0 2.5-1.67 1.73-3L13.73 4c-.77-1.33-2.69-1.33-3.46 0L3.34 16c-.77 1.33.19 3 1.73 3z"/></svg>Alert</a>
-      <a class="nav-item" href="#comp-checkbox"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12l3 3 5-5"/></svg>Checkbox</a>
-      <a class="nav-item" href="#comp-toggle"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="20" height="8" rx="4"/><circle cx="16" cy="12" r="2.5"/></svg>Toggle</a>
-      <a class="nav-item" href="#comp-tabs"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="18" x2="20" y2="18"/><line x1="4" y1="18" x2="10" y2="18" stroke-width="3"/></svg>Tabs</a>
-      <a class="nav-item" href="#comp-modal"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="14" height="14" rx="2"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>Modal</a>
-      <div class="nav-label">Phase 2 — Composite</div>
-      <a class="nav-item" href="#comp-overview">Dropdown <span class="coming">Soon</span></a>
-      <a class="nav-item" href="#comp-overview">Tooltip <span class="coming">Soon</span></a>
-      <a class="nav-item" href="#comp-overview">Toast <span class="coming">Soon</span></a>
-      <a class="nav-item" href="#comp-overview">Table <span class="coming">Soon</span></a>
-      <a class="nav-item" href="#comp-overview">Form <span class="coming">Soon</span></a>
-      <div class="nav-label">Navigation</div>
-      <a class="nav-item" href="#comp-overview">Sidebar <span class="coming">Soon</span></a>
-      <a class="nav-item" href="#comp-overview">Navbar <span class="coming">Soon</span></a>
-    </div>
-  </div>
-
-  <!-- 5. ACCESSIBILITY -->
+  <!-- 4. ACCESSIBILITY -->
   <div class="nav-group">
     <div class="nav-group-title" data-group="a11y">Accessibility<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,2 7,5 3,8"/></svg></div>
     <div class="nav-items">
@@ -396,7 +393,7 @@ a:hover{text-decoration:underline}
     </div>
   </div>
 
-  <!-- 6. HANDOFF -->
+  <!-- 5. HANDOFF -->
   <div class="nav-group">
     <div class="nav-group-title" data-group="handoff">Handoff<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,2 7,5 3,8"/></svg></div>
     <div class="nav-items">
@@ -404,6 +401,32 @@ a:hover{text-decoration:underline}
       <a class="nav-item" href="#handoff-figma">Figma Variables</a>
       <a class="nav-item" href="#handoff-naming">Naming Convention</a>
       <a class="nav-item" href="#handoff-versioning">Versioning Strategy</a>
+    </div>
+  </div>
+
+  <!-- 6. COMPONENTS -->
+  <div class="nav-group">
+    <div class="nav-group-title" data-group="components">Components<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3,2 7,5 3,8"/></svg></div>
+    <div class="nav-items">
+      <a class="nav-item" href="#components">Overview</a>
+      <a class="nav-item" href="components.html#comp-button"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="10" rx="3"/></svg>Button</a>
+      <a class="nav-item" href="components.html#comp-input"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="10" rx="2"/><line x1="7" y1="10" x2="7" y2="14"/></svg>Input</a>
+      <a class="nav-item" href="components.html#comp-card"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="3" y1="9" x2="21" y2="9"/></svg>Card</a>
+      <a class="nav-item" href="components.html#comp-badge"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="8" rx="4"/></svg>Badge</a>
+      <a class="nav-item" href="components.html#comp-alert"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4m0 4h.01M5.07 19h13.86c1.54 0 2.5-1.67 1.73-3L13.73 4c-.77-1.33-2.69-1.33-3.46 0L3.34 16c-.77 1.33.19 3 1.73 3z"/></svg>Alert</a>
+      <a class="nav-item" href="components.html#comp-checkbox"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12l3 3 5-5"/></svg>Checkbox</a>
+      <a class="nav-item" href="components.html#comp-toggle"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="20" height="8" rx="4"/><circle cx="16" cy="12" r="2.5"/></svg>Toggle</a>
+      <a class="nav-item" href="components.html#comp-tabs"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="18" x2="20" y2="18"/><line x1="4" y1="18" x2="10" y2="18" stroke-width="3"/></svg>Tabs</a>
+      <a class="nav-item" href="components.html#comp-modal"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="14" height="14" rx="2"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>Modal</a>
+      <div class="nav-divider"></div>
+      <a class="nav-item" href="components.html#comp-dropdown">Dropdown</a>
+      <a class="nav-item" href="components.html#comp-tooltip">Tooltip</a>
+      <a class="nav-item" href="components.html#comp-toast">Toast</a>
+      <a class="nav-item" href="components.html#comp-table">Table</a>
+      <a class="nav-item" href="components.html#comp-navigation">Navigation</a>
+      <a class="nav-item" href="components.html#comp-form-layout">Form Layout</a>
+      <a class="nav-item" href="components.html#comp-advanced-modal">Advanced Modal</a>
+      <a class="nav-item" href="components.html#comp-tabs-advanced">Tabs Advanced</a>
     </div>
   </div>
 </nav>
@@ -534,7 +557,7 @@ H+=`<div class="section" id="introduction"><div class="s-head">
 <strong>Architecture:</strong>&nbsp;
 <code>foundations/</code> &rarr; neutral, brand, accent, status scales &nbsp;&bull;&nbsp;
 <code>semantic/</code> &rarr; surface, text, border, interactive, highlight, icon, status, overlay &nbsp;&bull;&nbsp;
-<code>components/</code> &rarr; button (more coming soon)
+<code>components/</code> &rarr; 17 components (Phase 1 core + Phase 2 composite)
 </div>
 <div class="guideline">
 <strong>Brand hierarchy:</strong>&nbsp;
@@ -565,6 +588,7 @@ H+=`<div class="section" id="changelog"><div class="s-head">
 <h2>Changelog</h2>
 <p>Design system version history and notable changes.</p>
 </div>
+<div class="guideline" style="display:flex;gap:12px;align-items:flex-start"><span style="font-size:.55rem;font-weight:700;background:var(--b500);color:#fff;padding:2px 7px;border-radius:4px;flex-shrink:0">v2.0.0</span><div><strong>Phase 2 — Composite Components</strong><br>8 new component token files (dropdown, tooltip, toast, table, navigation, form-layout, advanced-modal, tabs-advanced). Full anatomy, state matrix, token mapping, accessibility, motion system, and dev notes for each. All documentation added to the main design system site.</div></div>
 <div class="guideline" style="display:flex;gap:12px;align-items:flex-start"><span style="font-size:.55rem;font-weight:700;background:var(--a500);color:var(--n950);padding:2px 7px;border-radius:4px;flex-shrink:0">v1.0.0</span><div><strong>Phase 1 — Core Components</strong><br>9 component token files (button, input, card, badge, alert, checkbox, toggle, tabs, modal). Typography token system. Full docs site with visual previews, token tables, accessibility audits.</div></div>
 <div class="guideline" style="display:flex;gap:12px;align-items:flex-start"><span style="font-size:.55rem;font-weight:700;background:var(--bg-raised);color:var(--fg-4);padding:2px 7px;border-radius:4px;flex-shrink:0">v0.9.0</span><div><strong>Semantic Token Layer</strong><br>Surface, text, border, icon, interactive, status, overlay, and highlight tokens. Multi-mode (dark + light) support via Tokens Studio extensions.</div></div>
 <div class="guideline" style="display:flex;gap:12px;align-items:flex-start"><span style="font-size:.55rem;font-weight:700;background:var(--bg-raised);color:var(--fg-4);padding:2px 7px;border-radius:4px;flex-shrink:0">v0.8.0</span><div><strong>Foundation Color Scales</strong><br>7 color families (neutral, brand, accent, error, success, warning, info) with 11 steps each. Primitives layer in DTCG format.</div></div>
@@ -1155,8 +1179,8 @@ function btnStyle(v,sz,extra){
 
 /* ── COMPONENT OVERVIEW ───────────────────────────────────────────── */
 H+=`<div class="section" id="comp-overview"><div class="s-head">
-<h2>Components — Phase 1</h2>
-<p>9 core UI components built entirely from the semantic token layer. Zero raw hex. Each component ships with variants, sizes, a full state matrix, token mapping, and accessibility notes. Hover for micro-interactions.</p>
+<h2>Components</h2>
+<p>17 UI components built entirely from the semantic token layer. Zero raw hex. Phase 1 (9 core) + Phase 2 (8 composite). Each ships with anatomy, variants, sizes, state matrix, token mapping, accessibility, and motion system. Hover for micro-interactions.</p>
 <span class="s-path">components/*.json</span>
 </div>`;
 
@@ -1191,590 +1215,293 @@ compList.forEach(c=>{
 });
 H+=`</div>`;
 
-// Phase 2 preview
-H+=`<div class="sub-section"><h3>Phase 2 — Composite <span class="coming">Planned</span></h3>
-<div style="display:flex;flex-wrap:wrap;gap:6px;margin:8px 0">`;
-["Dropdown","Tooltip","Toast","Table","Form","Sidebar","Navbar"].forEach(c=>{
-  H+=`<span style="font-size:.65rem;font-weight:600;padding:4px 12px;border-radius:6px;background:var(--bg-card);border:1px solid var(--border-subtle);color:var(--fg-4)">${c}</span>`;
+// Phase 2 composite components grid
+const compList2=[
+  {name:"Dropdown",id:"comp-dropdown",key:"dropdown",variants:4,sizes:3,states:6,desc:"Select menus and action menus",
+    icon:'<rect x="4" y="6" width="16" height="12" rx="2" stroke-width="1.8" fill="none" stroke="var(--a500)"/><polyline points="9,11 12,14 15,11" stroke-width="1.8" fill="none" stroke="var(--a500)"/>'},
+  {name:"Tooltip",id:"comp-tooltip",key:"tooltip",variants:3,sizes:2,states:3,desc:"Contextual info overlays",
+    icon:'<rect x="4" y="4" width="16" height="12" rx="2" stroke-width="1.8" fill="none" stroke="var(--a500)"/><path d="M12 16l-2 4 4-4z" stroke-width="1.8" fill="none" stroke="var(--a500)"/>'},
+  {name:"Toast",id:"comp-toast",key:"toast",variants:5,sizes:2,states:4,desc:"Transient notifications",
+    icon:'<rect x="3" y="10" width="18" height="8" rx="2" stroke-width="1.8" fill="none" stroke="var(--a500)"/><line x1="7" y1="14" x2="14" y2="14" stroke-width="1.8" stroke="var(--a500)"/>'},
+  {name:"Table",id:"comp-table",key:"table",variants:3,sizes:3,states:5,desc:"Data grids and lists",
+    icon:'<rect x="3" y="4" width="18" height="16" rx="2" stroke-width="1.8" fill="none" stroke="var(--a500)"/><line x1="3" y1="10" x2="21" y2="10" stroke-width="1.5" stroke="var(--a500)"/><line x1="10" y1="4" x2="10" y2="20" stroke-width="1.5" stroke="var(--a500)"/>'},
+  {name:"Navigation",id:"comp-navigation",key:"navigation",variants:4,sizes:3,states:5,desc:"Sidebar, navbar, breadcrumbs",
+    icon:'<line x1="3" y1="6" x2="21" y2="6" stroke-width="1.8" stroke="var(--a500)"/><line x1="3" y1="12" x2="15" y2="12" stroke-width="1.8" stroke="var(--a500)"/><line x1="3" y1="18" x2="18" y2="18" stroke-width="1.8" stroke="var(--a500)"/>'},
+  {name:"Form Layout",id:"comp-form-layout",key:"form-layout",variants:3,sizes:3,states:4,desc:"Structured form containers",
+    icon:'<rect x="3" y="3" width="18" height="18" rx="2" stroke-width="1.8" fill="none" stroke="var(--a500)"/><line x1="7" y1="8" x2="17" y2="8" stroke-width="1.5" stroke="var(--a500)"/><line x1="7" y1="12" x2="17" y2="12" stroke-width="1.5" stroke="var(--a500)"/><rect x="7" y="16" width="4" height="2" rx="1" stroke-width="1.5" fill="none" stroke="var(--a500)"/>'},
+  {name:"Advanced Modal",id:"comp-advanced-modal",key:"advanced-modal",variants:5,sizes:3,states:4,desc:"Multi-step dialogs and wizards",
+    icon:'<rect x="3" y="4" width="18" height="16" rx="2" stroke-width="1.8" fill="none" stroke="var(--a500)"/><line x1="3" y1="9" x2="21" y2="9" stroke-width="1.5" stroke="var(--a500)"/><circle cx="7" cy="6.5" r="1" fill="var(--a500)"/>'},
+  {name:"Tabs Advanced",id:"comp-tabs-advanced",key:"tabs-advanced",variants:4,sizes:3,states:6,desc:"Closeable, scrollable tab panels",
+    icon:'<line x1="4" y1="18" x2="20" y2="18" stroke-width="1.5" stroke="var(--a500)" opacity=".3"/><line x1="4" y1="18" x2="10" y2="18" stroke-width="2.5" stroke-linecap="round" stroke="var(--a500)"/><circle cx="17" cy="14" r="2" stroke-width="1.5" fill="none" stroke="var(--a500)"/>'},
+];
+
+H+=`<div class="sub-section"><h3>Phase 2 — Composite <span class="badge" style="background:var(--b500)">v2.0.0</span></h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin:12px 0">`;
+compList2.forEach(c=>{
+  H+=`<a href="#${c.id}" class="comp-icon-card" data-comp="${c.key}">
+    <div class="ci-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">${c.icon}</svg></div>
+    <div class="ci-body"><div class="ci-name">${c.name}</div><div class="ci-meta">${c.desc} · ${c.variants}v ${c.sizes}s ${c.states}st</div></div>
+    <svg class="ci-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 4l4 4-4 4"/></svg>
+  </a>`;
 });
 H+=`</div></div></div>`;
 
-/* ── helper: a11y note renderer ─────────────────────────────────── */
-function a11yBlock(notes){
-  let h='<div style="display:flex;flex-direction:column;gap:5px">';
-  notes.forEach(n=>{
-    const color=n.t==='ok'?'var(--suc500,#16a34a)':n.t==='warn'?'var(--war500,#f59e0b)':'var(--inf500,#2563eb)';
-    const bg=n.t==='ok'?'rgba(22,163,74,.1)':n.t==='warn'?'rgba(245,158,11,.1)':'rgba(37,99,235,.1)';
-    const ic=n.t==='ok'?'✓':n.t==='warn'?'!':'i';
-    h+=`<div class="guideline" style="display:flex;align-items:flex-start;gap:10px;padding:8px 14px">
-      <span style="flex-shrink:0;width:18px;height:18px;border-radius:50%;background:${bg};color:${color};display:flex;align-items:center;justify-content:center;font-size:.55rem;font-weight:700">${ic}</span>
-      <span style="font-size:.72rem;line-height:1.5">${n.x}</span></div>`;
-  });
-  return h+'</div>';
-}
 
-/* ── helper: token map table renderer ───────────────────────────── */
-function tokenMapTable(id,rows){
-  let h=`<div class="token-table-wrap"><table class="token-table" id="${id}"><thead><tr><th style="width:32px"></th><th>Property</th><th>Semantic Token</th><th>Resolves To</th></tr></thead><tbody>`;
-  rows.forEach(r=>{
-    const hex=r.ref&&r.ref!=="—"&&r.ref!=="transparent"?res(r.ref):r.hex||"transparent";
-    h+=`<tr><td><span class="tok-sw" style="background:${hex}"></span></td><td class="tok-desc">${r.prop}</td><td class="tok-ref">${r.token}</td><td class="tok-hex">${hex}</td></tr>`;
-  });
-  return h+'</tbody></table></div>';
-}
+/* ── COMPONENTS GATEWAY ─────────────────────────────────────────── */
+H+=`<div class="section" id="components"><div class="s-head">
+<h2>Components</h2>
+<p>17 UI components built on the semantic token layer. Zero raw hex. Detailed documentation, token maps, state matrices, accessibility, and motion specs live in the dedicated Components page.</p>
+<span class="s-path">components/*.json</span>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin:20px 0">
+<a href="components.html" style="display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,color-mix(in srgb,var(--b500) 10%,transparent),color-mix(in srgb,var(--a500) 6%,transparent));border:1px solid color-mix(in srgb,var(--b500) 20%,transparent);border-radius:14px;padding:20px 22px;text-decoration:none;transition:all 180ms ease" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 20px rgba(103,35,255,.15)'" onmouseout="this.style.transform='none';this.style.boxShadow='none'">
+  <div style="width:44px;height:44px;border-radius:10px;background:color-mix(in srgb,var(--accent) 12%,transparent);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--a500)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+  </div>
+  <div style="flex:1;min-width:0">
+    <div style="font-size:.9rem;font-weight:700;color:var(--fg-1);margin-bottom:2px">Browse All Components</div>
+    <div style="font-size:.72rem;color:var(--fg-3)">17 built &middot; 14 upcoming &middot; Variants, states, token maps, a11y</div>
+  </div>
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round"><path d="M6 4l4 4-4 4"/></svg>
+</a>
+<div style="display:flex;flex-direction:column;gap:8px">
+  <div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--fg-4)">Phase 1 — Core (9)</div>
+  <div style="display:flex;flex-wrap:wrap;gap:6px">`;
+["Button","Input","Card","Badge","Alert","Checkbox","Toggle","Tabs","Modal"].forEach(n=>{
+  const id=n.toLowerCase();
+  H+=`<a href="components.html#comp-${id}" style="font-size:.7rem;font-weight:600;padding:4px 10px;border-radius:6px;background:var(--bg-card);border:1px solid var(--border-subtle);color:var(--fg-2);text-decoration:none;transition:all .12s" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border-subtle)';this.style.color='var(--fg-2)'">${n}</a>`;
+});
+H+=`</div>
+  <div style="font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--fg-4);margin-top:4px">Phase 2 — Composite (8)</div>
+  <div style="display:flex;flex-wrap:wrap;gap:6px">`;
+["Dropdown","Tooltip","Toast","Table","Navigation","Form Layout","Advanced Modal","Tabs Advanced"].forEach(n=>{
+  const id=n.toLowerCase().replace(/ /g,'-');
+  H+=`<a href="components.html#comp-${id}" style="font-size:.7rem;font-weight:600;padding:4px 10px;border-radius:6px;background:var(--bg-card);border:1px solid color-mix(in srgb,var(--a500) 20%,var(--border-subtle));color:var(--fg-2);text-decoration:none;transition:all .12s" onmouseover="this.style.borderColor='var(--a500)';this.style.color='var(--a500)'" onmouseout="this.style.borderColor='color-mix(in srgb,var(--a500) 20%,var(--border-subtle))';this.style.color='var(--fg-2)'">${n}</a>`;
+});
+H+=`</div></div></div>
+<div class="guideline" style="margin-top:8px"><strong>Phase 3 — Now Available:</strong> Accordion, Avatar, Breadcrumb, Calendar, Chip, File Upload, Loading, Pagination, Progress Bar, Radio Group, Select/Combobox, Slider, Stepper, Empty State — all 14 components are fully documented with token maps, states, and accessibility specs. <a href="components.html#comp-accordion">Browse Phase 3 →</a></div>
+</div>`;
 
-/* ═══════════════════════════════════════════════════════════════════
-   BUTTON
-   ═══════════════════════════════════════════════════════════════════ */
-const variants=["primary","secondaryBrand","secondary","ghost","destructive"];
-const varLabels={primary:"Primary",secondaryBrand:"Secondary Brand",secondary:"Secondary",ghost:"Ghost",destructive:"Destructive"};
+/* ── SPACING ─────────────────────────────────────────────────────── */
+(()=>{
+const spacingScale=[
+  {name:"space-0",val:"0px",rem:"0rem",use:"Reset / no spacing"},
+  {name:"space-1",val:"4px",rem:".25rem",use:"Micro gaps (icon padding, badge insets)"},
+  {name:"space-2",val:"8px",rem:".5rem",use:"Tight spacing (icon ↔ label, chip padding)"},
+  {name:"space-3",val:"12px",rem:".75rem",use:"Compact UI (input padding, small card inset)"},
+  {name:"space-4",val:"16px",rem:"1rem",use:"Default padding (card body, form field)"},
+  {name:"space-5",val:"20px",rem:"1.25rem",use:"Comfortable gap (nav items, modal padding)"},
+  {name:"space-6",val:"24px",rem:"1.5rem",use:"Section spacing (content block gap)"},
+  {name:"space-8",val:"32px",rem:"2rem",use:"Large gap (between sections, hero padding)"},
+  {name:"space-10",val:"40px",rem:"2.5rem",use:"XL spacing (page section margin)"},
+  {name:"space-12",val:"48px",rem:"3rem",use:"2XL (feature-level padding)"},
+  {name:"space-16",val:"64px",rem:"4rem",use:"3XL (hero / full-bleed sections)"},
+  {name:"space-20",val:"80px",rem:"5rem",use:"4XL (page-level top spacing)"},
+  {name:"space-24",val:"96px",rem:"6rem",use:"5XL (marketing hero blocks)"},
+];
+H+=`<div class="section" id="spacing"><div class="s-head">
+<h2>Spacing</h2>
+<p>8pt grid–based spacing scale. All values are multiples of <code>4px</code>. Tokens cover micro gaps through full-page padding. Use semantic spacing names — never hard-code pixel values.</p>
+<span class="s-path">foundations/spacing.json</span>
+</div>`;
 
-H+=`<div class="section" id="comp-button"><div class="comp-header">
-<div class="ch-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--a500)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="10" rx="3"/></svg></div>
-<div class="ch-body"><h2>Button</h2>
-<p>Interactive action triggers with branded elevation. 5 variants &times; 3 sizes &times; 6 states. 12px radius, semibold weight, 150ms transitions, scale(0.98) active press.</p>
-<div class="ch-badges"><span class="ch-badge ch-badge-stable">Stable</span><span class="ch-badge ch-badge-version">v1.0.0</span><span class="ch-badge ch-badge-tokens">interactive · surface · text · border · status</span></div>
-<span class="s-path" style="margin-top:8px">components/button.json</span>
-</div></div>`;
-
-// Variant preview
-H+=`<div class="sub-section"><h3>Variants</h3><div style="display:flex;flex-wrap:wrap;gap:14px;margin:12px 0">`;
-variants.forEach(v=>{
-  const d=BV[v];
-  H+=`<div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;min-width:130px">
-    <span style="font-size:.55rem;text-transform:uppercase;font-weight:700;color:var(--fg-4);letter-spacing:.04em">${varLabels[v]}</span>
-    <button style="${btnStyle(v,'md')}" onmouseover="this.style.background='${d.hover}'" onmouseout="this.style.background='${d.bg}'">${varLabels[v]}</button>
-    <button style="${btnStyle(v,'md')}opacity:0.5;cursor:not-allowed;" disabled>Disabled</button></div>`;
+H+=`<div class="sub-section"><h3>Visual Scale</h3>
+<div style="display:flex;flex-direction:column;gap:6px;margin:12px 0">`;
+spacingScale.forEach(s=>{
+  const w=parseInt(s.val);
+  const barW=Math.min(w*2.5,320);
+  H+=`<div style="display:flex;align-items:center;gap:12px">
+    <div style="font-size:.65rem;font-family:var(--font-mono);color:var(--fg-3);width:72px;flex-shrink:0">${s.name}</div>
+    <div style="width:${barW}px;height:${Math.max(w,4)}px;background:linear-gradient(90deg,var(--b500),var(--a500));border-radius:2px;min-width:2px;flex-shrink:0"></div>
+    <div style="font-size:.65rem;color:var(--fg-4);white-space:nowrap">${s.val} / ${s.rem}</div>
+  </div>`;
 });
 H+=`</div></div>`;
 
-// Sizes
-H+=`<div class="sub-section"><h3>Sizes</h3><div style="display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;margin:12px 0">`;
-["sm","md","lg"].forEach(sz=>{
-  H+=`<div style="display:flex;flex-direction:column;gap:5px;align-items:flex-start">
-    <span style="font-size:.55rem;text-transform:uppercase;font-weight:700;color:var(--fg-4);letter-spacing:.04em">${sz}</span>
-    <button style="${btnStyle('primary',sz)}">Button ${sz.toUpperCase()}</button>
-    <button style="${btnStyle('secondaryBrand',sz)}">Button ${sz.toUpperCase()}</button>
-    <button style="${btnStyle('secondary',sz)}">Button ${sz.toUpperCase()}</button></div>`;
-});
-H+=`</div></div>`;
-
-// State matrix
-H+=`<div class="sub-section"><h3>State Matrix</h3>`;
-const states=["default","hover","active","focus","disabled","loading"];
-H+=`<div class="token-table-wrap"><table class="token-table" id="t-btn-states"><thead><tr><th>Variant</th>`;
-states.forEach(s=>H+=`<th>${s.charAt(0).toUpperCase()+s.slice(1)}</th>`);
-H+=`</tr></thead><tbody>`;
-variants.forEach(v=>{
-  const d=BV[v];
-  H+=`<tr><td class="tok-name">${varLabels[v]}</td>`;
-  H+=`<td><button style="${btnStyle(v,'sm')}">Def</button></td>`;
-  H+=`<td><button style="${btnStyle(v,'sm')}background:${d.hover};">Hov</button></td>`;
-  H+=`<td><button style="${btnStyle(v,'sm')}background:${d.active||d.hover};transform:scale(.98);box-shadow:none;">Act</button></td>`;
-  H+=`<td><button style="${btnStyle(v,'sm')}outline:2px solid ${d.ring};outline-offset:2px;">Foc</button></td>`;
-  H+=`<td><button style="${btnStyle(v,'sm')}opacity:.5;cursor:not-allowed;" disabled>Dis</button></td>`;
-  H+=`<td><div style="position:relative;display:inline-flex"><button style="${btnStyle(v,'sm')}opacity:.7;cursor:wait;">Load</button><span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 16 16" style="animation:spin 1s linear infinite"><circle cx="8" cy="8" r="6" fill="none" stroke="${d.text}" stroke-width="2" stroke-dasharray="28" stroke-dashoffset="8" stroke-linecap="round"/></svg></span></div></td>`;
-  H+=`</tr>`;
+H+=`<div class="sub-section"><h3>Token Reference</h3>
+<div class="copy-group" style="position:relative">
+<table class="token-table"><thead><tr><th>Token</th><th>Value</th><th>rem</th><th>Typical Use</th></tr></thead><tbody>`;
+spacingScale.forEach(s=>{
+  H+=`<tr>
+    <td class="tok-name">${s.name}</td>
+    <td class="tok-hex">${s.val}</td>
+    <td class="tok-ref">${s.rem}</td>
+    <td class="tok-desc">${s.use}</td>
+  </tr>`;
 });
 H+=`</tbody></table></div></div>`;
 
-// Token map
-H+=`<div class="sub-section"><h3>Token Mapping</h3>`;
-H+=tokenMapTable('t-btn-tok',[
-  {prop:"primary.bg",token:"interactive.primary.bg",ref:S.interactive.primary.bg},
-  {prop:"primary.hover",token:"interactive.primary.hover",ref:S.interactive.primary.hover},
-  {prop:"primary.text",token:"interactive.primary.text",ref:S.interactive.primary.text},
-  {prop:"secondaryBrand.bg",token:"interactive.secondaryBrand.bg",ref:S.interactive.secondaryBrand.bg},
-  {prop:"secondaryBrand.text",token:"interactive.secondaryBrand.text",ref:S.interactive.secondaryBrand.text},
-  {prop:"secondary.bg",token:"surface.card",ref:S.surface.card},
-  {prop:"secondary.border",token:"border.default",ref:S.border.default},
-  {prop:"ghost.hover",token:"surface.raised",ref:S.surface.raised},
-  {prop:"destructive.bg",token:"status.error.bg.bold",ref:S.status.error.bg.bold},
-  {prop:"focus ring",token:"border.focus",ref:S.border.focus},
-]);
-H+=`</div>`;
-
-// Accessibility
-H+=`<div class="sub-section"><h3>Accessibility</h3>`;
-H+=a11yBlock([
-  {t:"ok",x:"<strong>Focus ring</strong> — 2px offset outline via <code>border.focus</code>. Keyboard-only (<code>:focus-visible</code>)."},
-  {t:"ok",x:"<strong>Contrast</strong> — Primary AA (4.5:1+), SecondaryBrand AAA (7:1+), Destructive AA."},
-  {t:"ok",x:"<strong>Touch targets</strong> — sm=32px (WCAG min), md=40px, lg=48px."},
-  {t:"warn",x:"<strong>Icon-only</strong> — Requires <code>aria-label</code>. Destructive needs confirmation dialog."},
-]);
-H+=`</div>`;
-
-// Usage guidelines
-H+=`<div class="sub-section"><h3>Usage Guidelines</h3>
-<div class="usage-grid">
-<div class="usage-do">Use <strong>Primary</strong> for the single most important action on screen. Use <strong>Secondary</strong> for supporting actions. Use clear, verb-first labels like "Save changes".</div>
-<div class="usage-dont">Don't use more than one Primary button per section. Don't use color alone to convey meaning. Don't use vague labels like "Click here" or "Submit".</div>
-</div></div></div>`;
-
-/* ═══════════════════════════════════════════════════════════════════
-   INPUT
-   ═══════════════════════════════════════════════════════════════════ */
-const inpBorder=res(S.border.default),inpBorderStrong=res(S.border.strong),inpBg=res(S.surface.card),inpText=res(S.text.primary),inpMuted=res(S.text.muted),inpFocus=res(S.border.focus),inpSunken=res(S.surface.sunken),inpDisText=res(S.text.disabled),inpErrBorder=res(S.status.error.border.default),inpErrText=res(S.status.error.text.default),inpSucBorder=res(S.status.success.border.default),inpSucText=res(S.status.success.text.default);
-
-H+=`<div class="section" id="comp-input"><div class="comp-header">
-<div class="ch-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--a500)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="10" rx="2"/><line x1="7" y1="10" x2="7" y2="14"/></svg></div>
-<div class="ch-body"><h2>Input</h2>
-<p>Text fields, textareas, and selects. 4 variants (default, error, success, disabled) &times; 3 sizes. 10px radius, 1px border, 150ms transitions.</p>
-<div class="ch-badges"><span class="ch-badge ch-badge-stable">Stable</span><span class="ch-badge ch-badge-version">v1.0.0</span><span class="ch-badge ch-badge-tokens">surface · text · border · status</span></div>
-<span class="s-path" style="margin-top:8px">components/input.json</span>
-</div></div>`;
-
-// Preview
-H+=`<div class="sub-section"><h3>Variants</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:12px 0">`;
-const inpBase=`width:100%;font-family:inherit;font-size:14px;padding:8px 12px;border-radius:10px;background:${inpBg};color:${inpText};outline:none;transition:border-color 150ms ease,box-shadow 150ms ease;`;
-H+=`<div><span style="font-size:.55rem;text-transform:uppercase;font-weight:700;color:var(--fg-4);letter-spacing:.04em;display:block;margin-bottom:4px">Default</span>
-<input style="${inpBase}border:1px solid ${inpBorder};" value="john@example.com" onfocus="this.style.borderColor='${inpFocus}';this.style.boxShadow='0 0 0 2px ${inpFocus}33'" onblur="this.style.borderColor='${inpBorder}';this.style.boxShadow='none'">
-<span style="font-size:.6rem;color:var(--fg-4);margin-top:3px;display:block">Enter your email</span></div>`;
-H+=`<div><span style="font-size:.55rem;text-transform:uppercase;font-weight:700;color:var(--fg-4);letter-spacing:.04em;display:block;margin-bottom:4px">Error</span>
-<input style="${inpBase}border:1px solid ${inpErrBorder};" value="invalid-email">
-<span style="font-size:.6rem;color:${inpErrText};margin-top:3px;display:block">✕ Please enter a valid email</span></div>`;
-H+=`<div><span style="font-size:.55rem;text-transform:uppercase;font-weight:700;color:var(--fg-4);letter-spacing:.04em;display:block;margin-bottom:4px">Success</span>
-<input style="${inpBase}border:1px solid ${inpSucBorder};" value="john@brainsmingle.com">
-<span style="font-size:.6rem;color:${inpSucText};margin-top:3px;display:block">✓ Email verified</span></div>`;
-H+=`<div><span style="font-size:.55rem;text-transform:uppercase;font-weight:700;color:var(--fg-4);letter-spacing:.04em;display:block;margin-bottom:4px">Disabled</span>
-<input style="${inpBase}border:1px solid ${res(S.border.subtle)};opacity:.5;cursor:not-allowed;background:${inpSunken};" value="Locked" disabled></div>`;
-H+=`</div></div>`;
-
-// Sizes
-H+=`<div class="sub-section"><h3>Sizes</h3><div style="display:flex;flex-direction:column;gap:8px;max-width:320px;margin:12px 0">`;
-[{sz:"sm",fs:"12px",py:"6px",px:"10px",h:"32px"},{sz:"md",fs:"14px",py:"8px",px:"12px",h:"40px"},{sz:"lg",fs:"16px",py:"10px",px:"14px",h:"48px"}].forEach(s=>{
-  H+=`<div style="display:flex;align-items:center;gap:10px"><span style="font-size:.55rem;text-transform:uppercase;font-weight:700;color:var(--fg-4);letter-spacing:.04em;width:24px">${s.sz}</span>
-  <input style="${inpBase}border:1px solid ${inpBorder};font-size:${s.fs};padding:${s.py} ${s.px};min-height:${s.h};" value="Input ${s.sz}" readonly></div>`;
+H+=`<div class="sub-section"><h3>Component Spacing Map</h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:12px 0">`;
+[
+  {comp:"Button",tokens:"px: space-4 / py: space-2 (sm: space-1/space-3)"},
+  {comp:"Input",tokens:"px: space-3 / py: space-2 (md); space-1 / space-2 (sm)"},
+  {comp:"Card",tokens:"padding: space-5; gap between elements: space-3"},
+  {comp:"Modal",tokens:"header: space-5 / body: space-5 / footer: space-4"},
+  {comp:"Badge",tokens:"px: space-2 / py: space-0.5"},
+  {comp:"Nav item",tokens:"px: space-3 / py: space-2; icon gap: space-2"},
+  {comp:"Form field",tokens:"label → input gap: space-1 / fields: space-4"},
+  {comp:"Table cell",tokens:"px: space-4 / py: space-3 (md); space-2 (sm)"},
+].forEach(m=>{
+  H+=`<div style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:10px;padding:14px 16px">
+    <div style="font-size:.72rem;font-weight:700;color:var(--fg-1);margin-bottom:4px">${m.comp}</div>
+    <div style="font-size:.65rem;color:var(--fg-4);font-family:var(--font-mono);line-height:1.5">${m.tokens}</div>
+  </div>`;
 });
 H+=`</div></div>`;
 
-// Token map
-H+=`<div class="sub-section"><h3>Token Mapping</h3>`;
-H+=tokenMapTable('t-inp-tok',[
-  {prop:"bg",token:"surface.card",ref:S.surface.card},
-  {prop:"text",token:"text.primary",ref:S.text.primary},
-  {prop:"placeholder",token:"text.muted",ref:S.text.muted},
-  {prop:"border",token:"border.default",ref:S.border.default},
-  {prop:"border hover",token:"border.strong",ref:S.border.strong},
-  {prop:"focus ring",token:"border.focus",ref:S.border.focus},
-  {prop:"error border",token:"status.error.border.default",ref:S.status.error.border.default},
-  {prop:"error text",token:"status.error.text.default",ref:S.status.error.text.default},
-  {prop:"success border",token:"status.success.border.default",ref:S.status.success.border.default},
-  {prop:"disabled bg",token:"surface.sunken",ref:S.surface.sunken},
-]);
+H+=`<div class="guideline"><strong>Never hard-code raw pixel values.</strong> Always use spacing tokens. All component padding, gap, and margin values reference this scale. When a component needs spacing outside the scale, request a new token — don't use arbitrary values.</div>`;
 H+=`</div>`;
+})();
 
-// A11y
-H+=`<div class="sub-section"><h3>Accessibility</h3>`;
-H+=a11yBlock([
-  {t:"ok",x:"<strong>Labels</strong> — Every input must have a visible <code>&lt;label&gt;</code> with <code>for/id</code> pairing."},
-  {t:"ok",x:"<strong>Error messages</strong> — Use <code>aria-describedby</code> + <code>aria-invalid=true</code> on error state."},
-  {t:"ok",x:"<strong>Focus ring</strong> — 2px flush ring via <code>border.focus</code>."},
-  {t:"warn",x:"<strong>Required fields</strong> — Use <code>aria-required=true</code> and visible asterisk."},
-]);
-H+=`</div></div>`;
-
-/* ═══════════════════════════════════════════════════════════════════
-   CARD
-   ═══════════════════════════════════════════════════════════════════ */
-H+=`<div class="section" id="comp-card"><div class="comp-header">
-<div class="ch-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--a500)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="3" y1="9" x2="21" y2="9"/></svg></div>
-<div class="ch-body"><h2>Card</h2>
-<p>Content containers with 5 variants (default, elevated, outlined, interactive, ghost) &times; 3 sizes. Border-radius scales per size.</p>
-<div class="ch-badges"><span class="ch-badge ch-badge-stable">Stable</span><span class="ch-badge ch-badge-version">v1.0.0</span><span class="ch-badge ch-badge-tokens">surface · border · text</span></div>
-<span class="s-path" style="margin-top:8px">components/card.json</span>
-</div></div>`;
-
-const cardBg=res(S.surface.card),cardRaised=res(S.surface.raised),cardBorder=res(S.border.subtle),cardBorderD=res(S.border.default);
-H+=`<div class="sub-section"><h3>Variants</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:12px 0">`;
-[{n:"Default",bg:cardBg,bd:cardBorder,sh:"none"},{n:"Elevated",bg:cardBg,bd:cardBorder,sh:"0 2px 8px rgba(0,0,0,.25)"},{n:"Outlined",bg:"transparent",bd:cardBorderD,sh:"none"},{n:"Interactive",bg:cardBg,bd:cardBorder,sh:"none",hover:true},{n:"Ghost",bg:"transparent",bd:"transparent",sh:"none"}].forEach(c=>{
-  const hov=c.hover?` onmouseover="this.style.background='${cardRaised}';this.style.borderColor='${cardBorderD}';this.style.boxShadow='0 2px 8px rgba(0,0,0,.2)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='${c.bg}';this.style.borderColor='${c.bd}';this.style.boxShadow='none';this.style.transform='none'"`:'';
-  H+=`<div style="background:${c.bg};border:1px solid ${c.bd};border-radius:14px;padding:20px;box-shadow:${c.sh};transition:all 150ms ease;cursor:${c.hover?'pointer':'default'}"${hov}>
-    <div style="font-size:.55rem;text-transform:uppercase;font-weight:700;color:var(--accent,#00ffc6);letter-spacing:.04em;margin-bottom:8px">${c.n}</div>
-    <div style="font-size:.82rem;font-weight:600;color:${inpText};margin-bottom:4px">Card Title</div>
-    <div style="font-size:.72rem;color:var(--fg-3,#a4a8ad);line-height:1.5">Content preview text for the ${c.n.toLowerCase()} card variant.</div></div>`;
-});
-H+=`</div></div>`;
-
-// Token map
-H+=`<div class="sub-section"><h3>Token Mapping</h3>`;
-H+=tokenMapTable('t-card-tok',[
-  {prop:"bg",token:"surface.card",ref:S.surface.card},
-  {prop:"hover bg",token:"surface.raised",ref:S.surface.raised},
-  {prop:"border",token:"border.subtle",ref:S.border.subtle},
-  {prop:"header text",token:"text.primary",ref:S.text.primary},
-  {prop:"body text",token:"text.secondary",ref:S.text.secondary},
-  {prop:"meta text",token:"text.muted",ref:S.text.muted},
-  {prop:"divider",token:"border.divider",ref:S.border.divider},
-  {prop:"focus ring",token:"border.focus",ref:S.border.focus},
-]);
-H+=`</div>`;
-
-H+=`<div class="sub-section"><h3>Accessibility</h3>`;
-H+=a11yBlock([
-  {t:"ok",x:"<strong>Interactive cards</strong> — Use <code>&lt;a&gt;</code> or <code>&lt;button&gt;</code> root with <code>tabindex=0</code>."},
-  {t:"ok",x:"<strong>Heading hierarchy</strong> — Card titles use semantic headings (h3/h4) respecting page order."},
-  {t:"info",x:"<strong>Reduced motion</strong> — Hover translate respects <code>prefers-reduced-motion</code>."},
-]);
-H+=`</div></div>`;
-
-/* ═══════════════════════════════════════════════════════════════════
-   BADGE
-   ═══════════════════════════════════════════════════════════════════ */
-H+=`<div class="section" id="comp-badge"><div class="comp-header">
-<div class="ch-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--a500)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="8" rx="4"/></svg></div>
-<div class="ch-body"><h2>Badge</h2>
-<p>Compact status labels with 7 color variants &times; 2 sizes. Bold and subtle modes for each status. 6px radius, semibold, uppercase tracking.</p>
-<div class="ch-badges"><span class="ch-badge ch-badge-stable">Stable</span><span class="ch-badge ch-badge-version">v1.0.0</span><span class="ch-badge ch-badge-tokens">interactive · status · surface</span></div>
-<span class="s-path" style="margin-top:8px">components/badge.json</span>
-</div></div>`;
-
-const badgeBase=`display:inline-flex;align-items:center;gap:4px;font-weight:600;letter-spacing:.02em;text-transform:uppercase;border-radius:6px;`;
-const badges=[
-  {n:"Default",bg:res(S.surface.raised),text:res(S.text.secondary),bd:res(S.border.subtle)},
-  {n:"Brand",bg:res(S.interactive.primary.bg),text:res(S.interactive.primary.text),bd:"transparent"},
-  {n:"Accent",bg:res(S.interactive.secondaryBrand.bg),text:res(S.interactive.secondaryBrand.text),bd:"transparent"},
-  {n:"Success",bg:res(S.status.success.bg.bold),text:res(S.status.success.text.onBold),bd:"transparent"},
-  {n:"Error",bg:res(S.status.error.bg.bold),text:res(S.status.error.text.onBold),bd:"transparent"},
-  {n:"Warning",bg:res(S.status.warning.bg.bold),text:res(S.status.warning.text.onBold),bd:"transparent"},
-  {n:"Info",bg:res(S.status.info.bg.bold),text:res(S.status.info.text.onBold),bd:"transparent"},
+/* ── ELEVATION ───────────────────────────────────────────────────── */
+(()=>{
+const elevLevels=[
+  {name:"sunken",level:0,shadow:"none",bg:"var(--bg-sunken)",zIndex:"auto",use:"Recessed inputs, inset well, code blocks",desc:"Below-baseline surfaces. Used for inputs, code blocks, and inset areas that appear pressed into the page."},
+  {name:"base",level:1,shadow:"none",bg:"var(--bg-base)",zIndex:"0",use:"Page background, canvas",desc:"The base page background. No shadow. All other surfaces sit above this."},
+  {name:"card",level:2,shadow:"0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.04)",bg:"var(--bg-card)",zIndex:"1",use:"Cards, panels, list rows",desc:"Slightly elevated content containers. Subtle shadow separates them from the base."},
+  {name:"raised",level:3,shadow:"0 2px 8px rgba(0,0,0,.10), 0 1px 3px rgba(0,0,0,.06)",bg:"var(--bg-raised)",zIndex:"10",use:"Sticky headers, popovers, sidebars",desc:"Contextual overlays and sticky elements. Clear depth cue without occluding content."},
+  {name:"overlay",level:4,shadow:"0 8px 32px rgba(0,0,0,.18), 0 2px 8px rgba(0,0,0,.10)",bg:"var(--bg-overlay)",zIndex:"100",use:"Modals, dialogs, floating menus",desc:"Full overlay surfaces. Heavy shadow anchors the element above all page content."},
 ];
-
-H+=`<div class="sub-section"><h3>Variants</h3><div style="display:flex;flex-wrap:wrap;gap:8px;margin:12px 0">`;
-badges.forEach(b=>{
-  H+=`<span style="${badgeBase}font-size:12px;padding:2px 8px;background:${b.bg};color:${b.text};border:1px solid ${b.bd}">${b.n}</span>`;
-});
-H+=`</div>`;
-
-// Subtle variants
-const subtles=[
-  {n:"Success",bg:res(S.status.success.bg.subtle),text:res(S.status.success.text.default)},
-  {n:"Error",bg:res(S.status.error.bg.subtle),text:res(S.status.error.text.default)},
-  {n:"Warning",bg:res(S.status.warning.bg.subtle),text:res(S.status.warning.text.default)},
-  {n:"Info",bg:res(S.status.info.bg.subtle),text:res(S.status.info.text.default)},
-];
-H+=`<div style="display:flex;flex-wrap:wrap;gap:8px;margin:8px 0">`;
-subtles.forEach(b=>{
-  H+=`<span style="${badgeBase}font-size:12px;padding:2px 8px;background:${b.bg}18;color:${b.text}">${b.n} Subtle</span>`;
-});
-H+=`</div></div>`;
-
-// Token map
-H+=`<div class="sub-section"><h3>Token Mapping</h3>`;
-H+=tokenMapTable('t-badge-tok',[
-  {prop:"default.bg",token:"surface.raised",ref:S.surface.raised},
-  {prop:"brand.bg",token:"interactive.primary.bg",ref:S.interactive.primary.bg},
-  {prop:"accent.bg",token:"interactive.secondaryBrand.bg",ref:S.interactive.secondaryBrand.bg},
-  {prop:"success.bg",token:"status.success.bg.bold",ref:S.status.success.bg.bold},
-  {prop:"error.bg",token:"status.error.bg.bold",ref:S.status.error.bg.bold},
-  {prop:"warning.bg",token:"status.warning.bg.bold",ref:S.status.warning.bg.bold},
-  {prop:"info.bg",token:"status.info.bg.bold",ref:S.status.info.bg.bold},
-]);
-H+=`</div>`;
-
-H+=`<div class="sub-section"><h3>Accessibility</h3>`;
-H+=a11yBlock([
-  {t:"ok",x:"<strong>Color + text</strong> — Never rely on color alone. Always include text or icon with the badge."},
-  {t:"info",x:"<strong>Dynamic counts</strong> — Use <code>aria-live=polite</code> for notification count badges."},
-]);
-H+=`</div></div>`;
-
-/* ═══════════════════════════════════════════════════════════════════
-   ALERT
-   ═══════════════════════════════════════════════════════════════════ */
-H+=`<div class="section" id="comp-alert"><div class="comp-header">
-<div class="ch-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--a500)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4m0 4h.01M5.07 19h13.86c1.54 0 2.5-1.67 1.73-3L13.73 4c-.77-1.33-2.69-1.33-3.46 0L3.34 16c-.77 1.33.19 3 1.73 3z"/></svg></div>
-<div class="ch-body"><h2>Alert</h2>
-<p>Contextual feedback messages. 5 variants (info, success, warning, error, neutral) &times; 3 sizes. Left-border accent, 12px radius, optional dismiss.</p>
-<div class="ch-badges"><span class="ch-badge ch-badge-stable">Stable</span><span class="ch-badge ch-badge-version">v1.0.0</span><span class="ch-badge ch-badge-tokens">status · surface · text</span></div>
-<span class="s-path" style="margin-top:8px">components/alert.json</span>
-</div></div>`;
-
-const alerts=[
-  {n:"Info",bg:res(S.status.info.bg.subtle),text:res(S.status.info.text.default),bd:res(S.status.info.border.default),icon:'<circle cx="12" cy="12" r="9" stroke-width="2" fill="none"/><path d="M12 8h0M12 12v4" stroke-width="2"/>',msg:"A new version is available. Please refresh to update."},
-  {n:"Success",bg:res(S.status.success.bg.subtle),text:res(S.status.success.text.default),bd:res(S.status.success.border.default),icon:'<circle cx="12" cy="12" r="9" stroke-width="2" fill="none"/><path d="M9 12l2 2 4-4" stroke-width="2"/>',msg:"Your profile has been updated successfully."},
-  {n:"Warning",bg:res(S.status.warning.bg.subtle),text:res(S.status.warning.text.default),bd:res(S.status.warning.border.default),icon:'<path d="M12 9v4m0 4h.01M5.07 19h13.86c1.54 0 2.5-1.67 1.73-3L13.73 4c-.77-1.33-2.69-1.33-3.46 0L3.34 16c-.77 1.33.19 3 1.73 3z" stroke-width="2" fill="none"/>',msg:"Your session will expire in 5 minutes."},
-  {n:"Error",bg:res(S.status.error.bg.subtle),text:res(S.status.error.text.default),bd:res(S.status.error.border.default),icon:'<circle cx="12" cy="12" r="9" stroke-width="2" fill="none"/><path d="M15 9l-6 6M9 9l6 6" stroke-width="2"/>',msg:"Payment failed. Please check your card details."},
-  {n:"Neutral",bg:res(S.surface.raised),text:res(S.text.secondary),bd:res(S.border.default),icon:'<circle cx="12" cy="12" r="9" stroke-width="2" fill="none"/><path d="M12 8h0M12 12v4" stroke-width="2"/>',msg:"Maintenance is scheduled for Saturday 2am UTC."},
-];
-
-H+=`<div class="sub-section"><h3>Variants</h3><div style="display:flex;flex-direction:column;gap:8px;margin:12px 0">`;
-alerts.forEach(a=>{
-  H+=`<div style="display:flex;align-items:flex-start;gap:10px;padding:14px;background:${a.bg}18;border-left:3px solid ${a.bd};border-radius:0 12px 12px 0">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="${a.text}" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px">${a.icon}</svg>
-    <div><div style="font-size:.65rem;font-weight:700;color:${a.text};text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px">${a.n}</div>
-    <div style="font-size:.78rem;color:${a.text};line-height:1.5">${a.msg}</div></div></div>`;
-});
-H+=`</div></div>`;
-
-H+=`<div class="sub-section"><h3>Token Mapping</h3>`;
-H+=tokenMapTable('t-alert-tok',[
-  {prop:"info.bg",token:"status.info.bg.subtle",ref:S.status.info.bg.subtle},
-  {prop:"info.text",token:"status.info.text.default",ref:S.status.info.text.default},
-  {prop:"info.border",token:"status.info.border.default",ref:S.status.info.border.default},
-  {prop:"success.bg",token:"status.success.bg.subtle",ref:S.status.success.bg.subtle},
-  {prop:"error.bg",token:"status.error.bg.subtle",ref:S.status.error.bg.subtle},
-  {prop:"warning.bg",token:"status.warning.bg.subtle",ref:S.status.warning.bg.subtle},
-  {prop:"neutral.bg",token:"surface.raised",ref:S.surface.raised},
-  {prop:"dismiss icon",token:"text.muted",ref:S.text.muted},
-]);
-H+=`</div>`;
-
-H+=`<div class="sub-section"><h3>Accessibility</h3>`;
-H+=a11yBlock([
-  {t:"ok",x:"<strong>Role</strong> — Errors use <code>role=alert</code> + <code>aria-live=assertive</code>. Others use <code>role=status</code>."},
-  {t:"ok",x:"<strong>Dismiss</strong> — Close button has <code>aria-label='Dismiss'</code>. Focus returns to trigger on close."},
-  {t:"warn",x:"<strong>Auto-close</strong> — If auto-dismissing, allow minimum 5s reading time and manual dismiss."},
-]);
-H+=`</div></div>`;
-
-/* ═══════════════════════════════════════════════════════════════════
-   CHECKBOX
-   ═══════════════════════════════════════════════════════════════════ */
-const ckBrand=res(S.interactive.primary.bg),ckBrandHov=res(S.interactive.primary.hover),ckText=res(S.interactive.primary.text);
-
-H+=`<div class="section" id="comp-checkbox"><div class="comp-header">
-<div class="ch-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--a500)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12l3 3 5-5"/></svg></div>
-<div class="ch-body"><h2>Checkbox</h2>
-<p>Binary selection control. 2 variants (default, error) &times; 3 sizes. 7 states including indeterminate. 4px radius, 2px border.</p>
-<div class="ch-badges"><span class="ch-badge ch-badge-stable">Stable</span><span class="ch-badge ch-badge-version">v1.0.0</span><span class="ch-badge ch-badge-tokens">interactive · border · status</span></div>
-<span class="s-path" style="margin-top:8px">components/checkbox.json</span>
-</div></div>`;
-
-H+=`<div class="sub-section"><h3>States</h3><div style="display:flex;flex-wrap:wrap;gap:20px;margin:12px 0">`;
-const ckStates=[
-  {n:"Unchecked",bg:"transparent",bd:inpBorder,check:"none"},
-  {n:"Hover",bg:cardRaised,bd:inpBorderStrong,check:"none"},
-  {n:"Checked",bg:ckBrand,bd:ckBrand,check:"block"},
-  {n:"Indeterminate",bg:ckBrand,bd:ckBrand,check:"inde"},
-  {n:"Focus",bg:"transparent",bd:inpBorder,check:"none",ring:true},
-  {n:"Disabled",bg:inpSunken,bd:res(S.border.subtle),check:"none",dis:true},
-  {n:"Error",bg:"transparent",bd:inpErrBorder,check:"none"},
-];
-ckStates.forEach(c=>{
-  const checkSvg=c.check==='block'?`<svg width="12" height="12" viewBox="0 0 12 12" style="position:absolute;inset:0;margin:auto"><path d="M3 6l2.5 2.5L9 4" stroke="${ckText}" stroke-width="2" fill="none" stroke-linecap="round"/></svg>`:c.check==='inde'?`<svg width="12" height="12" viewBox="0 0 12 12" style="position:absolute;inset:0;margin:auto"><path d="M3 6h6" stroke="${ckText}" stroke-width="2" stroke-linecap="round"/></svg>`:'';
-  const ring=c.ring?`outline:2px solid ${inpFocus};outline-offset:2px;`:'';
-  H+=`<div style="display:flex;flex-direction:column;align-items:center;gap:6px${c.dis?';opacity:.5':''}">
-    <div style="position:relative;width:20px;height:20px;border:2px solid ${c.bd};border-radius:4px;background:${c.bg};${ring}">${checkSvg}</div>
-    <span style="font-size:.55rem;font-weight:700;color:var(--fg-4);text-transform:uppercase;letter-spacing:.04em">${c.n}</span></div>`;
-});
-H+=`</div></div>`;
-
-H+=`<div class="sub-section"><h3>Token Mapping</h3>`;
-H+=tokenMapTable('t-ck-tok',[
-  {prop:"unchecked border",token:"border.default",ref:S.border.default},
-  {prop:"checked bg",token:"interactive.primary.bg",ref:S.interactive.primary.bg},
-  {prop:"checkmark",token:"interactive.primary.text",ref:S.interactive.primary.text},
-  {prop:"hover bg",token:"surface.raised",ref:S.surface.raised},
-  {prop:"error border",token:"status.error.border.default",ref:S.status.error.border.default},
-  {prop:"disabled bg",token:"surface.sunken",ref:S.surface.sunken},
-  {prop:"focus ring",token:"border.focus",ref:S.border.focus},
-]);
-H+=`</div>`;
-
-H+=`<div class="sub-section"><h3>Accessibility</h3>`;
-H+=a11yBlock([
-  {t:"ok",x:"<strong>Native input</strong> — Use hidden <code>&lt;input type=checkbox&gt;</code> with custom visual overlay."},
-  {t:"ok",x:"<strong>Indeterminate</strong> — Set <code>aria-checked=mixed</code> via JavaScript."},
-  {t:"warn",x:"<strong>Groups</strong> — Use <code>&lt;fieldset&gt;</code> / <code>&lt;legend&gt;</code> for checkbox groups."},
-]);
-H+=`</div></div>`;
-
-/* ═══════════════════════════════════════════════════════════════════
-   TOGGLE
-   ═══════════════════════════════════════════════════════════════════ */
-H+=`<div class="section" id="comp-toggle"><div class="comp-header">
-<div class="ch-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--a500)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="20" height="8" rx="4"/><circle cx="16" cy="12" r="2.5"/></svg></div>
-<div class="ch-body"><h2>Toggle</h2>
-<p>On/off switch for binary settings. 1 variant &times; 3 sizes. 6 states with smooth thumb transition. Pill track, 200ms ease.</p>
-<div class="ch-badges"><span class="ch-badge ch-badge-stable">Stable</span><span class="ch-badge ch-badge-version">v1.0.0</span><span class="ch-badge ch-badge-tokens">interactive · surface · border</span></div>
-<span class="s-path" style="margin-top:8px">components/toggle.json</span>
-</div></div>`;
-
-H+=`<div class="sub-section"><h3>States</h3><div style="display:flex;flex-wrap:wrap;gap:20px;margin:12px 0">`;
-const togStates=[
-  {n:"Off",trackBg:cardRaised,trackBd:inpBorder,thumbBg:inpMuted,thumbX:2},
-  {n:"Off Hover",trackBg:cardRaised,trackBd:inpBorderStrong,thumbBg:res(S.text.secondary),thumbX:2},
-  {n:"On",trackBg:ckBrand,trackBd:ckBrand,thumbBg:ckText,thumbX:20},
-  {n:"On Hover",trackBg:ckBrandHov,trackBd:ckBrandHov,thumbBg:ckText,thumbX:20},
-  {n:"Focus",trackBg:cardRaised,trackBd:inpBorder,thumbBg:inpMuted,thumbX:2,ring:true},
-  {n:"Disabled",trackBg:inpSunken,trackBd:res(S.border.subtle),thumbBg:inpDisText,thumbX:2,dis:true},
-];
-togStates.forEach(t=>{
-  const ring=t.ring?`outline:2px solid ${inpFocus};outline-offset:2px;`:'';
-  H+=`<div style="display:flex;flex-direction:column;align-items:center;gap:6px${t.dis?';opacity:.5':''}">
-    <div style="position:relative;width:40px;height:22px;border-radius:11px;background:${t.trackBg};border:1px solid ${t.trackBd};${ring}">
-      <div style="position:absolute;top:2px;left:${t.thumbX}px;width:16px;height:16px;border-radius:50%;background:${t.thumbBg};transition:left .2s ease"></div></div>
-    <span style="font-size:.55rem;font-weight:700;color:var(--fg-4);text-transform:uppercase;letter-spacing:.04em">${t.n}</span></div>`;
-});
-H+=`</div></div>`;
-
-H+=`<div class="sub-section"><h3>Token Mapping</h3>`;
-H+=tokenMapTable('t-tog-tok',[
-  {prop:"track off",token:"surface.raised",ref:S.surface.raised},
-  {prop:"track on",token:"interactive.primary.bg",ref:S.interactive.primary.bg},
-  {prop:"thumb off",token:"text.muted",ref:S.text.muted},
-  {prop:"thumb on",token:"interactive.primary.text",ref:S.interactive.primary.text},
-  {prop:"border",token:"border.default",ref:S.border.default},
-  {prop:"focus ring",token:"border.focus",ref:S.border.focus},
-  {prop:"disabled bg",token:"surface.sunken",ref:S.surface.sunken},
-]);
-H+=`</div>`;
-
-H+=`<div class="sub-section"><h3>Accessibility</h3>`;
-H+=a11yBlock([
-  {t:"ok",x:"<strong>Role</strong> — Use <code>role=switch</code> with <code>aria-checked=true/false</code>."},
-  {t:"ok",x:"<strong>Keyboard</strong> — Space and Enter to toggle. Visible label required."},
-  {t:"warn",x:"<strong>Disabled</strong> — Use <code>aria-disabled=true</code>. Keep in tab order for discoverability."},
-]);
-H+=`</div></div>`;
-
-/* ═══════════════════════════════════════════════════════════════════
-   TABS
-   ═══════════════════════════════════════════════════════════════════ */
-H+=`<div class="section" id="comp-tabs"><div class="comp-header">
-<div class="ch-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--a500)" stroke-width="1.8" stroke-linecap="round"><line x1="4" y1="17" x2="20" y2="17" opacity=".3"/><line x1="4" y1="17" x2="10" y2="17" stroke-width="2.5" stroke-linecap="round"/></svg></div>
-<div class="ch-body"><h2>Tabs</h2>
-<p>Content panel navigation. 2 styles (underline, pill) &times; 3 sizes. 5 states with animated active indicator.</p>
-<div class="ch-badges"><span class="ch-badge ch-badge-stable">Stable</span><span class="ch-badge ch-badge-version">v1.0.0</span><span class="ch-badge ch-badge-tokens">interactive · surface · text · border</span></div>
-<span class="s-path" style="margin-top:8px">components/tabs.json</span>
-</div></div>`;
-
-// Underline preview
-const tabItems=["Overview","Tokens","Components","Settings"];
-H+=`<div class="sub-section"><h3>Underline</h3>
-<div style="display:flex;border-bottom:1px solid ${res(S.border.divider)};gap:0;margin:12px 0">`;
-tabItems.forEach((t,i)=>{
-  const isActive=i===0;
-  H+=`<div style="padding:8px 14px;font-size:14px;font-weight:${isActive?600:500};color:${isActive?inpText:inpMuted};border-bottom:2px solid ${isActive?ckBrand:'transparent'};cursor:pointer;transition:all 150ms ease" onmouseover="if(${!isActive})this.style.color='${inpText}';this.style.borderBottomColor='${res(S.border.subtle)}'" onmouseout="if(${!isActive}){this.style.color='${inpMuted}';this.style.borderBottomColor='transparent'}">${t}</div>`;
-});
-H+=`</div></div>`;
-
-// Pill preview
-H+=`<div class="sub-section"><h3>Pill</h3>
-<div style="display:inline-flex;background:${inpSunken};border-radius:10px;padding:3px;gap:2px;margin:12px 0">`;
-tabItems.forEach((t,i)=>{
-  const isActive=i===0;
-  H+=`<div style="padding:6px 14px;font-size:14px;font-weight:${isActive?600:500};color:${isActive?inpText:inpMuted};background:${isActive?cardBg:'transparent'};border-radius:8px;cursor:pointer;transition:all 150ms ease;${isActive?'box-shadow:0 1px 3px rgba(0,0,0,.15)':''}" onmouseover="if(${!isActive})this.style.background='${cardRaised}';this.style.color='${inpText}'" onmouseout="if(${!isActive}){this.style.background='transparent';this.style.color='${inpMuted}'}">${t}</div>`;
-});
-H+=`</div></div>`;
-
-H+=`<div class="sub-section"><h3>Token Mapping</h3>`;
-H+=tokenMapTable('t-tab-tok',[
-  {prop:"inactive text",token:"text.muted",ref:S.text.muted},
-  {prop:"active text",token:"text.primary",ref:S.text.primary},
-  {prop:"underline indicator",token:"interactive.primary.bg",ref:S.interactive.primary.bg},
-  {prop:"pill active bg",token:"surface.card",ref:S.surface.card},
-  {prop:"pill container",token:"surface.sunken",ref:S.surface.sunken},
-  {prop:"list border",token:"border.divider",ref:S.border.divider},
-  {prop:"focus ring",token:"border.focus",ref:S.border.focus},
-]);
-H+=`</div>`;
-
-H+=`<div class="sub-section"><h3>Accessibility</h3>`;
-H+=a11yBlock([
-  {t:"ok",x:"<strong>ARIA roles</strong> — <code>role=tablist</code> on container, <code>role=tab</code> per tab, <code>role=tabpanel</code> per panel."},
-  {t:"ok",x:"<strong>Keyboard</strong> — Arrow Left/Right to navigate, Home/End for first/last, Tab exits tablist."},
-  {t:"info",x:"<strong>Focus management</strong> — Active tab <code>tabindex=0</code>, inactive tabs <code>tabindex=-1</code>."},
-]);
-H+=`</div></div>`;
-
-/* ═══════════════════════════════════════════════════════════════════
-   MODAL
-   ═══════════════════════════════════════════════════════════════════ */
-H+=`<div class="section" id="comp-modal"><div class="comp-header">
-<div class="ch-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--a500)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="14" height="14" rx="2"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div>
-<div class="ch-body"><h2>Modal</h2>
-<p>Dialog overlays with 3 variants (default, fullscreen, sheet) &times; 3 sizes. Scrim backdrop, focus trapping, 16px radius, 250ms ease transition.</p>
-<div class="ch-badges"><span class="ch-badge ch-badge-stable">Stable</span><span class="ch-badge ch-badge-version">v1.0.0</span><span class="ch-badge ch-badge-tokens">overlay · surface · border · text</span></div>
-<span class="s-path" style="margin-top:8px">components/modal.json</span>
-</div></div>`;
-
-const scrimBg=res("{color.neutral.950}"),modalBg=res(S.surface.card),modalBorderC=res(S.border.subtle),modalDivider=res(S.border.divider),modalTitle=inpText,modalBody=res(S.text.secondary);
-
-// Preview
-H+=`<div class="sub-section"><h3>Variants</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:12px 0">`;
-
-// Default modal
-H+=`<div style="position:relative;background:${scrimBg}99;border-radius:12px;padding:40px 20px;display:flex;justify-content:center;align-items:center;min-height:200px">
-  <div style="background:${modalBg};border:1px solid ${modalBorderC};border-radius:16px;padding:20px;width:100%;max-width:280px;box-shadow:0 8px 32px rgba(0,0,0,.5)">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-      <div style="font-size:.82rem;font-weight:600;color:${modalTitle}">Confirm Action</div>
-      <div style="width:18px;height:18px;display:flex;align-items:center;justify-content:center;color:${inpMuted};cursor:pointer;font-size:14px">✕</div></div>
-    <div style="font-size:.72rem;color:${modalBody};line-height:1.5;margin-bottom:16px">Are you sure you want to proceed? This action cannot be undone.</div>
-    <div style="display:flex;gap:8px;justify-content:flex-end">
-      <button style="${btnStyle('secondary','sm')}">Cancel</button>
-      <button style="${btnStyle('primary','sm')}">Confirm</button></div></div>
-  <div style="position:absolute;top:6px;left:10px;font-size:.55rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--accent,#00ffc6)">Default</div></div>`;
-
-// Sheet
-H+=`<div style="position:relative;background:${scrimBg}99;border-radius:12px;padding:20px 20px 0;display:flex;flex-direction:column;justify-content:flex-end;min-height:200px;overflow:hidden">
-  <div style="background:${modalBg};border:1px solid ${modalBorderC};border-radius:16px 16px 0 0;padding:16px 20px 20px">
-    <div style="width:36px;height:4px;border-radius:2px;background:${res(S.border.default)};margin:0 auto 12px"></div>
-    <div style="font-size:.82rem;font-weight:600;color:${modalTitle};margin-bottom:6px">Select Option</div>
-    <div style="font-size:.72rem;color:${modalBody};line-height:1.5">Choose from the available options below.</div></div>
-  <div style="position:absolute;top:6px;left:10px;font-size:.55rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--accent,#00ffc6)">Sheet</div></div>`;
-
-H+=`</div></div>`;
-
-H+=`<div class="sub-section"><h3>Token Mapping</h3>`;
-H+=tokenMapTable('t-modal-tok',[
-  {prop:"scrim",token:"overlay.scrim",hex:scrimBg+"99"},
-  {prop:"content bg",token:"surface.card",ref:S.surface.card},
-  {prop:"content border",token:"border.subtle",ref:S.border.subtle},
-  {prop:"header text",token:"text.primary",ref:S.text.primary},
-  {prop:"body text",token:"text.secondary",ref:S.text.secondary},
-  {prop:"divider",token:"border.divider",ref:S.border.divider},
-  {prop:"close icon",token:"text.muted",ref:S.text.muted},
-  {prop:"handle bar",token:"border.default",ref:S.border.default},
-]);
-H+=`</div>`;
-
-H+=`<div class="sub-section"><h3>Accessibility</h3>`;
-H+=a11yBlock([
-  {t:"ok",x:"<strong>Focus trap</strong> — Focus trapped inside modal. First focusable element receives focus on open."},
-  {t:"ok",x:"<strong>Escape</strong> — Escape key closes modal. Scrim click closes (unless critical)."},
-  {t:"ok",x:"<strong>Return focus</strong> — On close, focus returns to the trigger element."},
-  {t:"warn",x:"<strong>Scroll lock</strong> — Page scroll locked. Apply <code>aria-hidden=true</code> to background."},
-  {t:"info",x:"<strong>ARIA</strong> — Use <code>role=dialog</code> + <code>aria-modal=true</code> + <code>aria-labelledby</code>."},
-]);
-H+=`</div></div>`;
-
-/* ── SPACING (placeholder) ────────────────────────────────────────── */
-H+=`<div class="section" id="spacing"><div class="s-head">
-<h2>Spacing</h2>
-<p>A unified spacing scale based on an 8pt grid. Defines consistent padding, margin, and gap values across all components and layouts.</p>
-<span class="s-path">foundations/spacing.json</span>
-</div>
-<div class="guideline" style="text-align:center;padding:40px 20px;color:var(--fg-4)">
-<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:.4;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><polyline points="16,6 12,2 8,6"/><polyline points="6,16 2,12 6,8"/><polyline points="18,8 22,12 18,16"/><polyline points="8,18 12,22 16,18"/></svg>
-<strong style="display:block;margin-bottom:4px">Coming in Phase 2</strong>
-4px base unit &middot; 8pt grid &middot; Scale: 0 / 1 / 2 / 3 / 4 / 5 / 6 / 8 / 10 / 12 / 16 / 20 / 24
-</div></div>`;
-
-/* ── ELEVATION (placeholder) ─────────────────────────────────────── */
 H+=`<div class="section" id="elevation"><div class="s-head">
 <h2>Elevation</h2>
-<p>Shadow and layering tokens that create depth hierarchy. Maps to surface stacking: sunken → base → card → raised → overlay.</p>
+<p>5-level depth hierarchy using surface background tokens and progressive box-shadow values. Each level maps to a semantic surface token and a z-index tier. Never use ad-hoc box-shadows.</p>
 <span class="s-path">foundations/elevation.json</span>
-</div>
-<div class="guideline" style="text-align:center;padding:40px 20px;color:var(--fg-4)">
-<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:.4;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto"><rect x="3" y="3" width="18" height="18" rx="2"/><rect x="6" y="6" width="18" height="18" rx="2" opacity=".5"/></svg>
-<strong style="display:block;margin-bottom:4px">Coming in Phase 2</strong>
-5 elevation levels &middot; Box-shadow scale &middot; Maps to surface token layers
-</div></div>`;
+</div>`;
 
-/* ── MOTION (placeholder) ────────────────────────────────────────── */
+H+=`<div class="sub-section"><h3>Elevation Stack</h3>
+<div style="display:flex;flex-direction:column;gap:10px;margin:12px 0;max-width:580px">`;
+elevLevels.forEach((e,i)=>{
+  const translateY=i*4;
+  H+=`<div style="display:flex;align-items:center;gap:16px">
+    <div style="width:32px;height:32px;border-radius:8px;background:${e.bg};box-shadow:${e.shadow};border:1px solid var(--border-subtle);flex-shrink:0;display:flex;align-items:center;justify-content:center">
+      <span style="font-size:.55rem;font-weight:800;color:var(--fg-3)">${e.level}</span>
+    </div>
+    <div style="flex:1;min-width:0">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:2px">
+        <span style="font-size:.72rem;font-weight:700;color:var(--fg-1);font-family:var(--font-mono)">surface.${e.name}</span>
+        <span style="font-size:.55rem;color:var(--fg-4);background:var(--bg-raised);padding:1px 6px;border-radius:4px;border:1px solid var(--border-subtle)">z:${e.zIndex}</span>
+      </div>
+      <div style="font-size:.68rem;color:var(--fg-4);line-height:1.4">${e.desc}</div>
+    </div>
+    <div style="font-size:.6rem;color:var(--fg-4);white-space:nowrap;text-align:right;max-width:140px">${e.use}</div>
+  </div>`;
+});
+H+=`</div></div>`;
+
+H+=`<div class="sub-section"><h3>Visual Preview</h3>
+<div style="display:flex;flex-wrap:wrap;gap:16px;margin:12px 0;align-items:flex-end">`;
+elevLevels.forEach((e,i)=>{
+  H+=`<div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+    <div style="width:96px;height:${56+i*14}px;background:${e.bg};border-radius:12px;box-shadow:${e.shadow};border:1px solid var(--border-subtle);display:flex;align-items:center;justify-content:center">
+      <span style="font-size:.6rem;font-weight:700;color:var(--fg-3)">${e.level}</span>
+    </div>
+    <span style="font-size:.6rem;color:var(--fg-4)">${e.name}</span>
+  </div>`;
+});
+H+=`</div></div>`;
+
+H+=`<div class="sub-section"><h3>Token Reference</h3>
+<table class="token-table"><thead><tr><th>Surface Token</th><th>Shadow</th><th>z-index</th><th>Use</th></tr></thead><tbody>`;
+elevLevels.forEach(e=>{
+  H+=`<tr>
+    <td class="tok-name">surface.${e.name}</td>
+    <td class="tok-ref" style="font-size:.6rem;max-width:200px;word-break:break-all">${e.shadow||'none'}</td>
+    <td class="tok-hex">${e.zIndex}</td>
+    <td class="tok-desc">${e.use}</td>
+  </tr>`;
+});
+H+=`</tbody></table></div>`;
+
+H+=`<div class="guideline"><strong>Always use the surface token.</strong> Never write raw <code>box-shadow</code> values in components. Reference <code>surface.overlay</code>, <code>surface.raised</code>, etc. Dark mode shadow values are automatically adjusted by the token system.</div>`;
+H+=`</div>`;
+})();
+
+/* ── MOTION ──────────────────────────────────────────────────────── */
+(()=>{
+const durations=[
+  {name:"motion-instant",val:"0ms",use:"State changes that should be imperceptible (e.g. color on press)"},
+  {name:"motion-fast",val:"150ms",use:"Micro-interactions: button press, checkbox toggle, hover color"},
+  {name:"motion-normal",val:"250ms",use:"Standard transitions: panel open, tab switch, tooltip appear"},
+  {name:"motion-slow",val:"400ms",use:"Large surface transitions: modal enter, page fade, skeleton reveal"},
+  {name:"motion-deliberate",val:"600ms",use:"Onboarding animations, celebration states, first-run reveals"},
+];
+const easings=[
+  {name:"motion-ease",val:"cubic-bezier(.2,.8,.2,1)",use:"Default — snappy deceleration. Most common easing.",demo:"ease-out"},
+  {name:"motion-ease-in",val:"cubic-bezier(.4,0,1,1)",use:"Elements leaving the screen (exit animations).",demo:"ease-in"},
+  {name:"motion-ease-out",val:"cubic-bezier(0,0,.2,1)",use:"Elements entering the screen (enter animations).",demo:"ease-out"},
+  {name:"motion-ease-in-out",val:"cubic-bezier(.4,0,.2,1)",use:"Repositioning, reorder, transform-in-place.",demo:"ease-in-out"},
+  {name:"motion-spring",val:"cubic-bezier(.34,1.56,.64,1)",use:"Playful overshoot. Drag handles, confetti, celebratory states.",demo:"ease-out"},
+  {name:"motion-linear",val:"linear",use:"Progress bars, skeleton shimmer, continuous loops.",demo:"linear"},
+];
+const components=[
+  {name:"Button press",dur:"motion-fast (150ms)",ease:"motion-ease",prop:"background, transform (scale 0.98)"},
+  {name:"Hover color",dur:"motion-fast (150ms)",ease:"motion-ease",prop:"background-color, border-color, color"},
+  {name:"Focus ring",dur:"motion-fast (150ms)",ease:"motion-ease",prop:"outline-offset, box-shadow"},
+  {name:"Tooltip appear",dur:"motion-normal (250ms)",ease:"motion-ease",prop:"opacity, transform (translateY 4px→0)"},
+  {name:"Dropdown open",dur:"motion-normal (250ms)",ease:"motion-ease",prop:"opacity, transform (scaleY 0.95→1), max-height"},
+  {name:"Modal enter",dur:"motion-slow (400ms)",ease:"motion-ease",prop:"opacity, transform (translateY 16px→0)"},
+  {name:"Modal backdrop",dur:"motion-normal (250ms)",ease:"motion-ease",prop:"opacity"},
+  {name:"Toast slide-in",dur:"motion-normal (250ms)",ease:"motion-ease",prop:"transform (translateX)"},
+  {name:"Tab indicator",dur:"motion-fast (150ms)",ease:"motion-ease",prop:"width, transform"},
+  {name:"Accordion expand",dur:"motion-normal (250ms)",ease:"motion-ease",prop:"max-height, opacity"},
+  {name:"Skeleton shimmer",dur:"motion-deliberate (1.4s)",ease:"motion-linear",prop:"background-position (loop)"},
+  {name:"Spinner rotate",dur:"motion-deliberate (1s)",ease:"motion-linear",prop:"transform: rotate (loop)"},
+];
 H+=`<div class="section" id="motion"><div class="s-head">
 <h2>Motion</h2>
-<p>Duration, easing, and animation tokens for consistent micro-interactions and transitions across all components.</p>
+<p>Duration and easing tokens for all micro-interactions and transitions. Every animated component references this system. Respects <code>prefers-reduced-motion</code> — fast/normal durations collapse to 0ms.</p>
 <span class="s-path">foundations/motion.json</span>
-</div>
-<div class="guideline" style="text-align:center;padding:40px 20px;color:var(--fg-4)">
-<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="opacity:.4;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto"><path d="M5 12h14"/><polyline points="12,5 19,12 12,19"/></svg>
-<strong style="display:block;margin-bottom:4px">Coming in Phase 2</strong>
-Durations: fast (150ms) / normal (250ms) / slow (400ms) &middot; Easings: ease-out / ease-in-out / spring
-</div></div>`;
+</div>`;
+
+H+=`<div class="sub-section"><h3>Duration Scale</h3>
+<div style="display:flex;flex-direction:column;gap:8px;margin:12px 0;max-width:560px">`;
+durations.forEach(d=>{
+  const barW=Math.round(parseInt(d.val)/6)||2;
+  H+=`<div style="display:flex;align-items:center;gap:12px">
+    <div style="font-size:.65rem;font-family:var(--font-mono);color:var(--fg-3);width:130px;flex-shrink:0">${d.name}</div>
+    <div style="width:${barW}px;height:8px;background:linear-gradient(90deg,var(--b500),var(--a500));border-radius:4px;flex-shrink:0;min-width:2px"></div>
+    <div style="font-size:.65rem;color:var(--fg-4)">${d.val} — ${d.use}</div>
+  </div>`;
+});
+H+=`</div></div>`;
+
+H+=`<div class="sub-section"><h3>Easing Functions</h3>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin:12px 0">`;
+easings.forEach(e=>{
+  H+=`<div style="background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:10px;padding:14px 16px;overflow:hidden">
+    <div style="font-size:.68rem;font-weight:700;color:var(--fg-1);font-family:var(--font-mono);margin-bottom:4px">${e.name}</div>
+    <div style="font-size:.6rem;color:var(--fg-4);font-family:var(--font-mono);margin-bottom:8px;opacity:.8">${e.val}</div>
+    <div style="height:36px;position:relative;overflow:hidden;margin-bottom:8px">
+      <div class="motion-demo-bar" style="height:8px;width:40px;background:linear-gradient(90deg,var(--b500),var(--a500));border-radius:4px;position:absolute;top:14px;left:0;animation:motionSlide 2s ${e.demo} infinite alternate"></div>
+    </div>
+    <div style="font-size:.62rem;color:var(--fg-3);line-height:1.4">${e.use}</div>
+  </div>`;
+});
+H+=`</div>
+<style>@keyframes motionSlide{from{transform:translateX(0)}to{transform:translateX(calc(100% + 80px))}}@media(prefers-reduced-motion:reduce){.motion-demo-bar{animation:none}}</style>`;
+H+=`</div>`;
+
+H+=`<div class="sub-section"><h3>Component Motion Specs</h3>
+<table class="token-table"><thead><tr><th>Component</th><th>Duration</th><th>Easing</th><th>Properties</th></tr></thead><tbody>`;
+components.forEach(c=>{
+  H+=`<tr>
+    <td class="tok-name">${c.name}</td>
+    <td class="tok-hex">${c.dur}</td>
+    <td class="tok-ref">${c.ease}</td>
+    <td class="tok-desc">${c.prop}</td>
+  </tr>`;
+});
+H+=`</tbody></table></div>`;
+
+H+=`<div class="sub-section"><h3>Reduced Motion</h3>
+<div class="guideline"><strong><code>prefers-reduced-motion: reduce</code></strong> — All duration tokens resolve to <code>0ms</code> (instant). Opacity crossfades may remain at a very short duration (50–80ms) to prevent jarring cuts for users who need reduced but not zero motion.</div>
+<div class="guideline"><strong>Implementation:</strong> CSS custom properties automatically swap via:<br><code>@media(prefers-reduced-motion:reduce){:root{--motion-fast:0ms;--motion-normal:0ms;--motion-slow:0ms}}</code></div>
+</div>`;
+
+H+=`<div class="guideline"><strong>Never write raw <code>transition</code> or <code>animation</code> timing in components.</strong> Always reference <code>var(--motion-fast)</code>, <code>var(--motion-normal)</code> etc. This ensures system-wide consistency and makes reduced-motion overrides work automatically.</div>`;
+H+=`</div>`;
+})();
 
 /* ── HANDOFF ─────────────────────────────────────────────────────── */
 H+=`<div class="section" id="handoff"><div class="s-head">
@@ -1802,7 +1529,7 @@ H+=`<div class="section" id="handoff"><div class="s-head">
 
 <div class="sub-section" id="handoff-versioning"><h3>Versioning Strategy</h3>
 <div class="guideline"><strong>Semantic versioning.</strong> <code>MAJOR.MINOR.PATCH</code>. Breaking token renames = major. New tokens = minor. Value adjustments = patch.</div>
-<div class="guideline"><strong>Current version:</strong> <code>v1.0.0</code> — Phase 1 Core (9 components, full semantic + primitive layers).</div>
+<div class="guideline"><strong>Current version:</strong> <code>v3.0.0</code> — Phase 3 Extended (14 new components: accordion, avatar, breadcrumb, calendar, chip, file-upload, loading, pagination, progress-bar, radio-group, select, slider, stepper, empty-state). Total: 31 components, full semantic + primitive layers.</div>
 <div class="guideline"><strong>Deprecation:</strong> Tokens are never removed in a minor version. Deprecated tokens are marked with <code>"$deprecated": true</code> and a migration note before removal in the next major.</div>
 </div>
 </div>`;
@@ -1818,9 +1545,9 @@ document.getElementById("mainContent").innerHTML=H;
     "type-scale","type-preview","type-migration","type-summary",
     "spacing","elevation","motion",
     "surface","text","border","icon","interactive","highlight","status-semantic","overlay",
-    "comp-overview","comp-button","comp-input","comp-card","comp-badge","comp-alert","comp-checkbox","comp-toggle","comp-tabs","comp-modal",
     "accessibility",
-    "handoff"
+    "handoff",
+    "comp-overview","components"
   ];
   const map={};
   c.querySelectorAll(".section").forEach(el=>{if(el.id)map[el.id]=el;});
